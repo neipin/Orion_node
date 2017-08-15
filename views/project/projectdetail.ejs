@@ -1,0 +1,51 @@
+	<h4 style="margin: 0;"><%=data.job_name%><span class="company-span"><%=data.company_name%></span></h4>
+	<div class="detailcon">
+		<div><span>开放时间：</span><%=data.open_date%></div>		
+		<div><span>创建者：</span><%=data.creater_name%></div>
+		<div><span>创建时间：</span><em style="font-style: normal;"><%=dateformat(data.create_time,'YYYY-MM-DD')%></em></div>
+		<div class="detailcon-edit nav-click"><a href="/editproject?job_id=<%=query.job_id%>" type="button" class="btn glyphicon glyphicon-pencil"  target-view="center-container" pushstate="true">编辑</a></div>
+	</div>
+	<hr style="margin-top: 5px;"/>
+	<!--标签table-->
+	<div class="projectdetailcon">
+	  	<!-- Nav tabs -->
+	  	<ul class="nav nav-tabs" role="tablist" id="maintab">
+		    <li><a href="/probaseinfo?job_id=<%=query.job_id%>" target-view="tab-pane" pushstate="false">基本信息</a></li>
+		    <li class="active"><a href="/goodman?job_id=<%=query.job_id%>"  target-view="tab-pane" pushstate="false">人才<span class="badge"><%=data_num.candidate_num%></span></a></li>
+		    <li><a href="/procommunicate?job_id=<%=query.job_id%>"   target-view="tab-pane" pushstate="false">沟通记录<span class="badge"><%=data_num.comm_num%></span></a></li>
+		    <li><a href="/itemmember?job_id=<%=query.job_id%>"  target-view="tab-pane" pushstate="false">项目成员<span class="badge"><%=data_num.member_num%></span></a></li>
+	  	</ul>			
+	  	<!-- Tab panes -->
+	  	<div class="tab-content">
+		    <div class="tab-pane active"></div>
+	  	</div>			
+	</div>		
+	<style type="text/css">
+		form {
+			margin-bottom: 0;
+		}
+		.editcompany .form-group {
+			width: 100%;
+			margin-right: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		var job_id="<%=query.job_id%>";
+		var rencaiflag = "<%=query.rencaiflag%>";
+		$(function(){	
+			if(rencaiflag!=""){
+				OrionJump('.tab-pane','/goodman?job_id='+job_id+'&rencaiflag=1');			
+			}
+		//	初始化 start
+			$(document).on('click', '.data-list em', function() {
+				$(this).parents(".data-list").remove();
+			})			
+			$(document).on('click', '.contact-del', function() {
+				$(this).parents("tr").remove();
+			})
+		})	
+
+	</script>	
+	
+
+	

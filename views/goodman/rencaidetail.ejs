@@ -1,0 +1,81 @@
+	<h4 style="margin: 0;"><%=data.username%><span class="company-span"><%=data.last_title%></span></h4>
+	<div class="detailcon">
+		<div><span>创建时间：</span><em style="font-style: normal;"><%=dateformat(data.update_time,'YYYY-MM-DD')%></em></div>
+		<div><span>创建者：</span><%=data.uploader%></div>		
+		<div><span>更新时间：</span><%=dateformat(data.update_time,'YYYY-MM-DD')%></div>
+		<div class="detailcon-edit"><a href="/editgoodman?openid=<%=query.openid%>" type="button" class="btn glyphicon glyphicon-pencil"  target-view="center-container" pushstate="true">编辑</a></div>
+	</div>
+	<hr style="margin-top: 5px; margin-bottom: 0;"/>
+	<div class="row">
+		<div class="col-md-9">
+			<div class="uploadname" style="<%if(!data.resume_upload_name){%>display:none;<%}%>margin-bottom: 10px; color:#888;">附件简历：
+				<a href="javascript:void(0);" title="点击下载" class="originalName" no-nave="true"><%=data.resume_upload_name%><span class="glyphicon glyphicon-download"></span></a>
+			</div>
+			<div class="projectdetailcon">
+			  	<ul class="nav nav-tabs" role="tablist" id="maintab">
+			  	<% if(data.old_resume=="1"){%>
+			  		<li class="active"><a href="/goodmanbaseinfo_old?openid=<%=query.openid%>" target-view="tab-pane" pushstate="false">基本信息</a></li>
+			  	<%}else{%>				    
+				    <li class="active"><a href="/goodmanbaseinfo?openid=<%=query.openid%>" target-view="tab-pane" pushstate="false">基本信息</a></li>
+				<%}%>
+				<% if(data.old_resume=="1"&& data.resume_file!=""){%>
+			  		<li><a href="/goodmanresume?openid=<%=query.openid%>" target-view="tab-pane" pushstate="false">附件简历</a></li>
+			  	<%}%>		
+				    <li><a href="/goodmanmemo?openid=<%=query.openid%>"  target-view="tab-pane" pushstate="false">备注<span class="badge"><%=data.beizhu_num%></span></a></li>
+			  	</ul>
+			  	<div class="tab-content">
+				    <div class="tab-pane active"></div>
+			  	</div>			
+			</div>	
+		</div>
+		<div class="col-md-3 aboutitem" style="border-left: 1px solid #eee;"></div>
+	</div>
+	<style type="text/css">
+		.auto-search {
+			width: 100%;
+		    left: 0;
+		}
+		.uploadname {
+			width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	</style>
+	<!--初始化基本信息-->
+	<script type="text/javascript">
+		var openid ='<%=query.openid%>';
+		var beizhuflag ='<%=query.bzflag%>';	
+		var old_resume ='<%=data.old_resume%>';
+		hovercandidate='<%=data.username%>';
+		hoverresume_openid='<%=query.openid%>';
+		hoverrecommend_id='';
+		$(function(){
+			OrionJump('.aboutitem','/rencaiabout?openid='+openid,false);
+			if(beizhuflag==""){
+				if(old_resume=="1"){
+					OrionJump('.tab-pane','/goodmanbaseinfo_old?openid='+openid,false);
+//					OrionJump('.tab-pane','/goodmanbaseinfo?openid='+openid,false);
+
+				}else{
+					OrionJump('.tab-pane','/goodmanbaseinfo?openid='+openid,false);
+//					OrionJump('.tab-pane','/goodmanbaseinfo_old?openid='+openid,false);
+					
+				}
+			}else{
+				OrionJump('.tab-pane','/goodmanmemo?openid='+openid,false);
+				$("#maintab").find("li").removeClass("active");
+				$("#maintab").find("li").eq(2).addClass("active");
+			}	
+			
+			//	下载附件简历 start
+			$(".originalName").click(function(){
+				 window.open(logic_api_host + "/p/download/<%=query.openid%>");
+			})
+			//	下载附件简历 end	
+		}); 
+	</script>
+		
+	
+
+	

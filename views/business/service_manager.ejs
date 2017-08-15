@@ -1,0 +1,89 @@
+	<div class="btn-group btn-addcon">
+		<a href="javascript:void(0);" class="btn glyphicon glyphicon-plus"  no-nave="true" style="float: right;" data-toggle="modal" data-target=".modal-member">添加渠道</a>
+	</div>
+	<div class="table-responsive">
+	   	<table class="table table-member">
+		   	<thead>
+		     	<tr>
+			       	<th>负责人</th>
+			       	<th>角色</th>
+			       	<th>操作</th>			       	
+		     	</tr>
+		   	</thead>
+		   	<tbody>	
+		   		<% if(data.fuzerenList){%>
+				<%data.fuzerenList.forEach(function(fuzeren){%>		
+		     	<tr id="<%=fuzeren.fuzeren_id%>" fuzeren_kbn="<%=fuzeren.kbn%>">
+		       		<td><%=fuzeren.fuzeren_name%></td>
+		       		<td><%if(fuzeren.kbn=='1'){%>内部渠道<%} else if(fuzeren.kbn=='2'){%>外部渠道<%}%></td>
+		       		<td><a href="javascript:void(0);" class="fuzeren_del" no-nave="true">删除</a></td>		       		
+		     	</tr>	
+		     	<%})%>
+				<%}%>	     	
+		   	</tbody>
+		</table>
+		<div id="pagination1"></div>
+	</div>
+	<div class="modal fade modal-member" tabindex="-1" role="dialog">
+	  	<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	                <h4 class="modal-title">添加/编辑</h4>
+            	</div>
+            	<div class="modal-body">
+	                <!-- Nav tabs -->
+				  	<ul class="nav  nav-tabs" id="poptab">
+					    <li class="active" value="1"><a href="javascript:void(0);" no-nave="true">内部渠道</a></li>
+					    <li value="2"><a href="javascript:void(0);" no-nave="true">外部渠道</a></li>
+				  	</ul>			
+				  	<div class="memberadd-box">
+				  		<div class="memberadd-con">
+				  			<p style="color: #333;">请选择内部渠道：</p>
+				  		</div>
+				  		<input type="hidden" id="gc_id" value=""/>
+			  			<div class="memberadd-item memberadd-itemguwen">
+			  				<input class="form-control" id="member-search" type="text" placeholder="搜索内部渠道"/>
+			  				<div class="auto-search lala">		                      
+								<ul class="auto-search-ul" id="guwenItems"></ul>
+							</div>  
+			  			</div>
+			  			<div class="memberadd-item memberadd-itemchannel" style="display: none;">
+			  				<input class="form-control" id="channel-search" type="text" placeholder="搜索外部渠道"/>	
+			  				<div class="auto-search lala">		                      
+								<ul class="auto-search-ul" id="ulItems"></ul>
+							</div>
+			  			</div>
+				  	</div>	
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary qudao-save">保存</button>	            	
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	            </div>
+		    </div>
+	  	</div>
+	</div>
+	<style type="text/css">
+		.memberadd-box {
+			width: 100%;
+			margin-top: 15px;
+		}
+		.memberadd-con {
+			width: 100%;
+		}		
+		.memberadd-search input {
+			width: 80%;
+		}
+		.alert-style {
+			width: 80%;
+			display: none;
+		}
+		.memberadd-item {
+			position: relative;
+			z-index: 1;
+		}
+		.auto-search {
+			width: 568px;
+			left: 0;
+		}
+	</style>

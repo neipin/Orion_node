@@ -1,0 +1,59 @@
+	<h4 style="margin: 0;">合伙人详情</h4>
+	<hr style="margin-top: 5px;"/>
+	<div class="detailcon">
+		<div class="detailcon-edit"><a target-view="center-container" pushstate="true" href="/Channel_edit?channel_openid=<%=data.channel_openid%>" type="button" class="btn glyphicon glyphicon-pencil">编辑</a></div>
+	</div>	
+	<div class="serviceconBox">				
+		<div class="servicecon" style="width: 100%; float: left; overflow: hidden;">
+	 		<div class="baseinfo-list">
+	 			<span class="servicelist_span">合伙人名称：</span>
+	 			<div><%=data.channel_name%></div>
+	 		</div>
+		 	<div class="baseinfo-list">
+	 			<span class="servicelist_span">规模人数：</span>
+	 			<div><%=data.channel_guimo%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span class="servicelist_span">擅长职位：</span>
+	 			<div><%=data.expert_job%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span class="servicelist_span">擅长行业：</span>
+	 			<div><%=data.expert_area%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span class="servicelist_span">公司地址：</span>
+	 			<div><%=data.address%></div>
+	 		</div>	
+	 		<div class="baseinfo-list">
+	 			<span class="servicelist_span">联系人：</span>
+	 			<div><%=data.contact%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span class="servicelist_span">联系电话：</span>
+	 			<div><%=data.contact_phone%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span class="servicelist_span">管理员账号：</span>
+	 			<div><%=data.admin_account%></div>
+	 		</div>					 		
+ 		</div>					
+		<%if(data.jobList){%>
+		<table class="table" style="margin-top: 20px; float: left;">
+			<thead>
+	 		<tr>
+	 			<th>客户名称</th>
+	 			<th>项目名称</th>
+	 		</tr>
+	 		</thead>
+	 		<tbody>
+	 		<%data.jobList.forEach(function(job){%>
+	 		<tr>
+	 			<td><%=job.company_name%></td>			 			
+	 			<td><a target-view="center-container" pushstate="true" href="/projectdetail?job_id=<%=job.job_id%>&rencaiflag=1"><%=job.job_name%></a></td>			 			
+	 		</tr>
+	 		<%})%>	
+	 		</tbody>
+	 	</table>
+	 	<%}%>
+	</div>

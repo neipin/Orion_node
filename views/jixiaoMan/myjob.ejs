@@ -1,0 +1,61 @@
+	<div class="serviceconBox" id="container">
+		<div class="searchpartcon">
+			<div class="time_search">
+				<span class="">日期：</span>
+				<div><input type="" name="" id="data1" value="<%=data.date_from%>" autocomplete="off" placeholder="起始日期" class="form-control form_date np_form_check"/></div>
+				<span class="zhi">至</span>
+				<div><input type="" name="" id="data2" value="<%=data.date_to%>" autocomplete="off" placeholder="截止日期" class="form-control form_date np_form_check"/></div>
+				<button class="myjobdatabtn btn" role="button">确定</button>
+			</div>
+		</div>			
+	 	<table class="table">
+			<thead>
+	 		<tr>
+	 			<th>职位名称</th>
+	 			<th>公司名称</th>
+	 			<th>推荐量</th>
+	 			<th>面试量</th>
+	 			<th>offer量</th>
+	 			<th>入职量</th>			 			
+	 		</tr>
+			</thead>
+	 		<tbody>
+	 		<%if(data.jobList){%>
+	 		<%data.jobList.forEach(function(jobList){%>
+	 		<tr jobid='<%=jobList.jobid%>'>
+	 			<td><a href="/projectdetail?job_id=<%=jobList.jobid%>&rencaiflag=1" target-view="center-container" pushstate="true"><%=jobList.job_name%></a></td>
+	 			<td><a href="/companydetail?customer_id=<%=jobList.company_id%>" target-view="center-container" pushstate="true"><%=jobList.company_name%></a></td>
+	 			<td><%=jobList.tuijian_num%></td>
+	 			<td><%=jobList.mianshi_num%></td>
+	 			<td><%=jobList.offer_num%></td>
+	 			<td><%=jobList.ruzhi_num%></td>
+	 		</tr>
+	 		<%})%>
+	 		<tr style="font-weight: bold;">
+	 			<td colspan="2">总计：</td>
+	 			<td><%=data.tuijian_total%></td>
+	 			<td><%=data.mianshi_total%></td>
+	 			<td><%=data.offer_total%></td>
+	 			<td><%=data.ruzhi_total%></td>
+	 		</tr>
+			<%}%>
+	 	</table>
+	 	<!--<div id="pagination1"></div>-->
+	</div>
+	<script type="text/javascript">
+	var id ='<%=query.id%>';
+		time_ymd();
+		$(function(){
+		//	时间搜索确定按钮 start
+			$(document).on('click', '.myjobdatabtn', function() {
+				var data1 = $("#data1").val();
+				var data2 = $("#data2").val();
+				if(moment(data1)>moment(data2)){
+					alert("开始时间不能大于结束时间");
+					return;
+				}
+				OrionJump('.goodmancon','/myjob?id='+id+'&date_from='+data1+'&date_to='+data2,false);
+			})				
+		//	时间搜索确定按钮 end
+		})
+	</script>

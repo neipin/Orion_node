@@ -1,0 +1,59 @@
+ 
+	<div class="servicelistcon">
+		<a href="JavaScript:void(0);" class="list_delate">删除</a>
+ 		<div class="form-group form-inline">
+			<label for=""><span></span>学校名称：</label>
+            <input class="form-control" type="text" name="education_list.school_name" placeholder='请输入学校名称'  autocomplete="off" value=""/>              
+        </div>
+        <div class="form-group form-inline">
+        	<label for=""><span>*</span>学历：</label>
+			<select class="form-control" style="color:#a9a9a9;">
+		    	<option value='' disabled selected>请选择学历</option>
+			  	<option value="博士">博士</option>
+                <option value="研究生">研究生</option>
+                <option value="MBA">MBA</option>
+                <option value="本科">本科</option>
+                <option value="大专">大专</option>              
+                <option value="大学">大学</option>
+                <option value="高中">高中</option>
+                <option value="中专">中专</option>
+                <option value="技校">技校</option>
+                <option value="中技">中技</option>
+                <option value="初中">初中</option>
+                <option value="小学">小学</option>
+			</select>
+        	<input id="" type="hidden" name="education_list.education"  class="input_hide np_form_check"  value="" np_require="true" placeholder="请选择学历"/>
+			<span class="help-block" id="education"></span>  
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>学位：</label>
+			<select class="form-control"  style="color:#a9a9a9;">
+		    	<option value='' disabled selected>请选择学位</option>
+			  	<option value="博士">博士</option>
+                <option value="硕士">硕士</option>
+                <option value="学士">学士</option>
+			</select>
+			<input id="" type="hidden" name="education_list.advanced_degree"  class="input_hide"  value=""/>
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>专业：</label>
+            <input class="form-control" name="education_list.speciality" type="text" placeholder='请输入专业'  autocomplete="off" value=""/>              
+ 		</div>			 		
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>教育时间：</label>
+          	<div class="salary_divbox">
+				<div class="salary_div"><input type="text" name="education_list.start_date" autocomplete="off" class="form-control form_date" value="" placeholder="开始时间"/></div>
+              	<div class="salary_text">至</div>
+              	<div class="salary_div"><input type="text" name="education_list.end_date" autocomplete="off"  class="form-control form_date" value="" placeholder="截止时间"/></div>
+              	<div class="time_now"><input type="checkbox" value=""/>至今</div>
+			</div>		
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>留学经历：</label>
+            <input class="form-control" type="text" name="education_list.liuxue" placeholder='请输入留学经历'  autocomplete="off" value=""/>              
+ 		</div>	
+		<div class="form-group form-inline form-group100">
+			<label for=""><span></span>详细介绍：</label>
+ 			<textarea class="form-control" name="education_list.summary" rows="8" cols="5" placeholder='请输入详细介绍'  value=""></textarea>
+		</div>
+ 	</div>

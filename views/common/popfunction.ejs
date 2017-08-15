@@ -1,0 +1,65 @@
+<!--全部职能和专业职能 start-->
+	<script id="tpl_zhinengmould" type="text/html">
+		<div class="zhineng-list">			
+			<p level="{{GeneralFunction['level']}}">{{GeneralFunction['catalog_name']}}</p>
+			<ul>
+				{{if GeneralFunction.childList!=''}}
+				{{each GeneralFunction.childList as child}}								
+				<li><a href="javascript:void(0);" code="{{child['func_code']}}" level="{{child['child_level']}}" no-nave="true">{{child['func_name']}}</a></li>	
+				{{/each}}
+				{{/if}}
+			</ul>
+			
+		</div>
+		<div class="zhineng-list">			
+			<p level="{{SpecialficFunction['level']}}">{{SpecialficFunction['catalog_name']}}</p>
+			<ul>
+				{{if SpecialficFunction.childList!=''}}
+				{{each SpecialficFunction.childList as child}}								
+				<li><a href="javascript:void(0);" code="{{child['func_code']}}" level="{{child['child_level']}}" no-nave="true">{{child['func_name']}}</a></li>	
+				{{/each}}
+				{{/if}}
+			</ul>
+		</div>
+	</script>
+<!--全部职能和专业职能 end-->
+
+<!--职能列表 start-->
+<script id="tpl_zhinengpart" type="text/html">
+	<div class="zhinenglist-left">
+		<ul>
+			{{if childList!=''}}
+			{{each childList as child}}
+			<li><a href="javascript:void(0);" code="{{child['func_code']}}" level="{{child['child_level']}}" no-nave="true">{{child['func_name']}}</a></li>	
+			<!--<span class="badge">10</span>-->
+			{{/each}}
+			{{/if}}
+		</ul>
+	</div>
+	<div class="zhinenglist-right">
+		<div class="zhineng-list">
+			<ul>
+				{{if childList!=''}}
+				{{each childList as child}}								
+				<li><a href="javascript:void(0);" code="{{child['func_code']}}" level="{{child['child_level']}}" no-nave="true">{{child['func_name']}}</a></li>	
+				{{/each}}
+				{{/if}}
+			</ul>
+		</div>	
+	</div>	
+</script>
+<!--职能列表 end-->
+
+<!--左右职能列表 start-->
+<script id="tpl_zhinenglist" type="text/html">
+	<div class="zhineng-list">
+		<ul>
+			{{if childList!=''}}
+			{{each childList as child}}								
+			<li><a href="javascript:void(0);" code="{{child['func_code']}}" level="{{child['child_level']}}" no-nave="true">{{child['func_name']}}</a></li>	
+			{{/each}}
+			{{/if}}
+		</ul>
+	</div>	
+</script>
+<!--左右职能列表 end-->

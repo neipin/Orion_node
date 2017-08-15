@@ -1,0 +1,131 @@
+	<div class="row">
+		<div class="col-md-9">
+			<div class="baseinfo-list">
+				<span>项目名称：</span>
+				<div><%=data.job_name%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>客户名称：</span>
+				<div><a target-view="center-container" pushstate="true" href="/companydetail?customer_id=<%=data.company_id%>"><%=data.company_name%></a></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>职能：</span>
+				<div><%=data.job_type%></div>
+			</div>			
+			<div class="baseinfo-list">
+				<span>状态：</span>
+				<div><%=getDic_job_status(data.job_state)%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>年薪：</span>
+				<div><%=data.job_salary_from%>-<%=data.job_salary_to%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>年薪标注：</span>
+				<div><%=data.salary_memo%></div>
+			</div>			
+			<div class="baseinfo-list">
+				<span>靠谱度：</span>
+				<div><%=data.job_reliable%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>紧急度：</span>
+				<div><%=data.job_level%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>性别要求：</span>
+				<div><% if(data.job_sex=='1'){%>男<%}else if(data.job_sex=='0'){%>女<%}else if(data.job_sex=='2'){%>男女不限<%}%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>工作年限：</span>
+				<div><%=data.jobworkyeas%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>年龄：</span>
+				<div><%=data.job_age_from%>-<%=data.job_age_to%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>学历要求：</span>
+				<div><%=data.jobcollege%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>语言要求：</span>
+				<div><%=data.job_language%></div>
+			</div>
+			<div style="width: 100%; display: inline-block;">				
+			<% if(data.locationList){%>
+				<%data.locationList.forEach(function(location){%>	
+				<div class="baseinfo-list">
+					<span>工作地点：</span>
+					<div><%=location.job_area%> | <span><%=location.job_location%></span></div>
+				</div>
+				<div class="baseinfo-list">
+					<span>需求人数：</span>
+					<div><%=location.job_renshu%></div>
+				</div>
+				<%})%>
+			<%}%>				
+			</div>			
+			<div class="baseinfo-list baseinfo-list100">
+				<span>职位描述：</span>
+				<div class="textTohtml"><%=data.job_desc%></div>
+			</div>
+			<div class="baseinfo-list baseinfo-list100">
+				<span>寻访方向：</span>
+				<div class="textTohtml"><%=data.company_point%></div>
+			</div>
+			<div class="baseinfo-list baseinfo-list100">
+				<span>面试流程：</span>
+				<div class="textTohtml"><%=data.mianshi_liucheng%></div>
+			</div>
+		</div>
+		<div class="col-md-3" style="border-left: 1px solid #eee;">
+			<div class="Communication-record">
+				<h5>最新沟通记录</h5>
+				<% if(data.lastCommList){%>
+				<%data.lastCommList.forEach(function(lastComm){%>	
+				<div id="<%lastComm.creater_id%>"><%=lastComm.creater_name%><span><%=dateformat(lastComm.create_time,'YYYY-MM-DD')%></span></div>
+				<div id="<%=lastComm.commid%>"><%=lastComm.content%></div>
+				<%})%>
+				<%}%>		
+			</div>
+			<!--联系人-->
+			<div class="contact-con">
+				<div class="contact-list" style="color: #999;">客户联系人</div>
+				<div class="contact-list">
+					<span>姓名：</span>
+					<div><%=data.contact_name%></div>
+				</div>
+				<div class="contact-list">
+					<span>职务：</span>
+					<div><%=data.contact_position%></div>
+				</div>
+				<div class="contact-list">
+					<span>手机号：</span>
+					<div><%=data.contact_phone%></div>
+				</div>
+				<div class="contact-list">
+					<span>邮箱：</span>
+					<div><%=data.contact_email%></div>
+				</div>
+				<div class="contact-list">
+					<span>微信：</span>
+					<div><%=data.contact_weixin%></div>
+				</div>
+				<div class="contact-list">
+					<span>QQ：</span>
+					<div><%=data.contact_qq%></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			//	文本换行 需要换行的class加上textTohtml start
+			$('.textTohtml').each(function(){
+				$(this).html($(this).html().replace(/\r\n/g,"<br>").replace(/\n/g,"<br>"));				
+			})
+			//	文本换行 需要换行的class加上textTohtml end
+		})
+	</script>
+	

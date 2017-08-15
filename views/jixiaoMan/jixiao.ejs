@@ -1,0 +1,57 @@
+		
+	<div class="serviceconBox">
+		<div class="searchpartcon">
+			<div class="time_search">
+				<span class="">日期：</span>
+				<div><input type="" name="" id="data1" value="<%=data.date_from%>" autocomplete="off" placeholder="起始日期" class="form-control form_date np_form_check"/></div>
+				<span class="zhi">至</span>
+				<div><input type="" name="" id="data2" value="<%=data.date_to%>" autocomplete="off" placeholder="截止日期" class="form-control form_date np_form_check"/></div>
+				<button class="jixiao_databtn btn" role="button">确定</button>
+			</div>				
+		</div>
+	 	<table class="table">
+			<thead>
+	 		<tr>
+	 			<th>顾问</th>
+	 			<th>录入简历</th>
+	 			<th>推荐量</th>
+	 			<th>面试量</th>
+	 			<th>未来一周面试量</th>
+	 			<th>offer量</th>
+	 			<th>入职量</th>	 			
+	 		</tr>
+			</thead>
+	 		<tbody>
+	 		<%if(data.jixiaoList){%>
+	 		<%data.jixiaoList.forEach(function(jixiaoList){%>
+	 		<tr id="<%=jixiaoList.guwen_id%>">
+	 			<td><a href="/myjob?id=<%=jixiaoList.guwen_id%>" target-view="goodmancon" pushstate="false"><%=jixiaoList.guwen_name%></a></td>
+	 			<td><%=jixiaoList.resume_num%></td>
+	 			<td><%=jixiaoList.tuijian_num%></td>
+	 			<td><%=jixiaoList.mianshi_num%></td>
+	 			<td><%=jixiaoList.mianshi_nextweek_num%></td>
+	 			<td><%=jixiaoList.offer_num%></td>
+	 			<td><%=jixiaoList.ruzhi_num%></td>
+	 		</tr>
+	 		<%})%>
+	 		<%}%>
+	 		</tbody>
+	 	</table>
+	 	<div id="pagination1"></div>
+	</div>
+	<script type="text/javascript">
+		time_ymd();
+		$(function(){
+		//	时间搜索确定按钮 start
+			$(document).on('click', '.jixiao_databtn', function() {
+				var data1 = $("#data1").val();
+				var data2 = $("#data2").val();
+				if(moment(data1)>moment(data2)){
+					alert("开始时间不能大于结束时间");
+					return;
+				}
+				OrionJump('.goodmancon','/jixiao?date_from='+data1+'&date_to='+data2,false);
+			})				
+		//	时间搜索确定按钮 end
+		})
+	</script>

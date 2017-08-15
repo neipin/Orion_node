@@ -1,0 +1,12 @@
+global.rpdata={};
+rpdata.benflg = '';
+rpdata.bflg = '';
+rpdata.nflg = '';
+rpdata.tflg = '';
+rpdata.sflg = '';
+rpdata.static_path='http://localhost/GDRATS'; //java服务器根目录和静态资源的根目录
+rpdata.node_url="http://orion.genduiren.cn/nds";
+rpdata.logic_api_host='http://orion.genduiren.cn/bslogic';
+//rpdata.logic_api_host='http://192.168.0.106/GDRATS';
+//rpdata.logic_api_host='http://localhost/GDRATS';
+//rpdata.logic_api_host='http://ats.neipin.com';

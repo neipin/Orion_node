@@ -1,0 +1,62 @@
+<table class="table">
+   	<thead>
+     	<tr>
+	       	<th>公司名称</th>
+	       	<th>职位数</th>
+	       	<th>客户状态</th>
+	       	<th>负责人</th>
+	       	<th>更新时间</th>
+     	</tr>
+   	</thead>
+   	<tbody>		   					 			
+   		<% if(data.companyList){%>
+	 		<%data.companyList.forEach(function(company){%>			
+	     	<tr>
+	       		<td><a target-view="center-container" pushstate="true" href="/companydetail?customer_id=<%=company.id%>" class="glyphicon"><%=company.company_name%></a></td>
+	       		<td><%=company.job_num%></td>
+	       		<td><%=getDic_customer_status(company.status)%></td>
+	       		<td class="fuzeren"><%=company.fuzeren%></td>
+	       		<td class="updatatime"><%=dateformat(company.update_time,'YYYY-MM-DD')%></td>
+	     	</tr>
+     		<%})%>
+	 	<%}%>
+   	</tbody>
+</table>
+<div id="pagination1"></div>
+<div class="zanwu">暂无客户</div>
+<script type="text/javascript">
+	var totalPage = "<%=data.totalPages%>";
+	if(totalPage==0) {
+		totalPage=1;
+		$("#pagination1").hide();
+		$(".zanwu").show();
+	}else if(totalPage==1){
+		$("#pagination1").hide();
+	}
+	var currPage ='<%=query.cp%>';
+	if(currPage==''){
+		currPage=1;
+	}
+	currPage = parseInt(currPage);
+	fenyeRefresh();
+	$(function(){
+		loadcity($("#ssss"));	
+//	  	负责人去逗号 start
+	  	$(".fuzeren").each(function(){
+	  		var content = $(this).text();
+	  		content=(content.slice(content.length-1)==',')?content.slice(0,-1):content;
+	  		$(this).text(content);
+	  	})
+//	  	负责人去逗号 end
+	})
+	function search() {
+     	if (event.keyCode == "13") {
+     		$(".btn_search").click();
+     	}
+    }
+	function loaddata(page) {
+		OrionJump('.center-container','/mycustomer?searchtag=<%=query.searchtag%>&city=<%=query.city%>&status=<%=query.status%>&cp='+page,false);
+	}
+
+</script>
+

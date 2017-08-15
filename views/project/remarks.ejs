@@ -1,0 +1,69 @@
+
+<div class="remarks-box">
+	<div style="float: right;"><a class="btn addbeizhubtn" id="addbeizhubtn" href="javascript:void(0);" no-nave="true" data-toggle="modal" data-target=".remarks-modal" data-beizhuid=""><span class="glyphicon glyphicon-plus"></span>添加备注</a></div>
+	<div class="remarksListcon">
+		<% if(data.beizhuList){%>
+		<%data.beizhuList.forEach(function(beizhu){%>
+		<div class="remarks-list">
+			<div class="row">
+				<div class="col-md-3 remarksList-left">
+					<p class="h4"><%=dateformat(beizhu.create_time,'hh:mm')%></p>
+					<p><%=dateformat(beizhu.create_time,'YYYY-MM-DD')%></p>
+					<p><%=beizhu.creater_name%></p>
+				</div>
+				<div class="col-md-9 remarksList-right">
+					<div class="remarksList-item">
+						<span class="label label-warning"><%if(beizhu.beizhu_type=='1'){%>电话沟通<%} else if(beizhu.beizhu_type=='2'){%>顾问面试<%} else if(beizhu.beizhu_type=='3'){%>其他<%}%></span>
+						<span class="label label-info"><%if(beizhu.candi_status=='1'){%>现状稳定<%} else if(beizhu.candi_status=='2'){%>想看机会<%} else if(beizhu.candi_status=='3'){%>成功Offer<%} else if(beizhu.candi_status=='4'){%>需要联系<%} else if(beizhu.candi_status=='5'){%>需要跟进<%} else if(beizhu.candi_status=='6'){%>暂不考虑<%} else if(beizhu.candi_status=='7'){%>优质候选人<%} else if(beizhu.candi_status=='8'){%>黑名单<%}%></span>					
+						<div class="remarks-operate">
+							<a href="javascript:void(0);" class="btn btn-primary btn-sm" id="beizhuedit<%=beizhu.beizhu_id%>" no-nave="true" data-toggle="modal" data-target=".remarks-modal" data-beizhuid="<%=beizhu.beizhu_id%>" >编辑<span class="glyphicon glyphicon-pencil"></span></a>
+							<!--<a href="javascript:void(0);" class="btn btn-danger btn-sm"  no-nave="true">删除<span class="glyphicon glyphicon-remove"></span></a>-->
+						</div>
+					</div>
+					<%if(beizhu.beizhu_type=='2'){%>
+					<div class="reviewresult">
+						<h5><strong>面试结果：</strong></h5>
+						<div><%=beizhu.mainshi_result%></div>
+					</div>
+					<%}%>	
+					<div class="reviewresult remarkscon"  beizhu_id="<%=beizhu.beizhu_id%>">
+						<h5><strong>备注：</strong></h5>
+						<div class="textTohtml"><%=beizhu.beizhu%></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%})%>
+		<%}%>	
+	</div>
+</div>
+
+  	<script type="text/javascript">
+  		$(function(){
+  			//	文本换行 需要换行的class加上textTohtml start
+				$('.textTohtml').each(function(){
+					$(this).html($(this).html().replace(/\r\n/g,"<br>").replace(/\n/g,"<br>"));				
+				})
+			//	文本换行 需要换行的class加上textTohtml end
+  			
+		//	模态框弹出时赋值 start
+			$('.modal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget);
+				var modal = $(this);
+				var divEle = document.querySelector('#'+button.attr('id'));  //得到数组
+				var attrs = divEle.attributes;  //得到所有属性
+				var attrsArray = Array.prototype.slice.call(attrs);      //转换为数组形式
+				for(var i=0;i<attrsArray.length;i++)
+				{
+					var pro = attrsArray[i].name;
+					var value = attrsArray[i].textContent;
+					if(pro.indexOf('data-') > -1)
+					{
+						var attr_name = pro.replace('data-','');
+						modal.attr(attr_name,value);
+					}			
+				}
+			})
+		//	模态框弹出时赋值 end	
+  		})
+  	</script>

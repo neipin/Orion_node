@@ -1,0 +1,200 @@
+	<div class="form-group form-inline">
+		<label class="" for=""><span>*</span>姓名：</label>
+        <input class='form-control np_form_check'  id="username" type="text" name="username" placeholder='请输入姓名' np_require="true"  autocomplete="off" value="<%=data.username%>"/>              
+        <span class="help-block" id="bsname"></span>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span>*</span>手机号码：</label>
+      	<input class='form-control np_form_check'  id="phone" type="text" name="phone" placeholder='请输入手机号' np_require="true"  err_format="手机号码格式错误" np_format="phone" autocomplete="off" value="<%=data.phone%>"/>              
+      	<span class="help-block" id="phone_msg"></span>
+	</div>				 	  
+	<div class="form-group form-inline">
+		<label class="" for=""><span>*</span>性别：</label>
+    	<select class="form-control" <%if(!data.gender||data.gender==''){%>style="color:#a9a9a9;"<%}%>>
+	    	<option value='' disabled <%if(!data.gender||data.gender==''){%>selected<%}%>>请选择性别</option>
+		  	<option value='男' <%if(data.gender=='男'){%>selected<%}%>>男</option>
+		  	<option value='女' <%if(data.gender=='女'){%>selected<%}%>>女</option>
+		</select>
+        <input class="input_hide np_form_check" type="hidden" name="gender" value="<%=data.gender%>" np_require="true" placeholder="请选择性别"/>   
+		<span class="help-block" id="bssex"></span>
+	</div>
+	<div class="form-group form-inline" style="position: relative; z-index: 1;">
+		<label class="" for=""><span>*</span>工作年限：</label>
+      	<input class='form-control np_form_check' type="text" name="workyears" placeholder='请输入工作年限'  np_require="true" autocomplete="off" value="<%=data.workyears%>"/>     
+      	<div class="wan" style="position: absolute; top: 8px; right: 25px;">年</div>
+      	<span id="bsworktime" class='help-block'></span>
+	</div>  	
+	<div class="form-group form-inline">
+		<label class="" for=""><span>*</span>最高学历：</label>
+      	<select class="form-control" <%if(!data.college_level||data.college_level==''){%>style="color:#a9a9a9;"<%}%>>
+	    	<option value='' disabled <%if(!data.college_level||data.college_level==''){%>selected<%}%>>请选择学历</option>
+		  	<option value='博士' <%if(data.college_level=='博士'){%>selected<%}%>>博士</option>
+		  	<option value='研究生' <%if(data.college_level=='研究生'){%>selected<%}%>>研究生</option>
+		  	<option value='MBA' <%if(data.college_level=='MBA'){%>selected<%}%>>MBA</option>						  	
+		  	<option value='本科' <%if(data.college_level=='本科'){%>selected<%}%>>本科</option>	
+		  	<option value='大专' <%if(data.college_level=='大专'){%>selected<%}%>>大专</option>
+			<option value='大学' <%if(data.college_level=='大学'){%>selected<%}%>>大学</option>
+			<option value='高中' <%if(data.college_level=='高中'){%>selected<%}%>>高中</option>	
+			<option value='中专' <%if(data.college_level=='中专'){%>selected<%}%>>中专</option>	
+			<option value='技校' <%if(data.college_level=='技校'){%>selected<%}%>>技校</option>	
+			<option value='中技' <%if(data.college_level=='中技'){%>selected<%}%>>中技</option>	
+			<option value='初中' <%if(data.college_level=='初中'){%>selected<%}%>>初中</option>	
+			<option value='小学' <%if(data.college_level=='小学'){%>selected<%}%>>小学</option>	
+											  	
+		</select> 
+		<input id="college_level" type="hidden" name="college_level"  class="input_hide np_form_check" np_require="true" placeholder="请选择最高学历" value="<%=data.college_level%>"/>
+      	<span id="bseducation" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>年龄：</label>
+        <input class="form_date form-control" id="birthday" type="text" name="birth" placeholder='请输入出生日期'  autocomplete="off" value="<%=data.birth%>" />           
+        <span id="bsage" class='help-block'></span>
+	</div>  
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>邮箱：</label>
+      	<input class="form-control" id="email" type="text" name="email" placeholder='请输入邮箱'  autocomplete="off" value="<%=data.email%>"/>              
+      	<span id="bsemail" class='help-block'></span>
+	</div>	
+	<div class="form-group form-inline">
+	    <label class="" for=""><span></span>婚姻状况：</label>
+        <select class="form-control" <%if(!data.married||data.married==''){%>style="color:#a9a9a9;"<%}%>>
+	    	<option value='' disabled <%if(!data.married||data.married==''){%>selected<%}%>>请选择婚姻状况</option>
+		  	<option value='已婚' <%if(data.married=='已婚'){%>selected<%}%>>已婚</option>
+		  	<option value='未婚' <%if(data.married=='未婚'){%>selected<%}%>>未婚</option>
+		  	<option value='离异' <%if(data.married=='离异'){%>selected<%}%>>离异</option>
+		</select> 
+        <input id="" type="hidden" name="married"  class="input_hide" value="<%=data.married%>"/>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>国籍：</label>
+      	<input class="form-control" id="" type="text" name="nationality" placeholder='请输入国籍'   autocomplete="off" value="<%=data.nationality%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>民族：</label>
+      	<input class="form-control" id="" type="text" name="national" placeholder='请输入民族'  autocomplete="off" value="<%=data.national%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>籍贯：</label>
+      	<input class="form-control" id="" type="text" name="jiguan" placeholder='请输入籍贯'   autocomplete="off" value="<%=data.jiguan%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>	
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>毕业院校：</label>
+      	<input class="form-control" id="" type="text" name ="school" placeholder='请输入毕业院校' autocomplete="off" value="<%=data.school%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>院校类别：</label>
+        <select class="form-control" <%if(!data.schooltype||data.schooltype==''){%>style="color:#a9a9a9;"<%}%>>
+	    	<option value='' disabled <%if(!data.schooltype||data.schooltype==''){%>selected<%}%>>请选择院校类别</option>
+		  	<option value='0' <%if(data.schooltype=='0'){%>selected<%}%>>普通</option>
+		  	<option value='1' <%if(data.schooltype=='1'){%>selected<%}%>>211院校</option>
+		  	<option value='2' <%if(data.schooltype=='2'){%>selected<%}%>>985院校</option>
+		  	<option value='3' <%if(data.schooltype=='3'){%>selected<%}%>>既是211又是985院校</option>
+		</select>
+        <input id="" type="hidden" name="schooltype" class="input_hide" value="<%=data.schooltype%>"/>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>专业：</label>
+      	<input type="text" class="form-control" name ="speciality" placeholder='请输入专业' autocomplete="off" value="<%=data.speciality%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>所在城市：</label>
+		<div class="seles seles_border form-control seles_location">
+          	<span id="dis_location" class="seles_choose seles_area">
+	          	<div class="i_city"><span <%if(!data.now_location){%>style="color: #a9a9a9;"<%}%>><%if(data.now_location!= ""){%><%=data.now_location%><%}if(!data.now_location){%>请选择所在城市<%}%></span></div>
+          	</span>				          	
+          	<div id="ssss" class="doble_choose form-control choose_city_one" style="display: none; padding: 0;"></div>			            
+            <i class="caret"></i>				            
+        </div>
+        <input class="" type="hidden" name="now_location" value="<%=data.now_location%>" placeholder="请选择所在城市"/>
+	</div> 
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>目前状态：</label>
+		<select class="form-control" <%if(!data.current_status||data.current_status==''){%>style="color:#a9a9a9;"<%}%>>
+	    	<option value='' disabled <%if(!data.current_status||data.current_status==''){%>selected<%}%>>请选择院校类别</option>
+		  	<option value='1' <%if(data.current_status=='1'){%>selected<%}%>>在职</option>
+		  	<option value='2' <%if(data.current_status=='2'){%>selected<%}%>>离职</option>
+		  	<option value='3' <%if(data.current_status=='3'){%>selected<%}%>>正在找工作</option>
+		</select>
+		<input id="currentstate" type="hidden" name="current_status" class="input_hide" value="<%=data.current_status%>"/>
+      	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label class="" for=""><span></span>当前职务：</label>
+      	<input id="current_job" class="form-control" type="text" name="last_title" placeholder='请输入当前职务'  autocomplete="off" value="<%=data.last_title%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>	 		
+	<div class="form-group form-inline">
+		<label for=""><span></span>当前所在公司：</label>
+      	<input id="current_company" class="form-control" type="text" name="cur_company" placeholder='请输入当前所在公司'  autocomplete="off" value="<%=data.cur_company%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label for=""><span></span>当前薪资：</label>
+  		<input id="current_salary" class="form-control" type="text" name="cur_salary" placeholder='请输入当前薪资'  autocomplete="off" value="<%=data.cur_salary%>"/>              
+  		<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label for=""><span></span>现从事行业：</label>
+  		<input id="" class="form-control" type="text" name="vocation" placeholder='请输入现从事行业'  autocomplete="off" value="<%=data.vocation%>"/>              
+  		<span id="" class='help-block'></span>
+	</div>	
+	<div class="form-group form-inline">
+		<label for=""><span></span>微信号：</label>
+      	<input class="form-control" id="weixin_id" type="text" name="weixin_id" placeholder='如果是手机号码可不填'  autocomplete="off" value="<%=data.weixin_id%>"/>              
+      	<span id="err_weixin_id" class='help-block'></span>
+	</div>	
+	<p class="servicelistTab" style="margin-bottom: 30px;"><span class="active">求职意向</span></p>
+	<div class="form-group form-inline">
+		<label for=""><span>*</span>期望职位：</label>
+      	<input  class='np_form_check form-control' type="text" name="title" placeholder='请输入期望职位'  np_require="true" err_require="请输入期望职位"  autocomplete="off" value="<%=data.title%>"/>              
+      	<span id="bshopjob" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label for=""><span>*</span>期望城市：</label>
+		<div class="seles seles_border form-control seles_location">
+          	<span id="dis_location" class="seles_choose seles_area">
+          		<div class="i_city"><span <%if(!data.new_location){%>style="color: #a9a9a9;"<%}%>><%if(data.new_location!= ""){%><%=data.new_location%><%}if(!data.new_location){%>请选择期望城市<%}%></span></div>
+          	</span>				          	
+          	<div id="qiwangcity" class="doble_choose form-control choose_city_one" style="display: none; padding: 0;"></div>			            
+            <i class="caret"></i>				            
+        </div>
+        <input class="np_form_check" type="hidden" name="new_location" value="<%=data.new_location%>" np_require="true" placeholder="请选择期望城市"/>
+		<span class="help-block" id="cityplease"></span>
+	</div> 
+	<div class="form-group form-inline">
+		<label for=""><span></span>期望行业：</label>
+      	<input id="" class="form-control" type="text" name="forward_vocation" placeholder='请输入希望从事行业'  autocomplete="off" value="<%=data.forward_vocation%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline">
+		<label for=""><span></span>期望薪资：</label>
+      	<input id="" class="form-control" type="text" name="aimsalary" placeholder='请输入期望薪资'  autocomplete="off" value="<%=data.aimsalary%>"/>              
+      	<span id="" class='help-block'></span>
+	</div>		
+	<div class="form-group form-inline form-group100">
+		<label for=""><span></span>自我评价：</label>
+		<textarea id="txt_first_memo" class="form-control" name="personal" rows="8" cols="5" placeholder='请输入自我评价' value="<%=data.personal%>"><%=data.personal%></textarea>
+	  	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline form-group100">
+		<label for=""><span></span>求职意向：</label>
+		<textarea id="yixiang" class="form-control" name="qiuzhi_yixiang" rows="8" cols="5" placeholder='请输入求职意向' value="<%=data.qiuzhi_yixiang%>"><%=data.qiuzhi_yixiang%></textarea>
+	  	<span id="" class='help-block'></span>
+	</div>
+	<div class="form-group form-inline form-group100">
+		<label for=""><span></span>备注：</label>
+		<textarea id="txt_first_memo" class="form-control" name="memo" rows="8" cols="5" placeholder='请输入初步沟通情况'  value="<%=data.memo%>"><%=data.memo%></textarea>
+	  	<span id="" class='help-block'></span>
+	</div>
+<script type="text/javascript">
+	$(function(){
+		loadcity($("#ssss"));	//所在城市初始化
+		loadcity($("#qiwangcity"));	//期望城市初始化
+	})
+</script>
+

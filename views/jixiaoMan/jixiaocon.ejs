@@ -1,0 +1,43 @@
+	<table class="table">
+		<thead>
+ 		<tr>
+ 			<th>顾问</th>
+ 			<th>录入简历</th>
+ 			<th>推荐量</th>
+ 			<th>面试量</th>
+ 			<th>未来一周面试量</th>
+ 			<th>offer量</th>
+ 			<th>入职量</th>	 			
+ 		</tr>
+		</thead>
+ 		<tbody>
+ 		<%if(data.jixiaoList){%>
+ 		<%data.jixiaoList.forEach(function(jixiaoList){%>
+ 		<tr id="<%=jixiaoList.guwen_id%>">
+ 			<td><a href="/myjob?id=<%=jixiaoList.guwen_id%>" target-view="goodmancon" pushstate="true"><%=jixiaoList.guwen_name%></a></td>
+ 			<td><%=jixiaoList.resume_num%></td>
+ 			<td><%=jixiaoList.tuijian_num%></td>
+ 			<td><%=jixiaoList.mianshi_num%></td>
+ 			<td><%=jixiaoList.mianshi_nextweek_num%></td>
+ 			<td><%=jixiaoList.offer_num%></td>
+ 			<td><%=jixiaoList.ruzhi_num%></td>
+ 		</tr>
+ 		<%})%>
+ 		<%}%>
+ 		</tbody>
+ 	</table>
+	<script type="text/javascript">
+		$(function(){
+		//	时间搜索确定按钮 start
+			$(document).on('click', '.jixiao_databtn', function() {
+				var data1 = $("#data1").val();
+				var data2 = $("#data2").val();
+				if(moment(data1)>moment(data2)){
+					alert("开始时间不能大于结束时间");
+					return;
+				}
+				OrionJump('.table-responsive','/jixiaocon?date_from='+data1+'&date_to='+data2,true);
+			})				
+		//	时间搜索确定按钮 end
+		})
+	</script>

@@ -1,0 +1,53 @@
+
+	<div class="serviceconBox" id="container">	
+		<div class="searchpartcon">
+			<div class="time_search">
+				<span class="">日期：</span>
+				<div><input type="" name="" id="data1" value="<%=data.date_from%>" autocomplete="off" placeholder="起始日期" class="form-control form_date np_form_check"/></div>
+				<span class="zhi">至</span>
+				<div><input type="" name="" id="data2" value="<%=data.date_to%>" autocomplete="off" placeholder="截止日期" class="form-control form_date np_form_check"/></div>
+				<button class="progess_databtn btn" role="button">确定</button>
+			</div>
+		</div>
+	 	<table class="table">
+	 		<thead>				
+		 		<tr>
+		 			<th>公司名称</th>
+		 			<th>职位名称</th>
+		 			<th>推荐量</th>
+		 			<th>面试量</th>			 			 			
+		 			<th>未来一周面试量</th>			 			 			
+		 			<th>offer量</th>			 			 			
+		 			<th>入职量</th>			 			 			
+		 		</tr>
+	 		</thead>
+	 		<tbody>
+		 		<%if (data.jobList){%>
+		 		<%data.jobList.forEach(function(job){%>
+		 		<tr>
+		 			<td id="<%=job.company_id%>"><%=job.company_name%></td>
+		 			<td><a href="<%=static_path%>/opt/tuijian?jobid=<%=job.jobid%>"><%=job.job_name%></a></td>
+		 			<td><a href="<%=static_path%>/opt/tuijian?jobid=<%=job.jobid%>"><%=job.tuijian_num%></a></td>
+		 			<td><%=job.mianshi_num%></td>			 			
+		 			<td><%=job.mianshi_nextweek_num%></td>
+		 			<td><%=job.offer_num%></td>
+		 			<td><%=job.ruzhi_num%></td>
+		 		</tr>
+		 		<%})%>
+		 		<tr style="font-weight: bold;">
+		 			<td colspan="2">总计</td>
+		 			<td><%=data.tuijian_total%></td>
+		 			<td><%=data.mianshi_total%></td>
+		 			<td><%=data.mianshi_nextweek_num_total%></td>
+		 			<td><%=data.offer_total%></td>
+		 			<td><%=data.ruzhi_total%></td>
+		 		</tr>
+		 		<%}%>
+	 		</tbody>
+		</table>
+	</div>
+	<script type="text/javascript">
+		time_ymd();		
+		var channel_openid ="<%=query.channel_openid%>";
+	</script>
+	

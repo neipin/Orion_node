@@ -1,0 +1,17 @@
+<!--二级菜单 start-->
+<div class="second-level_menu">
+	<p>项目</p>
+	<ul>
+		<li class="active"><a href="/project?guwen_id=<%=session.userid%>" target-view="projectcon"  pushstate="false">我的项目<span class="badge"><%=data.myjob_num%></span></a></li>
+		<li><a href="/project" target-view="projectcon"  pushstate="false">所有项目<span class="badge"><%=data.job_total%></span></a></li>
+	</ul>
+</div>
+<!--二级菜单 end-->
+<div class="projectcon"></div>
+<script type="text/javascript">
+	$(function(){
+		$(".nav-leftcon").addClass("second-level");
+		$(".nav-leftcon").siblings(".center-container").addClass("center-container-second");
+		OrionJump('.projectcon','/project?searchtag=<%=query.searchtag%>&city=<%=query.city%>&status=<%=query.status%>&title=<%=query.title%>&level=<%=query.level%>&open_start=<%=query.open_start%>&open_end=<%=query.open_end%>&guwen_id=<%=query.guwen_id%>&cp=<%=query.cp%>');
+	})
+</script>

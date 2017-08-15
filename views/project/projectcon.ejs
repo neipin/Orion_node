@@ -1,0 +1,67 @@
+<table class="table">
+   	<thead>
+     	<tr>
+	       	<th>项目名称</th>
+	       	<th>客户名称</th>
+	       	<th>开放时间</th>
+	       	<th>状态</th>
+	       	<th>年薪</th>
+	       	<th>城市</th>
+	       	<th>需求人数</th>
+	       	<th>执行团队</th>
+	       	<th>紧急度</th>
+	       	<th>候选人</th>
+	       	<th>面试</th>
+	       	<th>offer</th>
+     	</tr>
+   	</thead>
+   	<tbody>
+   		<% if(data.jobList){%>
+		<%data.jobList.forEach(function(job){%>	
+     	<tr>
+       		<td><a href="/projectdetail?job_id=<%=job.jobid%>&rencaiflag=1" target-view="center-container" pushstate="true" ><%=job.job_name%></a></td>
+       		<td><a href="/companydetail?customer_id=<%=job.customer_id%>" target-view="center-container" pushstate="true" ><%=job.customer_name%></a></td>
+       		<td class="updatatime"><%=job.open_date%></td>
+       		<td><%=getDic_job_status(job.status)%></td>
+       		<td><%=job.salary%></td>
+       		<td><%=job.city%></td>
+       		<td><%=job.need_num%></td>
+       		<td>
+          <%job.operate_team.forEach(function(team){%>
+              <%if(team.operater_name){%>
+              <%=team.operater_name%>&nbsp;
+              <%}%>
+          <%})%>
+          </td>
+       		<td><%=job.level%></td>
+       		<td><%=job.candidate_num%></td>
+       		<td><%=job.mianshi_num%></td>
+       		<td><%=job.offer_num%></td>
+     	</tr>
+     	<%})%>
+		<%}%>		     	
+   	</tbody>
+</table>
+<div id="pagination1"></div>
+<div class="zanwu">暂无项目</div>
+<script type="text/javascript">
+//这是注释
+	var totalPage = "<%=data.totalPages%>";
+	if(totalPage==0) {
+		totalPage=1;
+		$("#pagination1").hide();
+		$(".zanwu").show();
+	} else if(totalPage==1){
+		$("#pagination1").hide();
+	}
+	var currPage ='<%=query.cp%>';
+	if(currPage==''){
+		currPage=1;
+	}
+	currPage = parseInt(currPage);
+	fenyeRefresh();
+	
+	function loaddata(page) {
+		OrionJump('.projectcon','/project?keywd=<%=query.keywd%>&guwen_id=<%=query.guwen_id%>&city=<%=query.city%>&status=<%=query.status%>&func=<%=query.func%>&level=<%=query.level%>&open_start=<%=query.open_start%>&open_end=<%=query.open_end%>&cp='+page,false);
+	}
+</script>

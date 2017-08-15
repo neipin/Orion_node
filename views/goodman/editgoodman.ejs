@@ -1,0 +1,163 @@
+	<h4 style="margin: 0;">新增/编辑人才</h4>	
+	<hr style="margin-top: 5px;"/>
+ 	<div class="row" id="checkbox">	 		 		
+		<div class="col-md-12">
+			<form class="editcompany" role="form" id="editgoodman"> 
+				<input type="hidden" name="old_resume" value="<%=data.old_resume%>"/>
+				<input type="hidden" name="openid" value="<%=query.openid%>"/>
+				<input type="hidden" name="userid" value="<%=session.userid%>"/>
+				<input type="hidden" name="company_openid" value="<%=session.company_openid%>"/>
+				<div class="form-group form-inline form-group100" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed #eee;">
+					<div class="resume_parsing">
+						<div class="uploadbt"><span class="glyphicon glyphicon-upload"></span>点击上传附件简历<input type="file" name='jianli' id='jianli' class='upfile' onchange="javascript:uploadjianlinew();" /></div>
+						<div class="uploadname" <%if(!data.resume_upload_name){%>style="display:none"<%}%>>
+							<a href="javascript:void(0);" title="点击下载" class="originalNameedit" no-nave="true"><%=data.resume_upload_name%><span class="glyphicon glyphicon-download"></span></a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="project-part">
+					<h5>基本信息</h5>	
+					<div class="servicelistcon baseInfo" id="baseInfo_check">
+						<% include ../goodman/baseInfo %>
+					</div>
+				</div>
+				<!--工作经历-->
+				<div class="project-part">
+					<h5>工作经历</h5>	    						
+				  	<div class="forEach jobexperience">
+						<% include ../goodman/jobexperience %>
+					</div>
+					<div class="list_add list_add_gzjl"><span class="glyphicon glyphicon-plus">添加</span></div>
+				</div>
+				<!--项目经历-->
+				<div class="project-part">
+					<h5>项目经历</h5>	    						
+				  	<div class="forEach projectexperience">
+						<% include ../goodman/projectexperience %>
+					</div>
+					<div class="list_add list_add_xmjl"><span class="glyphicon glyphicon-plus">添加</span></div>
+				</div>
+				<!--教育经历-->
+				<div class="project-part">
+					<h5>教育经历</h5>
+					<div class="forEach eduexperience">
+						<% include ../goodman/eduexperience %>
+					</div>
+					<div class="list_add list_add_jyjl"><span class="glyphicon glyphicon-plus">添加</span></div>
+				</div>				  	
+			  	<div class="save-company"><a class="btn save_box_btn" href="javascript:void(0);" role="button" no-nave="true" >保存</a></div>
+			</form>  
+		</div>
+	</div>
+	<div class="modal fade zhineng" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modal-zhineng">
+	  	<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	                <h4 class="modal-title">选择职能</h4>
+            	</div>
+            	<div class="modal-body">
+	                <div class="zhineng-choosed">
+	                	<em>最多选择 5 项</em>
+	                </div>
+	                <div class="zhineng-tabs">
+	                	<ul>
+	                		<li class="active allzhineng"><a href="javascript:void(0);" no-nave="true"><span>全部职能</span><em></em></a></li>
+	                	</ul>
+	                </div>
+	                <div class="zhineng-container">
+	                	<div class="zhineng-center"></div>
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary btn-savezhineng">保存</button>	            	
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	            </div>
+		    </div>
+	  	</div>	  	
+	</div>	
+	<!--基本信息模板-->
+	<script id="baseInfo" type="text/html">
+		<%include ../goodman/baseInfoTel%>
+	</script>
+	<!--工作经历模板-->
+	<script type="text/html" id="jobexperience">
+		<% include ../goodman/jobexperienceTel %>
+	</script>
+	<!--添加工作经历模板-->
+	<script type="text/html" id="jobexperience_null">
+		<% include ../goodman/jobexperience_null %>
+	</script>
+	<!-- 项目经历模板-->
+	<script type="text/html" id="projectexperience">
+		<% include ../goodman/projectexperienceTel %>
+	</script>
+	<!-- 添加项目经历模板-->
+	<script type="text/html" id="projectexperience_null">
+		<% include ../goodman/projectexperience_null %>
+	</script>
+	<!--教育经历模板-->
+	<script type="text/html" id="eduexperience">
+		<% include ../goodman/eduexperienceTel %>
+	</script>
+	<!--添加教育经历模板-->
+	<script type="text/html" id="eduexperience_null">
+		<% include ../goodman/eduexperience_null %>
+	</script>
+	<style type="text/css">
+		.doble_choose {
+			top:32px;
+		}		
+	</style>
+	<script type="text/javascript">
+		var jianli_name ='';
+		var original_Name ='';
+		$(function(){
+			$('.form_datetime').datetimepicker({
+	            language: 'zh-CN',
+	            format: 'yyyy-mm-dd',
+	            weekStart: 1,
+	            todayBtn:  1,
+	            autoclose: 1,
+	            todayHighlight: 1,
+	            startView: 2, //这里就设置了默认视图为年视图
+	            minView: 4, //设置最小视图为年视图
+	            forceParse: 0,
+	       	});
+	       	time_ymd();
+	
+			
+	//		$(document).on("click",".zhinenglist-left a",function() {
+	//			var param = {};
+	//	        var param = new Object();
+	//	         param.catalog_code = code;
+	//	        jQuery.ajax({	   
+	//	            type: 'post',   
+	//	            contentType : 'application/json; charset=utf-8',   
+	//	            dataType: 'json',   
+	//	            url: logic_api_host + "/api/common/all_function",
+	//	            data: JSON.stringify(param),   
+	//	            success: function(data){
+	//	            	$(".zhinenglist-right").html('').html(template('tpl_zhinengmould', data));
+	//		        }        
+	//			})	
+	//		})
+	//	职能编辑初始化 start
+		var job_type = '<%=data.job_type%>';
+		var job_type_code = '<%=data.job_type_code%>';	
+		job_type = job_type.split(',');
+	  	job_type_code = job_type_code.split(',');  	
+	  	if(job_type_code!=''){
+	  		for(var i=0; i<job_type.length; i++){	
+			 	$(".zhinengbox").find(".zhinengcon").append("<span code="+job_type_code[i]+">"+job_type[i]+"<em>&times;</em></span>");			 		
+			}
+	  	}	
+	//	职能编辑初始化 end
+//	下载附件简历 start
+		$(".originalNameedit").click(function(){
+			 window.open(logic_api_host + "/p/download/<%=query.openid%>");
+		})
+//	下载附件简历 end	
+	})
+	</script>

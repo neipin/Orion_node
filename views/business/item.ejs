@@ -1,0 +1,44 @@
+	<div class="row">
+		<div class="col-md-12 table-responsive">
+			<table class="table">
+			   	<thead>
+				    <tr>
+				       	<th>项目名称</th>
+				       	<th>开放时间</th>
+				       	<th>年薪</th>
+				       	<th>城市</th>
+				       	<th>需求人数</th>
+				       	<th>执行团队</th>
+				       	<th>紧急度</th>
+				       	<th>候选人</th>
+				       	<th>面试</th>
+				       	<th>offer</th>						       
+				    </tr>
+			   	</thead>
+			   	<tbody>
+			   	<% if(data.jobList){%>
+			 		<%data.jobList.forEach(function(job){%>	
+				    <tr>
+				       	<td><a href="/projectdetail?job_id=<%=job.job_id%>&rencaiflag=1" target-view="center-container" pushstate="true"><%=job.job_name%></a></td>
+				       	<td><%=job.open_date%></td>
+				       	<td><%=job.salary_from%>-<%=job.salary_to%></td>
+				       	<td><%=job.city%></td>
+				       	<td><%=job.need_num%></td>
+				       	<td>
+				       	<% if(job.operate_team){%>
+			 			<%job.operate_team.forEach(function(team){%>	
+			 				<span cgkbn="<%=team.cgkbn%>" operater_id="<%=team.operater_id%>"><%=team.operater_name%></span>
+				       	<%})%>
+						<%}%>
+				       	</td>
+				       	<td><%=job.job_level%></td>
+				       	<td><%=job.candidate_num%></td>
+				       	<td><%=job.mianshi_num%></td>
+				       	<td><%=job.offer_num%></td>
+				    </tr>
+			     	<%})%>
+				<%}%>
+			   </tbody>
+			</table>
+		</div>		
+	</div>

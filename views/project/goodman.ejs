@@ -1,0 +1,25 @@
+	
+	<div class="nav-goodman">
+	  	<!-- Nav tabs -->
+	  	<ul class="nav nav-tabs"id="goodmanTab">
+		    <li class="active" value=""><a href="/goodmaninfo?cur_status=&job_id=<%=query.job_id%>"  target-view="goodmanCon" pushstate="false">全部<span class="badge"><%=data.candi_total%></span></a></li>
+		    <li><a href="/goodmaninfo?cur_status=0&job_id=<%=query.job_id%>" target-view="goodmanCon" pushstate="false">加入项目<span class="badge"><%=data.candi_injob_num%></span></a></li>
+		    <li><a href="/goodmaninfo?cur_status=1&job_id=<%=query.job_id%>" target-view="goodmanCon" pushstate="false">已推荐<span class="badge"><%=data.candi_recommend_num%></span></a></li>
+		    <li><a href="/goodmaninfo?cur_status=2&job_id=<%=query.job_id%>" target-view="goodmanCon" pushstate="false">面试<span class="badge"><%=data.candi_mianshi_num%></span></a></li>
+		    <li><a href="/goodmaninfo?cur_status=3&job_id=<%=query.job_id%>" target-view="goodmanCon" pushstate="false">offer<span class="badge"><%=data.candi_offer_num%></span></a></li>
+		    <li><a href="/goodmaninfo?cur_status=4&job_id=<%=query.job_id%>" target-view="goodmanCon" pushstate="false">入职<span class="badge"><%=data.candi_ruzhi_num%></span></a></li>
+		    <li><a href="/goodmaninfo?cur_status=5&job_id=<%=query.job_id%>" target-view="goodmanCon" pushstate="false">淘汰<span class="badge"><%=data.candi_failed_num%></span></a></li>
+	  	</ul>	
+	  	<div class="goodmanCon" style="padding: 0;"></div>			
+	</div>		
+	<script type="text/javascript">
+		var job_id ='<%=query.job_id%>';
+		var goodman_url = node_url+'/goodman?job_id='+job_id;
+		$(function(){			
+			OrionJump('.goodmanCon','/goodmaninfo?cur_status=<%=data.cur_status%>&job_id='+job_id);	
+		})
+
+	</script>
+	
+
+

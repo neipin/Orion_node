@@ -1,0 +1,62 @@
+	<div class="servicelistTab" style="padding-bottom: 5px; margin-bottom: 15px; border-bottom: 1px dashed #e6e6e6;"><span>相关项目</span></div>
+	<div class="addtoitembox">
+		<a href="javascript:void(0);" class="btn btn-primary" id="addnewitem" data-toggle="modal" data-target="#newitemModal" no-nave="true">加入新项目</a>
+		<div style="margin-top: 15px;">
+			<% if(data.jobsList.length > 0){%>
+			<select class="form-control select-items">						
+	 			<%data.jobsList.forEach(function(job){%>	
+			  	<option recommend_id="<%=job.recommend_id%>" job_id="<%=job.job_id%>" customer_id="<%=job.customer_id%>"><%=job.job_name%>-<%=job.customer_name%></option>					  	
+			  	<%})%>						
+			</select>
+			<%}%>
+		</div>
+	</div>
+	<% if(data.jobsList.length > 0){%>
+	<div class="itemlistbox">
+		<div class="itemlistcon">
+			<p class="itemlist"><a href="" no-nave="true"></a></p>
+			<div class="itemlist_status">当前状态：<span class="label label-success"></span></div>
+			<div class="status_select">
+				<span class="btn btn-default" id="status_span0" data-toggle="modal" data-target="#tuijianModal" data-recommend_id="" data-feed_id="" no-nave="true">推荐</span>
+				<span class="btn btn-default" id="status_span3" data-toggle="modal" data-target="#interviewModal" data-recommend_id="" data-feed_id="" no-nave="true">面试</span>
+				<span class="btn btn-default" id="status_span4" data-toggle="modal" data-target="#offerModal" data-recommend_id="" data-feed_id="" no-nave="true">offer</span>
+				<span class="btn btn-default" id="status_span9" data-toggle="modal" data-target="#ruzhiModal" data-recommend_id="" data-feed_id="" no-nave="true" data-candidate="">入职</span>
+				<span class="btn btn-default" id="status_span10" data-toggle="modal" data-target="#taotaiModal" data-recommend_id="" data-feed_id="" no-nave="true">淘汰</span>
+			</div>
+			<div class="itemflow-list" style="display: block;"></div>
+		</div>
+	</div>
+	<%}%>
+	<script type="text/javascript">
+	$(function(){
+//			已经加入项目的初始化 start
+			var inittext = $(".select-items").find("option").eq(0).text();
+			var recommend_id = $(".select-items").find("option").eq(0).attr("recommend_id");
+	        var job_id = $(".select-items").find("option").eq(0).attr("job_id");
+	        var customer_id = $(".select-items").find("option").eq(0).attr("customer_id");
+			$(".itemlist").find("a").text(inittext);
+			$(".itemlist").find("a").attr({"recommend_id":recommend_id,"job_id":job_id,"customer_id":customer_id,"href":"/projectdetail?job_id="+job_id+"&rencaiflag=1"});
+			$('.status_select').find("span").attr("data-recommend_id",recommend_id);
+			hoverrecommend_id= $(".select-items").find("option").eq(0).attr("recommend_id");
+			itemflowlist();
+//			已经加入项目的初始化 end
+
+//			改变项目，改变流程 start
+			$(document).on('change', '.select-items', function() { 
+		        var index = $(this).find("option:selected").index(); 
+		        $(".itemlist").find("a").text($(this).val());
+		        var recommend_id = $(this).find("option:selected").attr("recommend_id");
+		        var job_id = $(this).find("option:selected").attr("job_id");
+		        var customer_id = $(this).find("option:selected").attr("customer_id");
+		        $(".itemlist").find("a").attr({"recommend_id":recommend_id,"job_id":job_id,"customer_id":customer_id,"href":"/projectdetail?job_id="+job_id+"&rencaiflag=1"});
+		        $('.status_select').find("span").attr("data-recommend_id",recommend_id);	
+		        hoverrecommend_id= $(".select-items").find("option").eq(0).attr("recommend_id");
+				itemflowlist();
+    		}); 
+//			改变项目改变流程 end
+	})
+		
+	</script>
+		
+
+	

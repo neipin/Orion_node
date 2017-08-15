@@ -1,0 +1,46 @@
+<div class="memoTab">
+	<a class="active" href="/remarks?resume_openid=<%=query.openid%>&beizhu_type=" target-view="goodman_remarks" pushstate="false">所有</a>
+	<a href="/remarks?resume_openid=<%=query.openid%>&beizhu_type=1" target-view="goodman_remarks" pushstate="false">电话沟通</a>
+	<a href="/remarks?resume_openid=<%=query.openid%>&beizhu_type=2" target-view="goodman_remarks" pushstate="false">顾问面试</a>
+</div>
+<div class="goodman_remarks"></div>
+<script type="text/javascript">
+	$(function(){	
+		OrionJump('.goodman_remarks','/remarks?resume_openid=<%=query.openid%>&beizhu_type=',false,function(){
+			hoverresume_openid='<%=query.openid%>';
+		});
+	})	
+</script>
+<style type="text/css">
+	.addbeizhubtn {
+		overflow: hidden;
+	}
+	.remarks-box {
+		overflow: hidden;
+	}
+	.memoTab {
+		width: 100%;
+    	margin-top: 15px;
+	}
+	.memoTab a {
+		margin-right: 2px;
+	    line-height: 1.42857143;
+	    border: 1px solid rgba(0, 0, 0, 0);
+	    border-radius: 0;
+	    padding: 5px 8px;
+	    color: #888;
+	}
+	.memoTab a.active {
+		color: #0090b0;
+    	font-weight: bold;
+	}
+	.remarksList-left.col-md-3 {
+		width: 20%;
+	}
+	.remarksList-right.col-md-9 {
+		width: 80%;
+	}
+</style>
+	
+
+	

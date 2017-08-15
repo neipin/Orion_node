@@ -1,0 +1,19 @@
+	<!--二级菜单 start-->
+	<div class="second-level_menu">
+		<p>团队</p>
+		<ul>
+			<li class="active"><a href="/jixiao" target-view="goodmancon"  pushstate="false">团队绩效</a></li>
+			<li><a href="/team_member" target-view="goodmancon"  pushstate="false">团队成员</a></li>
+		</ul>
+	</div>
+	<!--二级菜单 end-->
+	<div class="goodmancon"></div>
+	<script type="text/javascript">
+		$(function(){
+			$(".nav-leftcon").addClass("second-level");
+			$(".nav-leftcon").siblings(".center-container").addClass("center-container-second");
+			OrionJump('.goodmancon','/jixiao?city=<%=query.city%>&function_name=<%=query.function_name%>&company_openid=<%=session.company_openid%>&workyears=<%=query.workyears%>&username=<%=query.username%>&phone=<%=query.phone%>&company_name=<%=query.company_name%>&industry=<%=query.industry%>&keywd=<%=query.keywd%>&cp=<%=query.cp%>&guwen_id=<%=query.guwen_id%>');
+		})
+	</script>
+
+	

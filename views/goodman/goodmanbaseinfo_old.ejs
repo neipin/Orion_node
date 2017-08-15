@@ -1,0 +1,91 @@
+ 	<div class="servicelistcon">
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">手机号码：</span>
+ 			<div><%=data.phone%></div>
+ 		</div>
+ 		<div class="baseinfo-list">
+			<span class="servicelist_span">邮箱：</span>
+			<div><%=data.email%></div>
+		</div>
+		<div class="baseinfo-list">
+ 			<span class="servicelist_span">姓名：</span>
+ 			<div><%=data.username%></div>
+ 		</div>
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">性别：</span>
+ 			<div><% if(data.gender=="1"){%>男<%}else{%>女<%}%></div>
+ 		</div>
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">年龄：</span>
+ 			<div><%=data.birthday_type_value%></div>
+ 		</div>
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">工作年限：</span>
+ 			<div><% if(data.workyears=="0"){%>应届生
+ 				<%}else if(data.workyears=="11"){%>10年以上
+ 				<%}else{%><%=data.workyears%>年<%}%>
+ 			</div>
+ 		</div>
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">最高学历：</span>
+ 			<div><% if(data.college_level=="1"){%>大专以下
+	 			 <%}else if(data.college_level=="2"){%>大专
+	 			 <%}else if(data.college_level=="3"){%>本科
+	 			 <%}else if(data.college_level=="4"){%>硕士
+	 			 <%}else if(data.college_level=="5"){%>博士<%}%>
+ 			</div>
+ 		</div>
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">所在城市：</span>
+ 			<div><%=data.location%></div>
+ 		</div>
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">期望薪资：</span>
+ 			<div><% if(data.want_salary=="1"){%>4K以下
+ 				<%}else if(data.want_salary=="2"){%>4K-6K
+ 				<%}else if(data.want_salary=="3"){%>6K-8K
+ 				<%}else if(data.want_salary=="4"){%>8K-10K
+ 				<%}else if(data.want_salary=="5"){%>10K-15K
+ 				<%}else if(data.want_salary=="6"){%>15K-20K
+ 				<%}else if(data.want_salary=="7"){%>20K-30K
+ 				<%}else if(data.want_salary=="8"){%>30K以上<%}%>
+ 				
+ 			</div>
+ 		</div>
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">目前状态：</span>
+ 			<div><% if(data.currentstate=="1"){%>在职，看机会
+ 				<%}else if(data.currentstate=="2"){%>已离职，正在找工作
+ 				<%}else if(data.currentstate=="3"){%>暂时不打算换工作
+ 				<%}else if(data.currentstate=="4"){%>还没有工作经验<%}%>
+ 			</div>
+ 		</div>
+ 		<div class="baseinfo-list baseinfo-list100">
+ 			<span class="servicelist_span">期望职位：</span>
+ 			<div><%=data.location%>%></div>
+ 		</div>		 		
+ 		<div class="baseinfo-list">
+ 			<span class="servicelist_span">期望城市：</span>
+ 			<div><%=data.new_location%>%></div>
+ 		</div>
+ 		<div class="baseinfo-list baseinfo-list100">
+ 			<span class="servicelist_span">当前公司：</span>
+ 			<div><%=data.current_company%>%></div>
+ 		</div>	
+ 		<div class="baseinfo-list baseinfo-list100">
+ 			<span class="servicelist_span">当前年薪：</span>
+ 			<div><%=data.current_salary%>%>万</div>
+ 		</div>	
+ 		<div class="baseinfo-list baseinfo-list100">
+ 			<span class="servicelist_span">微信号：</span>
+ 			<div><%=data.weixin_id%>%></div>
+ 		</div>
+ 		<div class="baseinfo-list baseinfo-list100">
+ 			<span class="servicelist_span">求职意向：</span>
+ 			<div><%=data.yixiang%>%></div>
+ 		</div>
+ 		<div class="baseinfo-list baseinfo-list100">
+ 			<span class="servicelist_span">备注：</span>
+ 			<div><%=data.first_memo%>%></div>
+ 		</div>
+ 	</div>

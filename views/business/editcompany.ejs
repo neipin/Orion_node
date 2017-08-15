@@ -1,0 +1,342 @@
+	<form class="editcompany" role="form" id="editcompany">
+	<h4 style="margin: 0;">录入新客户</h4>	
+	<input type="hidden" name="customer_id" value="<%=query.customer_id%>">
+	<input type="hidden" name="company_openid" value="<%=session.company_openid%>">
+	<input type="hidden" name="user_id" value="<%=session.userid%>">
+	<input type="hidden" name="fuzeren_id" value="<%=session.userid%>">
+	<hr style="margin-top: 5px;"/>
+	 	<div class="row">
+    		<div class="col-md-9"> 
+			  	<div class="form-group form-inline ">
+				    <label class="" for="customer-name"><span>*</span>客户全称：</label>
+				    <input type="text" class="form-control np_form_check" id="customer-name" placeholder="请输入客户全称" np_require="true" autocomplete="off" name="company_name" value="<%=data.company_name%>">
+				    <span class="help-block" id="customer-nameplease"></span>
+			  	</div>
+			  	<div class="form-group form-inline">
+				    <label class="" for="brand-name">品牌名称：</label>
+				    <input type="text" class="form-control" id="brand-name" placeholder="请输入品牌名称" name="brand_name" value="<%=data.brand_name%>">
+			  	</div>		
+			  	<div class="form-group form-inline">
+				    <label class="" for=""><span>*</span>规模：</label>
+				    <select class="form-control" <%if(!data.guimo||data.guimo==''){%>style="color:#a9a9a9;"<%}%>>
+				    	<option value='' disabled <%if(!data.guimo||data.guimo==''){%>selected<%}%>>请选择规模</option>  
+					  	<option value='1' <%if(data.guimo=='1'){%>selected<%}%>>少于15人</option>
+					  	<option value='2' <%if(data.guimo=='2'){%>selected<%}%>>15-50人</option>
+					  	<option value='3' <%if(data.guimo=='3'){%>selected<%}%>>50-100人</option>
+					  	<option value='4' <%if(data.guimo=='4'){%>selected<%}%>>100-500人</option>
+					  	<option value='5' <%if(data.guimo=='5'){%>selected<%}%>>500-2000人</option>
+					  	<option value='6' <%if(data.guimo=='6'){%>selected<%}%>>2000人以上</option>
+					</select>
+					<input type="hidden" class="np_form_check" placeholder="请选择规模" np_require="true" name="company_guimo" value="<%=data.company_guimo%>"/>
+					<span class="help-block" id="company_guimoplease"></span>
+			  	</div>		
+			  	
+			  	<div class="form-group form-inline">
+				    <label class="" for=""><span>*</span>客户来源：</label>
+				    <select class="form-control selectcompany_source" <%if(!data.company_source||data.company_source==''){%>style="color:#a9a9a9;"<%}%>>
+					  	<option value='' disabled <%if(!data.company_source||data.company_source==''){%>selected<%}%>>请选择客户来源</option>
+					  	<option value='广告呼入' <%if(data.company_source=='广告呼入'){%>selected<%}%>>广告呼入</option>
+					  	<option value='主动BD' <%if(data.company_source=='主动BD'){%>selected<%}%>>主动BD</option>
+					  	<option value='机构合作' <%if(data.company_source=='机构合作'){%>selected<%}%>>机构合作</option>						  	
+					  	<option value='人脉推荐' <%if(data.company_source=='人脉推荐'){%>selected<%}%>>人脉推荐</option>						  	
+					</select>
+					<input type="hidden" class="np_form_check" placeholder="请选择客户来源" np_require="true" name="company_source" value="<%=data.company_source%>"/>
+					<span class="help-block" id="company_sourceplease"></span>
+			  	</div>	
+			  	<div class="form-group form-inline danbaoren" <%if(data.company_source && data.company_source=='人脉推荐'){%>style="display:inline-block;"<%}%>>
+				    <label class="" for=""><span>*</span>担保人：</label>
+				    <input type="text" class="form-control <%if(data.company_source=='人脉推荐'){%>np_form_check<%}else{%>input_hideen<%}%>"  placeholder="请输入担保人" np_require="true" name="danbaoren" value="<%=data.danbaoren%>">
+				    <span class="help-block" id="danbaorenplease"></span>
+			  	</div>
+			  	<div class="form-group form-inline jieshaoren" <%if(data.company_source && data.company_source=='人脉推荐'){%>style="display: inline-block;"<%}%>>
+				    <label class="" for=""><span>*</span>介绍人：</label>
+				    <input type="text" class="form-control <%if(data.company_source=='人脉推荐'){%>np_form_check<%}else{%>input_hideen<%}%>"  placeholder="请输入介绍人" np_require="true" name="renmai_jieshao" value="<%=data.renmai_jieshao%>">
+				    <span class="help-block" id="renmai_jieshaoplease"></span>
+			  	</div>
+			  	<div class="form-group form-inline">
+				    <label class="" for=""><span>*</span>客户状态：</label>
+				    <select class="form-control" <%if(!data.company_state||data.company_state==''){%>style="color:#a9a9a9;"<%}%>>
+				    	<option value='' disabled <%if(!data.company_state||data.company_state==''){%>selected<%}%>>请选择状态</option>
+				    	<option value='0' <%if(data.company_state=='0'){%>selected<%}%>>开发中</option>
+					  	<option value='1' <%if(data.company_state=='1'){%>selected<%}%>>已签约在操作</option>
+					  	<option value='2' <%if(data.company_state=='2'){%>selected<%}%>>已签约暂停合作</option>						  	
+					  	<option value='3' <%if(data.company_state=='3'){%>selected<%}%>>未签约正在操作</option>	
+					  	<option value='4' <%if(data.company_state=='4'){%>selected<%}%>>未签约暂停合作</option>
+					  	<option value='5' <%if(data.company_state=='5'){%>selected<%}%>>合作终止</option>
+					  	<option value='6' <%if(data.company_state=='6'){%>selected<%}%>>合同到期</option>						  	
+					</select>
+					<input type="hidden" class="np_form_check" placeholder="请选择客户状态" np_require="true" name="company_state" value="<%=data.company_state%>" />
+					<span class="help-block" id="company_stateplease"></span>
+			  	</div>
+			  	<div class="form-group form-inline">
+			  		<label class="" for=""><span>*</span>城市：</label>
+			  		<div class="seles seles_border form-control seles_location">
+			          	<span id="dis_location" class="seles_choose seles_area">
+			          		<div class="i_city"><span <%if(!data.city){%>style="color: #a9a9a9;"<%}%>><%if(data.city!= ""){%><%=data.city%><%}if(!data.city){%>请选择城市<%}%></span></div>
+			          	</span>				          	
+			          	<div id="ssss" class="doble_choose form-control choose_city_one" style="display: none; padding: 0; top: 32px;">
+			          		<ul class="choose_city" style="display: block;" ></ul>
+			          	</div>			            
+			            <i class="caret"></i>				            
+			        </div> 
+			        <input class="np_form_check" type="hidden" name="city" value="<%=data.city%>" np_require="true" placeholder="请选择城市"/>
+			        <span class="help-block" id="cityplease"></span>
+			  	</div>
+			  	<div class="form-group form-inline">
+				    <label class="" for=""><span>*</span>公司地址：</label>
+				    <input type="text" class="form-control np_form_check"  placeholder="请输入公司地址" np_require="true" name="company_location" value="<%=data.company_location%>">
+				    <span class="help-block" id="company_locationplaese"></span>
+			  	</div>
+			  	<div class="form-group form-inline">
+				    <label class="" for="">官网：</label>
+				    <input type="text" class="form-control" placeholder="请输入官网" name="company_url" value="<%=data.company_url%>">
+			  	</div>
+			  	<div class="form-group form-inline form-group100">
+				    <label class="" for=""><span>*</span>行业：</label>
+				    <div class="industrybox">
+				    	<div class="industrycon"></div>
+				    	<span class="glyphicon glyphicon-list-alt industryopen"></span>
+				    </div>
+				    <input type="hidden" class="np_form_check company_techtag" placeholder="请选择行业" np_require="true" name="company_techtag" value="<%=data.company_techtag%>"  np_require="true" />
+				    <input type="hidden" class="np_form_check lingyu_cd" placeholder="请选择行业" np_require="true" name="lingyu_cd" value="<%=data.lingyu_cd%>"  np_require="true" />
+				    <span class="help-block" id="company_techtagplease"></span>
+			  	</div>
+			  	<div id="delete_ziliao">
+			  	</div>
+			  	<div class="form-group form-inline form-group100">
+				    <label class="" for=""><span></span>客户资料：</label>
+				    <div class="ziliao-box">
+				    	<div class="ziliao-con">
+				    		<div class="ziliao-upload btn"><span class="glyphicon glyphicon-upload"></span>上传资料<input type="file" name="temp_file" id="temp_file" value="" class='upfile' onchange="javascript:upload();"/></div>
+				    		<% if(data.ziliaoList){%>
+								<%data.ziliaoList.forEach(function(ziliao){%>	
+								<input type="hidden" name="<%=ziliao.ziliao_id%>">
+				    			<div ziliao_id="<%=ziliao.ziliao_id%>"><i class="glyphicon glyphicon-folder-open"></i><span><%=ziliao.original_name%></span><em class="glyphicon glyphicon-remove"></em></div>
+				    			<%})%>
+							<%}%>
+						</div>
+				    </div>
+			  	</div>
+			  	<div class="form-group form-inline form-group100">
+				    <label class="" for=""><span></span>客户新闻：</label>
+				    <input class="form-control" type="hidden" name="news_title" id="news_title" value="<%=data.news_title%>"/>
+		            <input class="form-control" type="hidden"  name="news_url" id="news_url" value="<%=data.news_url%>"/>
+				    <div class="news_editcon">
+	              		<button class="btn btn-link" type="button"><span class="glyphicon glyphicon-plus"></span>添加新闻</button>
+	              		<div class="news_edit">
+	              			<div>
+	              				<input class="form-control" type="text" id="temp_news_title" value="" placeholder="请输入新闻名称"/>
+		              			<input class="form-control" type="text" id="temp_news_url" value="" placeholder="请输入新闻链接"/>
+		              			<button class="btn news_add" type="button">确定添加</button>
+	              			</div>		              			
+	              		</div>
+	              		<div class="news_con">
+	              		<%if(data.news_title && data.news_title != ""){%>
+				    		<%data.news_title.split(',').forEach(function(newstitle,i){%>
+				    		<%data.news_url.split(',').forEach(function(newsurl,j){%>
+				    		<%if(i==j){%>
+	              			<div class="news_list"><span class="glyphicon glyphicon-link"></span><a target="_blank" href="<%=newsurl%>" title="" no-nave="true"><%=newstitle%></a><em class="glyphicon glyphicon-remove"></em></div>
+	              			<%}%>
+	              			<%})%>
+	              		<%})}%>
+	              		</div>
+	              	</div>
+			  	</div>
+			  	<div class="form-group form-inline form-group100">
+				    <label class="" for=""><span>*</span>公司介绍：</label>
+				    <textarea class="form-control np_form_check" name="company_detail" rows="5" cols="5" placeholder="请输入公司介绍" np_require="true" value="<%=data.company_detail%>"><%=data.company_detail%></textarea>
+				    <span class="help-block" id="company_detailplease" style="text-indent: 125px;"></span>
+			  	</div>
+			  	<div class="form-group form-inline form-group100">
+				    <label class="" for="">企业亮点：</label>
+				    <textarea class="form-control" name="company_power" rows="5" cols="5" placeholder="请输入企业实力" value="<%=data.company_power%>"><%=data.company_power%></textarea>
+			  	</div>
+			  	<div class="form-group form-inline form-group100">
+				    <label class="" for="">候选人目标公司：</label>
+				    <textarea class="form-control" name="company_target" rows="3" cols="5" placeholder="候选人目标公司" value="<%=data.company_target%>"><%=data.company_target%></textarea>
+			  	</div>
+			  	<div class="form-group form-inline">
+				    <label class="" for=""><span>*</span>客户靠谱度：</label>
+				    <select class="form-control" <%if(!data.company_level||data.company_level==''){%>style="color:#a9a9a9;"<%}%>>
+					  	<option value='' disabled <%if(!data.company_level||data.company_level==''){%>selected<%}%>>请选择客户靠谱度</option>
+					  	<option value='靠谱' <%if(data.company_level=='靠谱'){%>selected<%}%>>靠谱</option>						  		
+					  	<option value='不靠谱' <%if(data.company_level=='不靠谱'){%>selected<%}%>>不靠谱</option>						  		
+					</select>
+					<input type="hidden" class="np_form_check" placeholder="请选择客户靠谱度" np_require="true" name="company_level" value="<%=data.company_level%>" />
+					<span class="help-block" id="company_levelplease"></span>
+			  	</div>
+			  	<div class="form-group form-inline">
+				    <label class="" for=""><span>*</span>客户紧急度：</label>
+				    <select class="form-control" <%if(!data.company_tag||data.company_tag==''){%>style="color:#a9a9a9;"<%}%>>
+					  	<option value='' disabled <%if(!data.company_tag||data.company_tag==''){%>selected<%}%>>请选择客户紧急度</option>
+					  	<option value='很急' <%if(data.company_tag=='很急'){%>selected<%}%>>很急</option>						  		
+					  	<option value='一般' <%if(data.company_tag=='一般'){%>selected<%}%>>一般</option>						  		
+					  	<option value='不急' <%if(data.company_tag=='不急'){%>selected<%}%>>不急</option>						  		
+					</select>
+					<input type="hidden" class="np_form_check" placeholder="请选择客户紧急度" np_require="true" name="company_tag" value="<%=data.company_tag%>" />
+					<span class="help-block" id="company_tagplease"></span>
+			  	</div>				  	
+			  	<div class="save-company"><a class="btn save-companybtn" href="javascript:void(0)" no-nave="true" role="button">保存</a></div>
+    		</div>
+    		<!--联系人-->
+    		<div class="col-md-3" style="border-left: 1px solid #eee; min-height: 580px;">
+    		<div id="delete_lianxiren"></div>
+    			<div class="contactCon">
+    				<h5>联系人</h5>
+    				<button class="btn btn-link" type="button"><span class=" glyphicon glyphicon-plus"></span>添加联系人</button>
+    				<div class="editcontact" id="editcontact"> 
+    				<% if(data.contactList){%>
+						<%data.contactList.forEach(function(contact){%>	    
+    					<div  class="contact-box" id="<%=contact.id%>">
+    						<input type="hidden" name="contactList.id" value="<%=contact.id%>">	
+    						<div class="contact-center" style="display: none;">
+    							<div class="form-group form-inline ">
+						 		    <label class="" for=""><span>*</span>联系人：</label>
+						 		    <input type="text" class="form-control np_form_check" placeholder="请输入联系人" np_require="true" autocomplete="off" name="contactList.contact_name" value="<%=contact.contact_name%>">
+						 		    <span class="help-block" id="contact_nameplease"></span> 
+						 	  	</div> 
+						 	  	<div class="form-group form-inline"> 
+						 		    <label class="" for=""><span>*</span>性别：</label> 
+						 		    <select class="form-control" <%if(!contact.contact_sex||contact.contact_sex==''){%>style="color:#a9a9a9;"<%}%>> 
+						 			  	<option value="" disabled <%if(!contact.contact_sex||contact.contact_sex==''){%>selected<%}%>>请选择性别</option> 
+						 			  	<option value="1">男</option>			 			  		
+						 			  	<option value="0">女</option>		 				  		
+						 			</select> 
+						 			<input type="hidden" class="np_form_check" placeholder="请选择性别" np_require="true" name="contactList.contact_sex" value="<%=contact.contact_sex%>" /> 
+						 			<span class="help-block" id="contact_sexplease"></span> 
+						 	  	</div>			 
+						 	  	<div class="form-group form-inline"> 
+						 		    <label class="" for=""><span>*</span>担任职务：</label> 
+						 		    <input type="text" class="form-control np_form_check"  placeholder="请输入担任职务" np_require="true" autocomplete="off" name="contactList.contact_position" value="<%=contact.contact_position%>"> 
+						 	  		<span class="help-block"  id="contact_positionplease"></span>
+						 	  	</div> 
+						 	  	<div class="form-group form-inline"> 
+						 		    <label class="" for=""><span>*</span>手机号码：</label> 
+						 		    <input type="text" class="form-control np_form_check"  placeholder="请输入手机号码" np_format="phone"  err_format="手机号码格式错误" np_require="true" autocomplete="off" name="contactList.contact_phone" value="<%=contact.contact_phone%>"> 
+						 	  		<span class="help-block" id="contact_phoneplease"></span>
+						 	  	</div> 
+						 	  	<div class="form-group form-inline"> 
+						 		    <label class="" for=""><span></span>座机号码：</label> 
+						 		    <input type="text" class="form-control" placeholder="请输入座机号码" autocomplete="off" name="contactList.contact_tel" value="<%=contact.contact_tel%>"> 
+						 	  	</div> 
+						 	  	<div class="form-group form-inline">
+						 		    <label class="" for=""><span></span>电子邮件：</label>
+						 		    <input type="text" class="form-control" placeholder="请输入电子邮件" autocomplete="off" name="contactList.contact_email" value="<%=contact.contact_email%>">
+						 	  	</div> 
+						 	  	<div class="form-group form-inline">
+						 		    <label class="" for=""><span></span>QQ：</label> 
+						 		    <input type="text" class="form-control"  placeholder="请输入QQ" autocomplete="off" name="contactList.contact_qq" value="<%=contact.contact_qq%>">
+						 	  	</div>
+						 	  	<div class="form-group form-inline"> 
+						 		    <label class="" for=""><span></span>微信：</label>
+						 		    <input type="text" class="form-control"  placeholder="请输入微信" autocomplete="off" name="contactList.contact_weixin" value="<%=contact.contact_weixin%>">
+						 	  	</div>
+						 		<span class="glyphicon glyphicon-remove contact-remove text-danger">删除</span>	
+    						</div>
+		    				<div class="contactdefault-list"><span><%=contact.contact_name%></span><span><%=contact.contact_position%></span><span class="glyphicon glyphicon-pencil contactdefault-editbtn"></span></div>					
+    					</div>
+    					<%})%>
+					<%}%>
+    				</div>    				
+    			</div>    			
+    		</div>
+		</div>
+	</div> 
+	</form>
+	<!--选择行业分类 start-->
+	<div class="popindustrycon">
+		<div class="popindustry-header">
+			<div class="popindustry-title">选择行业分类</div>
+			<a href="javascript:void(0);" no-nave="true">&times;</a>
+		</div>
+		<div class="popindustry-main">	
+			
+		</div>		
+		<div class="popindustry-footer">
+			<a href="javascript:void(0);" class="btn popindustry-ok"  no-nave="true">确定</a>
+			<a href="javascript:void(0);" class="btn btn-default popindustry-cancel"  no-nave="true">取消</a>
+		</div>
+	</div>
+	<style type="text/css">
+		.industrybox, .zhinengbox {
+			width: 665px;
+		}
+		.editcompany label, .editcontact label {
+			width: 115px;
+		}
+		.editcompany .form-group, .editcontact .form-group,
+		.editcompany textarea.form-control {
+			width: 390px;
+		}
+		.editcompany textarea.form-control,
+		.ziliao-box,
+		.news_editcon {
+			width: 665px;
+		}
+		.editcompany .form-group100 {
+			width: 100%;
+		}
+		.editcompany .form-control {
+			width: 275px;
+		}
+		
+		/*联系人*/
+		.contact-center label{
+			width: 90px;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		}
+		.contact-center .form-group {
+			width: 100%;
+		    position: relative;
+		    z-index: 1;
+		    padding-left: 105px;
+		}
+		.contact-center .form-control {
+			width: 100%;
+		}
+	</style>
+	<!--选择行业分类 end-->
+<script id="tpl_member_list" type="text/html">	
+	<% if(contact.memberList){%>
+		<%contact.memberList.forEach(function(member){%>
+		<li member_id="<%=member.member_id%>" member_role="<%=member.member_role%>"><%=member.member_name%></li>
+		<%})%>
+	<%}%>
+</script>
+
+<script type="text/javascript">
+	var company_openid = "<%=session.company_openid%>";
+	$(function(){
+		loadcity($("#ssss"));	//公司城市初始化
+		getAllmembers(company_openid);
+//	行业初始化start
+		var industry_con = '<%=data.company_techtag%>';
+		industry_con = industry_con.split(',');
+	  	if(industry_con!=''){
+	  		for(var i=0; i<industry_con.length; i++){	
+			 	$(".industrybox").find(".industrycon").append("<div>"+industry_con[i]+"<span class='glyphicon glyphicon-remove'></span></div>");			 		
+			}
+	  	}else{
+	  		$(".industrybox").find(".industrycon").css("color","#a9a9a9").text("请选择行业");
+	  	}
+//	行业初始化 end
+	})
+	function getAllmembers(company_openid)
+	{
+		
+		var param = {};
+        param.company_openid=company_openid;
+        jQuery.ajax({	   
+            type: 'post',   
+            contentType : 'application/json; charset=utf-8',   
+            dataType: 'json',   
+            url: logic_api_host + "/api/all_member",
+            data: JSON.stringify(param),   
+            success: function(data){
+				$(".pop_fuzeren").html('').html(template('tpl_member_list', data));
+            }
+        })
+	}
+</script>

@@ -1,0 +1,45 @@
+	<h4 style="margin: 0;"><%=data.brand_name%></h4>
+	<div class="detailcon">
+		<div><span>负责人：</span><%=data.fuzeren%></div>
+		<div><span class="updatatime">创建时间：</span><%=dateformat(data.create_time,'YYYY-MM-DD')%></div>
+		<div><span>创建者：</span><%=data.username%></div>
+		<div><span>客户来源：</span><%=data.company_source%></div>
+		<div class="detailcon-edit nav-click"><a target-view="center-container" pushstate="true" href="/editcompany?customer_id=<%=query.customer_id%>" type="button" class="btn glyphicon glyphicon-pencil">编辑</a></div>
+	</div>
+	<hr style="margin-top: 5px;"/>
+	<!--标签table-->
+	<div>
+	  	<!-- Nav tabs -->
+	  	<ul class="nav nav-tabs" role="tablist" id="maintab">
+		    <li class="active"><a href="/baseinfo?customer_id=<%=query.customer_id%>"  target-view="tab-pane" pushstate="false">基本信息</a></li>
+		    <li><a href="/item?customer_id=<%=query.customer_id%>" target-view="tab-pane" pushstate="false">项目<span class="badge"><%=numtab.jobs_num%></span></a></li>
+		    <li><a href="/datum?customer_id=<%=query.customer_id%>"  target-view="tab-pane" pushstate="false">资料<span class="badge"><%=numtab.ziliao_num%></span></a></li>
+		    <li><a href="/communicate?customer_id=<%=query.customer_id%>" target-view="tab-pane" pushstate="false">沟通<span class="badge"><%=numtab.comm_num%></span></a></li>
+		    <li><a href="/contact?customer_id=<%=query.customer_id%>"  target-view="tab-pane" pushstate="false">合同<span class="badge"><%=numtab.contract_num%></span></a></li>
+		    <li><a href="/service_manager?customer_id=<%=query.customer_id%>"  target-view="tab-pane" pushstate="false">服务负责人</a></li>
+		    <li><a href="/custom_report?customer_id=<%=query.customer_id%>"  target-view="tab-pane" pushstate="false">客户推荐报告</a></li>
+	  	</ul>			
+	  	<!-- Tab panes -->
+	  	<div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active"></div>
+	  	</div>			
+	</div>		
+	<style type="text/css">
+		form {
+			margin-bottom: 0;
+		}
+		.editcompany .form-group {
+			width: 100%;
+			margin-right: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		var customer_id ='<%=query.customer_id%>';
+		var cp = '<%=query.cp%>';
+		$(function(){	
+			OrionJump('.tab-pane','/baseinfo?customer_id='+customer_id);	       
+		})	
+	</script>
+	
+
+	

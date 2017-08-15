@@ -1,0 +1,60 @@
+	<% if(data.work_exprience_list){%>
+	<%data.work_exprience_list.forEach(function(work_exprience){%>
+	<div class="servicelistcon">
+		<a href="JavaScript:void(0);" class="list_delate">删除</a>
+ 		<div class="form-group form-inline">
+ 			<label class="" for=""><span></span>公司名称：</label>
+ 			<input id="" class="form-control" type="text" name="work_exprience_list.company" placeholder='请输入公司名称' autocomplete="off" value="<%=work_exprience.company%>"/>              
+        </div>
+ 		<div class="form-group form-inline">
+ 			<label class="" for=""><span></span>所在部门：</label>
+ 			<input id="" class="form-control" type="text" name="work_exprience_list.department" placeholder='请输入所在部门'    autocomplete="off" value="<%=work_exprience.department%>"/>              
+ 		</div>
+        <div class="form-group form-inline">
+        	<label class="" for=""><span></span>公司规模：</label>
+        	<input id="birthday" class="form-control" type="text" name="work_exprience_list.guimo" placeholder='请输入公司规模'  autocomplete="off" value="<%=work_exprience.guimo%>"  />           
+        </div>  
+        <div class="form-group form-inline">
+        	<label for=""><span></span>所属行业：</label>
+        	<input id="" class="form-control" type="text" name="work_exprience_list.industry" placeholder='请输入所属行业'     autocomplete="off" value="<%=work_exprience.industry%>"/>              
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>汇报对象：</label>
+ 			<input id="" class="form-control" type="text" name="work_exprience_list.leader" placeholder='请输入汇报对象'  autocomplete="off" value="<%=work_exprience.leader%>"/>              
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>职务：</label>
+ 			<input id="" class="form-control" type="text" name="work_exprience_list.position" placeholder='请输入职务' autocomplete="off" value="<%=work_exprience.position%>"/>              
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>工作时间段：</label>
+ 			<input id="" class="form-control" type="text" name="work_exprience_list.periods" placeholder='请输入工作时间段'   autocomplete="off" value="<%=work_exprience.periods%>"/>              
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>薪资：</label>
+ 			<input id="" class="form-control" type="text" name="work_exprience_list.salary" placeholder='请输入薪资'  autocomplete="off" value="<%=work_exprience.salary%>"/>              
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>下属人数：</label>
+ 			<input id="" class="form-control" type="text" name="work_exprience_list.underling_number" placeholder='请输入下属人数'  autocomplete="off" value="<%=work_exprience.underling_number%>"/>              
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>公司性质：</label>
+ 			<input id="" class="form-control" type="text" name="work_exprience_list.xingzhi" placeholder='请输入公司性质'  autocomplete="off" value="<%=work_exprience.xingzhi%>"/>              
+ 		</div>
+ 		<div class="form-group form-inline">
+ 			<label for=""><span></span>时间：</label>
+ 			<div class="salary_divbox">
+				<div class="salary_div"><input type="text" name="work_exprience_list.start_date" autocomplete="off" id=""class="form-control form_date" value="<%=work_exprience.start_date%>" placeholder="开始时间"/></div>
+              	<div class="salary_text" <%if(work_exprience.end_date==""){%>style="display:none;"<%}%>>至</div>
+              	<div class="salary_div" <%if(work_exprience.end_date==""){%>style="display:none;"<%}%>><input type="text" name="work_exprience_list.end_date" autocomplete="off" id="" class="form-control form_date" value="<%=work_exprience.end_date%>" placeholder="截止时间"/></div>
+              	<div class="time_now"><input type="checkbox" value=""<%if(work_exprience.end_date==""){%> checked="checked"<%}%>/>至今</div>
+			</div>		
+ 		</div>
+ 		<div class="form-group form-inline form-group100"> 
+ 			<label for=""><span></span>详细介绍：</label>
+ 			<textarea id="" class="form-control" name="work_exprience_list.summary" rows="8" cols="5" placeholder='请输入详细介绍' id="" value="<%=work_exprience.summary%>"><%=work_exprience.summary%></textarea>
+		</div>
+ 	</div>
+	<%})%>
+<%}%>

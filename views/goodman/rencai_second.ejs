@@ -1,0 +1,19 @@
+	<!--二级菜单 start-->
+	<div class="second-level_menu">
+		<p>人才</p>
+		<ul>
+			<li class="active"><a href="/rencai?guwen_id=<%=session.userid%>" target-view="goodmancon"  pushstate="false">我的人才<span class="badge"><%=data.mytalent_num%></span></a></li>
+			<li><a href="/rencai" target-view="goodmancon"  pushstate="false">所有人才<span class="badge"><%=data.talent_total%></span></a></li>
+		</ul>
+	</div>
+	<!--二级菜单 end-->
+	<div class="goodmancon"></div>
+	<script type="text/javascript">
+		$(function(){
+			$(".nav-leftcon").addClass("second-level");
+			$(".nav-leftcon").siblings(".center-container").addClass("center-container-second");
+			OrionJump('.goodmancon','/rencai?city=<%=query.city%>&function_name=<%=query.function_name%>&company_openid=<%=session.company_openid%>&workyears=<%=query.workyears%>&username=<%=query.username%>&phone=<%=query.phone%>&company_name=<%=query.company_name%>&industry=<%=query.industry%>&keywd=<%=query.keywd%>&cp=<%=query.cp%>&guwen_id=<%=query.guwen_id%>');
+		})
+	</script>
+
+	

@@ -1,0 +1,64 @@
+	<div class="serviceconBox">
+		<div class="searchpartcon">
+			<div class="time_search">
+				<span class="">日期：</span>
+				<div><input type="" name="" id="data1" value="<%=data.date_from%>" autocomplete="off" placeholder="起始日期" class="form-control form_datetime np_form_check"/></div>
+				<span class="zhi">至</span>
+				<div><input type="" name="" id="data2" value="<%=data.date_to%>" autocomplete="off" placeholder="截止日期" class="form-control form_datetime np_form_check"/></div>
+				<button class="databtn btn" role="button">确定</button>
+			</div>
+		</div>
+	 	<table class="table">
+	 		<thead>
+	 		<tr>
+	 			<th>渠道名称</th>
+	 			<th>推荐量</th>
+	 			<th>面试量</th>
+	 			<th>未来一周面试量</th>
+	 			<th>offer量</th>
+	 			<th>入职量</th>	 			
+	 		</tr>
+	 		</thead>
+	 		<tbody>
+	 		<%if(data.jixiaoList){%>
+	 		<%data.jixiaoList.forEach(function(jixiaoList){%>
+	 		<tr>
+	 			<td><a href="/Channel_detail?channel_openid=<%=jixiaoList.channel_openid%>"><%=jixiaoList.channel_name%></a></td>			 			
+	 			<td><%=jixiaoList.tuijian_num%></td>
+	 			<td><%=jixiaoList.mianshi_num%></td>
+	 			<td><%=jixiaoList.mianshi_nextweek_num%></td>
+	 			<td><%=jixiaoList.offer_num%></td>
+	 			<td><%=jixiaoList.ruzhi_num%></td>
+	 		</tr>			 		
+	 		<%})%>
+	 		<%}%>
+	 		</tbody>
+	 	</table>
+	 	<div id="pagination1"></div>
+	</div>
+	<script type="text/javascript">
+	$(function(){
+		$('.form_datetime').datetimepicker({
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2, //这里就设置了默认视图为年视图
+            minView: 4, //设置最小视图为年视图
+            forceParse: 0,
+       	});
+//		时间搜索确定按钮 start
+		$(document).on('click', '.databtn', function() {
+			var data1 = $("#data1").val();
+			var data2 = $("#data2").val();
+			if(moment(data1)>moment(data2)){
+				alert("开始时间不能大于结束时间");
+				return;
+			}			
+			OrionJump('.Channelcon','/Channel_jixiao?data1='+data1+'&data2='+data2,false);
+		})		
+//		时间搜索确定按钮 end
+    })
+	</script>

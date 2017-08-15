@@ -1,0 +1,68 @@
+	<h4 style="margin: 0;">成员详情</h4>
+	<hr  style="margin-top: 5px; margin-bottom: 0;"/>	
+	<div class="serviceconBox">
+		<div class="btn-group btn-addcon"><a class="btn btn-info" href="/addmember?member_openid=<%=query.member_openid%>" target-view="center-container" pushstate="true" style="float: right;"><span class="glyphicon glyphicon-plus"></span>编辑成员信息</a></div>
+	 	<div class="servicelistcon">
+	 		<div class="baseinfo-list">
+	 			<span>成员账号：</span>
+	 			<div><%=data.account%></div>
+	 		</div>	
+	 		<div class="baseinfo-list">
+	 			<span>姓名：</span>
+	 			<div><%=data.username%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>性别：</span>
+	 			<div><%if(data.gender=="1"){%>男<%}else{%>女<%}%></div> 
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>手机号码：</span>
+	 			<div><%=data.phone%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>邮箱：</span>
+	 			<div><%=data.email%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>座机号码：</span>
+	 			<div><%=data.tel%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>微信/QQ：</span>
+	 			<div><%=data.weixin%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>所属公司：</span>
+	 			<div><%=data.company%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>所属部门：</span>
+	 			<div><%=data.department%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>所属团队：</span>
+	 			<div><%=data.team%></div>
+	 		</div>
+	 		<div class="baseinfo-list" style="display: none;">
+	 			<span>职务：</span>
+	 			<div><%=data.position%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>入职时间：</span>
+	 			<div><%=data.rz_date%></#if></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>转正时间：</span>
+	 			<div><%=data.zz_date%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>离职时间：</span>
+	 			<div><%=data.lz_date%></div>
+	 		</div>
+	 		<div class="baseinfo-list">
+	 			<span>目前状态：</span>
+	 			<div><%=data.member_status%></div>
+	 		</div>
+	 	</div>
+	</div>
+		

@@ -1,0 +1,77 @@
+	<div class="row">		
+		<div class="col-md-10">
+	   	    <div class="form-group input-bg">
+	   		   <input type="text" class="form-control" placeholder="请输入关键词" id="searchtag" autocomplete="off" onkeyup="search()" value="<%if(query.searchtag){%><%=query.searchtag%><%}%>"/>
+	   	    </div>
+	   	</div>
+	   	<div class="col-md-2">
+        	<button class="btn btn_search" id="btn_search" type="button"><span class="glyphicon glyphicon-search"></span>搜索</button>
+        </div>
+	</div>
+	<!--城市、开放时间、状态选项-->
+	<div class="popselect-box">	
+		<div class="popselect-list popselect-list-kehu">
+			<a href="javascript:void(0);" no-nave="ture">城市</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>城市</span>
+			      	<div class="seles form-control seles_location" style="border: 1px solid #ccc;">
+			      		<div id="dis_location"><span class="seles_choose">请选择城市</span></div>
+			          	<div id="ssss" class="doble_choose" style="display: block;"></div>			            
+			            <i class="caret"></i>
+			        </div> 
+				</div>
+				<button class="btn btn-primary btn-citysearch" id="btn-citysearch" type="button">搜索</button>
+			</div>
+		</div>
+		<div class="popselect-list  popselect-list-kehu">
+			<a href="javascript:void(0);"  no-nave="ture">客户状态</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>客户状态</span>
+					<div class="seles">
+						<select class="form-control selectstatus">
+					    	<option value='' disabled>请选择状态</option>
+						  	<option value='0'>开发中</option>
+						  	<option value='1'>已签约在操作</option>
+						  	<option value='2'>已签约暂停合作</option>						  	
+						  	<option value='3'>未签约正在操作</option>	
+						  	<option value='4'>未签约暂停合作</option>
+						  	<option value='5'>合作终止</option>
+						  	<option value='6'>合同到期</option>						  	
+						</select>
+					</div>			      	
+				</div>
+				<button class="btn btn-primary btn-statussearch" id="btn-statussearch" type="button">搜索</button>
+			</div>
+		</div>
+		<!--<div class="popselect-list">
+			<a href="javascript:void(0);"  no-nave="ture">职位开放时间</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>开放时间</span>
+					<div class="seles">
+						<input class="form-control form_datetime starttime" type="text" placeholder="起始时间"/>
+						<input class="form-control form_datetime endtime" type="text" placeholder="截止时间"/>
+					</div>			      	
+				</div>
+				<button class="btn btn-primary btn-timesearch" type="button">搜索</button>
+			</div>
+		</div>-->
+	</div>
+	<div class="popchoosed-box">
+		<%if(query.city){%>
+			<div class="popchoosed-list popchoosed-city" id="popchoosed-city">城市：<span><%=query.city%></span><em>&times;</em><input type="hidden" value="<%=query.city%>"></div>
+		<%}%>
+		<%if(query.status){%>
+			<div class="popchoosed-list popchoosed-status" id="popchoosed-status">客户状态：<span><%=getDic_customer_status(query.status)%></span><em>&times;</em><input type="hidden" value="<%=query.status%>"></div>
+		<%}%>
+	</div>
+	<div class="btn-group btn-addcon"><a class="btn btn-info" href="/editcompany?customer_id="  target-view="center-container" pushstate="true" style="float: right;"><span class="glyphicon glyphicon-plus"></span>新增客户</a></div>
+	<div class="table-responsive" style="padding: 0;"></div>
+    <script type="text/javascript">
+		$(function(){
+			var cp = '<%=query.cp%>';
+			OrionJump('.table-responsive','/companyManageCon?searchtag=<%=query.searchtag%>&company_openid=<%=session.company_openid%>&city=<%=query.city%>&status=<%=query.status%>&cp=<%=query.cp%>');			
+		})
+	</script> 	

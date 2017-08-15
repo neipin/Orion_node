@@ -1,0 +1,78 @@
+<h4 style="margin: 0;">新增/编辑合伙人</h4>	
+<hr style="margin-top: 5px;"/>
+<div class="row" id="checkbox">	 	
+	<div class="serviceconBox">
+		<form action="" autocomplete="off" class="editcompany" id="edit_channel">
+			<input type="text" name=""  autocomplete="off"  style="display: none;"/>   
+			<input type="password" name=""  autocomplete="off"  style="display: none;"/>  				
+			<div class="servicecon">				
+		 		<div class="servicelistcon" id="checkbox">
+		 			<div class="form-group form-inline">
+						<label><span>*</span>合伙人名称：</label>
+				      	<input class="np_form_check form-control" id="" type="text" name="channel_name" placeholder="请输入合伙人名称" autocomplete="off" value="<%=data.channel_name%>" np_require="1"  err_require="请输入合伙人名称"/>              
+				      	<span class="help-block" id="channel_name"></span>
+					</div>	
+					<div class="form-group form-inline">
+						<label><span>*</span>规模人数：</label>						
+				      	<input class="np_form_check form-control" id="" type="text" name="channel_guimo" placeholder="请输入规模人数" autocomplete="off" np_require="1"  err_require="请输入规模人数" value="<%=data.channel_guimo%>" np_format="number"  err_format="请填写数字"/>              
+				      	<span class="help-block" id="channel_guimo"></span>
+					</div>	
+					<div class="form-group form-inline">
+						<label><span>*</span>擅长职位：</label>
+				      	<input class="np_form_check form-control" id="" type="text" name="expert_job" placeholder="请输擅长职位" autocomplete="off" value="<%=data.expert_job%>" np_require="1"  err_require="请输擅长职位" />              
+				      	<span class="help-block" id="expert_job"></span>
+					</div>		
+					<div class="form-group form-inline">
+						<label><span>*</span>擅长行业：</label>						
+				      	<input class="np_form_check form-control" id="" type="text" name="expert_area" placeholder="请输擅长行业" autocomplete="off" value="<%=data.expert_area%>" np_require="1"  err_require="请输擅长行业"/>              
+				      	<span class="help-block" id="expert_area"></span>
+					</div>	
+				 	<div class="form-group form-inline">
+					    <label><span>*</span>公司地址：</label>
+				        <input class="np_form_check form-control" id="" type="text" name="address" placeholder='请输入公司地址'autocomplete="off" value="<%=data.address%>" np_require="true" err_require="请输入公司地址" />              
+				        <span class="help-block" id="gs_address"></span>
+					</div>
+					<div class="form-group form-inline">
+						<label><span>*</span>联系人：</label>						
+				      	<input class="np_form_check form-control" id="" type="text" name="contact" placeholder="请输入联系人" autocomplete="off" value="<%=data.contact%>" np_require="true" err_require="请输入联系人" />              
+				      	<span class="help-block" id="contactor"></span>
+					</div>		
+					<div class="form-group form-inline">
+						<label><span>*</span>联系电话：</label>
+				      	<input class="np_form_check form-control" id="" type="text" name="contact_phone" placeholder="请输入联系电话" autocomplete="off" value="<%=data.contact_phone%>" np_require="true" np_format="phone" err_require="请输入联系电话" err_format="联系电话格式错误" />              
+				      	<span class="help-block" id="contact_phone"></span>
+					</div>	
+					<div class="form-group form-inline">
+						<label><span>*</span>管理员账号：</label>
+				      	<input class="np_form_check form-control" id="admin_account" type="text" name="admin_account" placeholder="请输入合伙人管理员账号" autocomplete="off" value="<%=data.admin_account%>"  np_require="true" err_require="请输入合伙人管理员账号" <% if(data.channel_openid){%>style="border:1px solid #fff" readonly="readonly"<%}%>/>              
+				      	<span class="help-block" id="admin_accounthelp"></span>
+					</div>
+					<div class="form-group form-inline">
+						<label><span><% if(!data.channel_openid){%>*<%}%></span>初始密码：</label>
+						<div class='edit_list edit_list_pos'>
+					      	<input class=" form-control <% if(!data.channel_openid){%>np_form_check<%}%>" id="passwd" type="password" name="passwd" placeholder="请输初始密码" autocomplete="off"  value<% if(data.channel_openid){%> ="123456" disabled="disabled"<%}%> np_require="true" err_require="请输初始密码"/>              
+					      	<% if(data.channel_openid){%><span class="reseat_passwd">重置密码</span><%}%>						      	
+					      	<span class="help-block" id="passwordhelp"></span>
+						</div>  
+					</div>				
+		 		</div>
+			</form>
+		</div>
+	</div>
+	<div class="save-company"><a class="btn Channel_edit_save" href="javascript:void(0);" role="button" no-nave="true">保存编辑</a></div>	
+</div>
+
+<style type="text/css">
+	.editcompany .form-control[disabled="disabled"],
+	.editcompany .form-control[readonly="readonly"] {
+		background: #fff;
+		border: none;
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	var passflg='0';
+	var master_openid = "<%=session.company_openid%>";
+	var channel_openid="<%=data.channel_openid%>";	
+</script>

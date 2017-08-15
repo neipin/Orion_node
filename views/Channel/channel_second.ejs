@@ -1,0 +1,19 @@
+	<!--二级菜单 start-->
+	<div class="second-level_menu">
+		<p>合伙人</p>
+		<ul>
+			<li class="active"><a href="/Channel_list" target-view="Channelcon"  pushstate="false">合伙人列表</a></li>
+			<li><a href="/Channel_jixiao" target-view="Channelcon"  pushstate="false">合伙人绩效</a></li>
+		</ul>
+	</div>
+	<!--二级菜单 end-->
+	<div class="Channelcon"></div>
+	<script type="text/javascript">
+		$(function(){
+			$(".nav-leftcon").addClass("second-level");
+			$(".nav-leftcon").siblings(".center-container").addClass("center-container-second");
+			OrionJump('.Channelcon','/Channel_list');
+		})
+	</script>
+
+	

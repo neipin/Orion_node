@@ -1,0 +1,34 @@
+		
+<div class="serviceconBox" id="container">	
+	<div class="btn-group btn-addcon"><a class="btn btn-info" href="/Channel_edit?" target-view="center-container" pushstate="true" style="float: right;"><span class="glyphicon glyphicon-plus"></span>新增合伙人</a></div>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+		 		<tr>
+		 			<th>合伙人</th>
+		 			<th>负责的客户</th>
+		 			<th>创建时间</th>			 			 			
+		 		</tr>
+		 	</thead>
+   			<tbody>
+		 		<%if(data.channelList){%>
+		 		<%data.channelList.forEach(function(channel){%>
+		 		<tr style="border-bottom: 1px dashed #eee;">
+		 			<td><a href="/Channel_detail?channel_openid=<%=channel.channel_openid%>" target-view="center-container" pushstate="true"><%=channel.channel_name%></a></td>			 			
+		 			<td>	
+		 				<%if(channel.customerList){%>
+		 				<table border="0" cellspacing="0" cellpadding="0">	
+		 					<%channel.customerList.forEach(function(customer){%>
+		 					<tr><td><a target-view="center-container" pushstate="true" target="_blank" href="/companydetail?customer_id=<%=customer.customer_id%>"><%=customer.customer_name%></a></td></tr>
+		 					<%})%>
+		 				</table>
+		 				<%}%>
+		 			</td>
+		 			<td class="updatatime"><%=dateformat(channel.create_time,'YYYY-MM-DD hh:mm')%></td>
+		 		</tr>
+		 		<%})%>
+		 		<%}%>
+		 	</tbody>
+	 	</table>
+	</div>
+</div>

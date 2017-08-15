@@ -1,0 +1,8 @@
+/*分页*/
+.Page{width:100%; margin:25px auto 10px; font-size: 16px; text-align:center; height:32px;}
+.Page a{ display:inline-block; min-width:24px; width: auto; height:24px; line-height: 24px; padding: 0px 3px; margin:0px 5px; 
+    color:#969696; background: #fff; border: 1px solid #e6e6e6; -moz-border-radius: 3px; -webkit-border-radius: 3px;border-radius: 3px;}
+.Page a.show{ background:#459df5; color:#fff; border: 1px solid #459df5;}
+.Page a:hover{ /*border: 1px solid #32b16c;*/ color: #459df5;}
+.Page a.show:hover{ color: #fff;}
+.Page a.page_up,.Page a.page_down{ width:66px;}

@@ -1,0 +1,109 @@
+	<div class="table-responsive">		
+	   	<table class="table">
+		   	<thead>
+		     	<tr>
+			       	<th>候选人</th>
+			       	<th>当前职务</th>
+			       	<th>当前年薪</th>
+			       	<th>工作经验</th>
+			       	<th>所在城市</th>
+			       	<th>手机号码</th>
+			       	<th>人选流程</th>
+			       	<th>操作时间</th>
+			       	<th>操作</th>
+			       	<th>备注</th>			       	
+		     	</tr>
+		   	</thead>
+		   	<tbody>
+		   		<% if(data.resumeList){%>
+				<%data.resumeList.forEach(function(resume){%>		   		
+		     	<tr class="hovergetid" resume_openid="<%=resume.resume_openid%>" recommend_id="<%=resume.recommend_id%>" candidate="<%=resume.resume_username%>">
+		       		<td><a class="hoverpop"  target="_blank" href="/rencaidetail?openid=<%=resume.resume_openid%>" target-view="center-container" pushstate="true"><%=resume.resume_username%></a></td>
+		       		<td><%=resume.last_title%></td>
+		       		<td><%=resume.cur_salary%></td>
+		       		<td><%=resume.workyears%></td>
+		       		<td><%=resume.now_location%></td>
+		       		<td><%=resume.phone%></td>
+		       		<td class="td-pos">
+		       			<span class="bg-primary btn btn-flow"><%=getDic_tuijianstate(resume.cur_status)%></span>
+		       			<div class="flow-list"></div>
+		       		</td>
+		       		<td><%=dateformat(resume.last_operate_time,'YYYY-MM-DD')%></td>
+		       		<td>
+		       			<div class="dropdown dropdown-operate">
+				  			<button class="btn btn-link dropdown-toggle" type="button"  data-toggle="dropdown">操作<span class="caret"></span></button>
+						  	<ul class="dropdown-menu" role="menu" aria-labelledby="">
+							    <li class="dropdown-tuijian" role="presentation" value="1"><a id="tuijian_<%=resume.recommend_id%>" role="menuitem" tabindex="-1" href="javascript:void(0);" data-toggle="modal" data-target="#tuijianModal" data-recommend_id="<%=resume.recommend_id%>" data-feed_id="" no-nave="true">推荐</a></li>
+							    <li class="dropdown-mianshi" role="presentation" value="2"><a id="mianshi_<%=resume.recommend_id%>" role="menuitem" tabindex="-1" href="javascript:void(0);" data-toggle="modal" data-target="#interviewModal" data-recommend_id="<%=resume.recommend_id%>" data-feed_id="" no-nave="true">面试</a></li>
+							    <li class="dropdown-offer" role="presentation" value="3"><a id="Offer_<%=resume.recommend_id%>" role="menuitem" tabindex="-1" href="javascript:void(0);" data-toggle="modal" data-target="#offerModal" data-recommend_id="<%=resume.recommend_id%>" data-feed_id="" no-nave="true">offer</a></li>
+							    <li class="dropdown-ruzhi" role="presentation" value="4"><a id="ruzhi_<%=resume.recommend_id%>" role="menuitem" tabindex="-1" href="javascript:void(0);" data-toggle="modal" data-target="#ruzhiModal" data-recommend_id="<%=resume.recommend_id%>" data-feed_id="" no-nave="true" data-candidate="<%=resume.resume_username%>">入职</a></li>
+							    <li class="dropdown-taotai" role="presentation" value="5"><a id="taotai_<%=resume.recommend_id%>" role="menuitem" tabindex="-1" href="javascript:void(0);" data-toggle="modal" data-target="#taotaiModal" data-recommend_id="<%=resume.recommend_id%>" data-feed_id="" no-nave="true">淘汰</a></li>							    
+							    <li class="divider"></li>
+							    <li class="dropdown-report" role="presentation" value="5"><a id="report_<%=resume.recommend_id%>" role="menuitem" tabindex="-1" href="javascript:void(0);" data-toggle="modal" data-target="#reportModal" data-recommend_id="<%=resume.resume_openid%>" data-feed_id="" no-nave="true">生成推荐报告</a></li>							    
+						  	</ul>
+						</div> 
+		       		</td>
+		       		<td class="remarks"><span class="glyphicon glyphicon-comment"></span><%=resume.memo_num%></td>		       		
+		     	</tr> 
+		     	<%})%>
+				<%}%>
+		   	</tbody>
+		</table>
+		<div id="pagination1"></div>
+	</div>
+	<style type="text/css">
+		.table-responsive {
+			padding-bottom: 300px;
+		}
+	</style>
+	<script type="text/javascript">
+		var hoverresume_openid;
+		var hoverrecommend_id;
+		var hovercandidate;
+		$(function(){
+			
+//	候选人、备注鼠标滑过状态 start
+			$(document).on('mouseover', '.hovergetid', function() {
+				hoverresume_openid = $(this).attr("resume_openid");
+				hoverrecommend_id = $(this).attr("recommend_id");
+				hovercandidate = $(this).attr("candidate");
+			})			
+//	hoverDelay  start		
+			$(".hoverpop").hoverDelay({			
+			    hoverEvent: function(){			    	
+			    	openPop('demo',event,{
+			    		title:'简历详情',
+			    		url:node_url+'/popresume?resume_openid='+hoverresume_openid,
+			    		width:screenwidth,
+			    		height:screenheight
+			    	});
+			    	return false;
+			    }
+			});
+//			$(".remarks").hoverDelay({			
+//			    hoverEvent: function(){			    	
+//			    	openPop('demo',event,{
+//			    		title:'简历详情',
+//			    		url:node_url+'/popresume?resume_openid='+hoverresume_openid,
+//			    		width:screenwidth,
+//			    		height:screenheight
+//			    	});
+//			    	return false;
+//			    }
+//			});
+			$(".remarks").hoverDelay({
+			    hoverEvent: function(){
+			    	openPop('demo',event,{
+			    		title:'备注内容',
+			    		url:node_url+'/remarks?resume_openid='+hoverresume_openid,
+			    		width:screenwidth*0.8,
+			    		height:screenheight*0.8
+			    	});
+			    	    	
+			    	return false;  
+			    }
+			});
+// 	hoverDelay  end	
+// 	候选人、备注鼠标滑过状态 end
+		})
+	</script>

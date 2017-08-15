@@ -1,0 +1,156 @@
+	<div class="row">		
+		<div class="col-md-10">
+	   	    <div class="form-group input-bg">
+	   		   <input type="text" class="form-control" placeholder="请输入职位名称或客户名称" id="searchtag" autocomplete="off" onkeyup="searchpro()" value="<%=query.keywd%>"/>
+	   	    </div>
+	   	</div>
+	   	<div class="col-md-2">
+        	<button class="btn btn_search" id="pro_btn_search" type="button"><span class="glyphicon glyphicon-search"></span>搜索</button>
+        </div>
+	</div> 
+	<!--城市、开放时间、状态选项-->
+	<div class="popselect-box">	
+		<div class="popselect-list">
+			<a href="javascript:void(0);"  no-nave="true">城市</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>城市</span>
+			      	<div class="seles form-control seles_location" style="border: 1px solid #ccc;">
+			      		<div id="dis_location"><span class="seles_choose">请选择城市</span></div>
+			          	<div id="ssss" class="doble_choose" style="display: block;"></div>			            
+			            <i class="caret"></i>
+			        </div>
+				</div>
+				<button class="btn btn-primary" id="pro_btn_citysearch" type="button">搜索</button>
+			</div>
+		</div>
+		<div class="popselect-list">
+			<a href="javascript:void(0);"  no-nave="true">职能</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>职能</span>
+			      	<div class="seles form-control zhinengbox" style="border: 1px solid #ccc;">
+			      		<div class="zhinengcon"></div>
+			      		<span class="glyphicon glyphicon-list-alt zhinengopen" id="btn-searchzhineng" data-toggle="modal" data-target=".zhineng"></span>
+			        </div>
+				</div>
+				<button class="btn btn-primary btn-title" id="pro_btn_title" type="button">搜索</button>
+			</div>
+		</div>
+		<div class="popselect-list">
+			<a href="javascript:void(0);" no-nave="true">状态</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>状态</span>
+					<div class="seles">
+						<select class="form-control">
+					    	<option value='' disabled selected>请选择职位状态</option>
+						  	<option value='0'>待分配</option>
+						  	<option value='1'>运作</option>
+						  	<option value='2'>暂停</option>						  	
+						  	<option value='3'>客户终止</option>	
+						  	<option value='4'>已关闭</option>
+						</select>
+					</div>			      	
+				</div>
+				<button class="btn btn-primary" id="pro_btn_statussearch" type="button">搜索</button>
+			</div>
+		</div>
+		<div class="popselect-list">
+			<a href="javascript:void(0);" no-nave="true">紧急度</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>紧急度</span>
+					<div class="seles">
+						<select class="form-control">
+					    	<option value='' disabled>请选择紧急度</option>
+						  	<option value='非常紧急'>非常紧急</option>						  		
+						  	<option value='紧急'>紧急</option>						  		
+						  	<option value='不紧急'>不紧急</option>
+						  	<option value='长期招聘'>长期招聘</option>	
+						</select>
+					</div>			      	
+				</div>
+				<button class="btn btn-primary btn-urgencysearch" id="pro_btn_urgencysearch" type="button">搜索</button>
+			</div>
+		</div>
+		<div class="popselect-list">
+			<a href="javascript:void(0);" no-nave="true">职位开放时间</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>开放时间</span>
+					<div class="seles">
+						<input class="form-control form_datetime starttime" type="text" placeholder="起始时间"/>
+						<input class="form-control form_datetime endtime" type="text" placeholder="截止时间"/>
+					</div>			      	
+				</div>
+				<button class="btn btn-primary btn-timesearch" id="pro_btn_timesearch" type="button">搜索</button>
+			</div>
+		</div>
+	</div>
+	<div class="popchoosed-box pro-popchoosed-box">
+		<%if(query.city){%>
+			<div class="popchoosed-list popchoosed-procity">城市：<span><%=query.city%></span><em>&times;</em><input type="hidden" value="<%=query.city%>"></div>
+		<%}%>
+		<%if(query.title){%>
+			<div class="popchoosed-list popchoosed-title">职能：<span><%=query.title%></span><em>&times;</em><input type="hidden" value="<%=query.title%>"></div>
+		<%}%>
+		<%if(query.status){%>
+			<div class="popchoosed-list popchoosed-prostatus">状态：<span><%=getDic_job_status(query.status)%></span><em>&times;</em><input type="hidden" value="<%=query.status%>"></div>
+		<%}%>
+		<%if(query.level){%>
+			<div class="popchoosed-list popchoosed-urgency">紧急度：<span><%=query.level%></span><em>&times;</em><input type="hidden" value="<%=query.level%>"></div>
+		<%}%>
+		<%if(query.open_start){%>
+			<div class="popchoosed-list popchoosed-opentime">职位开放时间：<span><%=query.open_start%>-<%=query.open_end%></span><em>&times;</em><input type="hidden" class="input_open_start" value="<%=query.open_start%>"><input type="hidden" class="input_open_end" value="<%=query.open_end%>"></div>
+		<%}%>
+	</div>
+	<div class="btn-group btn-addcon"><a class="btn btn-info" href="/editproject?job_id=" target-view="center-container" pushstate="true" style="float: right;"><span class="glyphicon glyphicon-plus"></span>新增项目</a></div>
+	<div class="table-responsive nav-click"></div>
+	<!--职能弹框 start-->
+	<div class="modal fade zhineng" tabindex="-1" role="dialog"  id="modal-zhineng">
+	  	<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	                <h4 class="modal-title">选择职能</h4>
+            	</div>
+            	<div class="modal-body">
+	                <div class="zhineng-choosed">
+	                	<em>最多选择 5 项</em>
+	                </div>
+	                <div class="zhineng-tabs">
+	                	<ul>
+	                		<li class="active allzhineng"><a href="javascript:void(0);" no-nave="true"><span>全部职能</span><em></em></a></li>
+	                	</ul>
+	                </div>
+	                <div class="zhineng-container">
+	                	<div class="zhineng-center"></div>
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary btn-savezhineng">保存</button>	            	
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	            </div>
+		    </div>
+	  	</div>	  	
+	</div>
+	<!--职能弹框 end-->
+	<script type="text/javascript">
+		var guwen_id = '<%=query.guwen_id%>';
+		$(function(){
+			OrionJump('.table-responsive','/projectcon?city=<%=query.city%>&company_openid=<%=session.company_openid%>&guwen_id=<%=query.guwen_id%>&keywd=<%=query.keywd%>&level=<%=query.level%>&open_start=<%=query.open_start%>&open_end=<%=query.open_end%>&status=<%=query.status%>&func=<%=query.func%>&cp=<%=query.cp%>');
+			loadcity($("#ssss"));
+			$('.form_datetime').datetimepicker({
+		        language: 'zh-CN',
+		        format: 'yyyy-mm-dd',
+		        weekStart: 1,
+		        todayBtn:  1,
+		        autoclose: 1,
+		        todayHighlight: 1,
+		        startView: 2, //这里就设置了默认视图为年视图
+		        minView: 4, //设置最小视图为年视图
+		        forceParse: 0,
+		  	});
+		})
+	</script>

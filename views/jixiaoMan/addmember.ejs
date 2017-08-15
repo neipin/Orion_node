@@ -1,0 +1,155 @@
+	<div class="serviceconBox">
+		<div class="servicecon">
+	 		<p class="servicelistTab"><span class="active">添加新成员</span></p>
+		 	<!--添加新成员-->
+		 	<div class="new_Customer" id="newnum">
+		 		<form class="editmember editcompany" id="editmember">
+		 			<div>
+		 				<input type="hidden" id="member_id" name="member_id" value="<%=query.member_openid%>">
+		 			</div>		 			
+			 		<!--成员账号-->
+			 		<div class="form-group form-inline">
+			 			<label><span>*</span>成员账号：</label>
+		              	<input name="account" value="<%=data.account%>" class="np_form_check form-control" id="member_card" type="text" placeholder='请输入成员账号'  autocomplete="off" value="" np_require="true" />              
+		              	<span class="help-block" id="chengyuanzhanghao"></span>
+			 		</div>
+			 		<!--成员账号  end-->
+			 		<!--初始密码-->
+			 		<div class="form-group form-inline">
+			 			<label><span>*</span>初始密码：</label>
+			 			<div class='edit_list edit_list_pos'>
+			              	<input class="np_form_check  form-control" id="member_passwd" type="password" placeholder='请输入初始密码'  autocomplete="off" name="passwd" value="<%if (data.memberid!=''){%>123456<%}%>" np_require="true"  <%if (data.memberid!=''){%>disabled="disabled"<%}%>>  
+			              	<%if (data.memberid!=''){%><span class="reseat_passwd">重置密码</span><%}%><!--如果有mid，则显示，如果没有，不显示此行-->
+			              	<span class="help-block" id="chongzhimima"></span>
+		            	</div>  
+			 		</div>
+			 		<!--初始密码  end-->
+			 		<!--姓名-->
+			 		<div class="form-group form-inline">
+			 			<label><span>*</span>姓名：</label>
+		              	<input id="username" class="np_form_check  form-control" type="text" placeholder='请输入姓名' np_require="true" autocomplete="off" name="username" value="<%=data.username%>"/>              
+		              	<span class="help-block" id="xingming"></span>
+			 		</div>
+			 		<!--姓名 end-->
+			 		<div class="form-group form-inline">
+			 			<label><span>*</span>性别：</label>
+		 				<select class="form-control" <%if(!data.gender||data.gender==''){%>style="color:#a9a9a9;"<%}%>>
+					    	<option value='' disabled <%if(!data.gender||data.gender==''){%>selected<%}%>>请选择性别</option>  
+						  	<option value='1' <%if(data.gender=='1'){%>selected<%}%>>男</option>
+						  	<option value='2' <%if(data.gender=='2'){%>selected<%}%>>女</option>
+						</select>
+						<input type="hidden" name="gender" class="np_form_check form-control" value="<%=data.gender%>"  np_require="true" placeholder="请选择性别"/>
+						<span class="help-block" id="help-blockgender"></span>
+			 		</div>
+			 		<!--邮箱-->
+			 		<div class="form-group form-inline">
+			 			<label><span>*</span>邮箱：</label>
+		              	<input id="email" class="np_form_check form-control" type="text" placeholder='请输入邮箱' np_require="true" np_format="email" err_format="邮箱格式错误" autocomplete="off" name="email" value="<%=data.email%>"/>              
+		              	<span class="help-block" id="help-blockemail"></span>
+			 		</div>
+			 		<!--邮箱  end-->
+			 		<!--入职时间-->
+			 		<div class="form-group form-inline">
+			 			<label><span>*</span>入职时间：</label>
+		              	<input class="form_date np_form_check form-control" id="in_from" type="text" placeholder='请输入入职时间'  autocomplete="off" name="in_date" value="<%=data.rz_date%>" np_require="true"/>              
+		              	<span class="help-block" id="ruzhitime"></span>
+			 		</div>
+			 		<!--入职时间  end-->
+			 		<!--目前状态-->
+			 		<div class="form-group form-inline">
+			 			<label><span>*</span>目前状态：</label>
+			 			<select class="form-control" <%if(!data.member_status||data.member_status==''){%>style="color:#a9a9a9;"<%}%>>
+					    	<option value='' disabled <%if(!data.member_status||data.member_status==''){%>selected<%}%>>请选择目前状态</option>  
+						  	<option value='在职' <%if(data.member_status=='在职'){%>selected<%}%>>在职</option>
+						  	<option value='离职' <%if(data.member_status=='离职'){%>selected<%}%>>离职</option>
+						</select>
+						<input type="hidden" name="status" class="np_form_check form-control" value="<%=data.member_status%>" np_require="true" placeholder="请选择目前状态"/>
+			 			<span class="help-block" id="muqianzhuangtai"></span>
+			 		</div>
+			 		<!--目前状态 end-->
+				 	<!--手机号码-->
+			 		<div class="form-group form-inline">
+			 			<label><span></span>手机号码：</label>
+		              	<input id="phone" class="form-control" type="text" placeholder='请输入手机号码'  autocomplete="off" name="phone" value="<%=data.phone%>"/>              
+		              	<span class="help-block" id="help-blockphone"></span>
+			 		</div>
+			 		<!--手机号码 end-->		 		
+			 		<!--座机号码-->
+			 		<div class="form-group form-inline">
+			 			<label><span></span>座机号码：</label>
+		              	<input id="tel" class="form-control" type="text" placeholder='请输入座机号码' autocomplete="off" name="tel" value="<%=data.tel%>"/>              
+		              	<span class="help-block" id="help-blocktel"></span>
+			 		</div>
+			 		<!--座机号码  end-->
+			 		<!--微信/QQ-->
+			 		<div class="form-group form-inline">
+			 			<label><span></span>微信/QQ：</label>
+		              	<input id="weixin" type="text" class="form-control" placeholder='请输入微信/QQ'  autocomplete="off" name="weixin" value="<%=data.weixin%>"/>             
+		              	<span class="help-block" id="help-blockqq"></span>
+			 		</div>
+			 		<!--微信/QQ  end-->
+			 		<!--所属公司-->
+			 		<div class="form-group form-inline">
+			 			<label><span></span>所属公司：</label>
+		              	<input id="company" type="text" class="form-control" placeholder='请输入所属公司'  autocomplete="off" name="company" value="<%=data.company%>"/>              
+		              	<span class="help-block" id="help-blockcompany"></span>
+			 		</div>
+			 		<!--所属公司  end-->
+			 		<!--所属部门-->
+			 		<div class="form-group form-inline">
+			 			<label><span></span>所属部门：</label>
+		              	<input id="department" type="text" class="form-control" placeholder='请输入所属部门'  autocomplete="off" name="department" value="<%=data.department%>"/>              
+		              	<span class="help-block" id="help-blockdepartment"></span>
+			 		</div>
+			 		<!--所属部门  end-->
+			 		<!--所属团队-->
+			 		<div class="form-group form-inline">
+			 			<label><span></span>所属团队：</label>
+		              	<input id="team" type="text" class="form-control" placeholder='请输入所属团队'  autocomplete="off" name="team" value="<%=data.team%>"/>               
+		              	<span class="help-block" id="help-blockteam"></span>
+			 		</div>
+			 		<!--所属团队  end-->
+			 		<!--职务-->
+			 		<div class="form-group form-inline" style="display: none;">
+			 			<label><span></span>职务：</label>
+		              	<input id="position" type="text" class=" form-control" placeholder='请输入职务'  autocomplete="off" name="position" value="<%=data.position%>"/>             
+		              	<span class="help-block" id="help-blockposition"></span>
+			 		</div>
+			 		<!--职务  end-->		 		
+			 		
+			 		<!--转正时间-->
+			 		<div class="form-group form-inline">
+			 			<label><span></span>转正时间：</label>
+		              	<input id="zz_date" class="form_date  form-control" type="text" placeholder='请输入转正时间'  autocomplete="off" name="zz_date" value="<%=data.zz_date%>"/>              
+		              	<span class="help-block" id="zhaungzhengtime"></span>
+			 		</div>
+			 		<!--转正时间  end-->
+			 		<!--离职时间-->
+			 		<div class="form-group form-inline">
+			 			<label><span></span>离职时间：</label>
+		              	<input id="lz_date" class="form_date form-control" type="text" placeholder='请输入离职时间'  autocomplete="off" name="lz_date" value="<%=data.lz_date%>"/>              
+		              	<span class="help-block" id="lizhitime"></span>
+			 		</div>
+			 		<!--离职时间  end-->		 		
+		 		</form>
+		 		<div class="save-company">
+		 			<a class="btn member_save" href="javascript:void(0);" role="button" no-nave="true">保存</a>
+		 		</div>
+		 	</div>
+		</div>
+	</div>
+	<style type="text/css">
+		.editmember .form-control[disabled="disabled"], 
+		.editmember .form-control[readonly="readonly"] {
+		    background: #fff;
+		    border: none;
+		    box-shadow: none;
+		}
+	</style>
+	<script type="text/javascript">
+		var passflg='0';
+		var member_openid = '<%=query.member_openid%>';
+		$(function(){
+			time_ymd();
+		})
+	</script>

@@ -1,0 +1,223 @@
+	
+	<div class="row">		
+		<div class="col-md-10">
+	   	    <div class="form-group input-bg">
+	   		   <input type="text" class="form-control" placeholder="请输入职位名称或客户名称" id="searchtag" autocomplete="off" onkeyup="searchpro()" value="<%=query.keywd%>"/>
+	   	    </div>
+	   	</div>
+	   	<div class="col-md-2">
+        	<button class="btn btn_search" id="rc_btn_search" type="button"><span class="glyphicon glyphicon-search"></span>搜索</button>
+        </div>
+	</div> 
+	<!--城市、开放时间、工作经验选项-->
+	<div class="popselect-box">	
+		<!--城市 选项 start-->
+		<div class="popselect-list">
+			<a href="javascript:void(0);"  no-nave="true">城市</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>城市</span>
+			      	<div class="seles form-control seles_location" style="border: 1px solid #ccc;">
+			      		<div id="dis_location"><span class="seles_choose">请选择城市</span></div>
+			          	<div id="ssss" class="doble_choose" style="display: block;"></div>			            
+			            <i class="caret"></i>
+			        </div>
+				</div>
+				<button class="btn btn-primary" id="rc_btn_citysearch" type="button">搜索</button>
+			</div>
+		</div>
+		<!--城市 选项 end-->
+		
+		<!--职能 选项 start-->
+		<div class="popselect-list">
+			<a href="javascript:void(0);"  no-nave="true">职能</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>职能</span>
+			      	<div class="seles form-control zhinengbox" style="border: 1px solid #ccc;">
+			      		<div class="zhinengcon"></div>
+			      		<span class="glyphicon glyphicon-list-alt zhinengopen" id="btn-searchzhineng" data-toggle="modal" data-target=".zhineng"></span>
+			        </div>
+				</div>
+				<button class="btn btn-primary" id="rc_btn_title" type="button">搜索</button>
+			</div>
+		</div>
+		<!--职能 选项 end-->
+		
+		<!--行业 选项 start-->
+		<div class="popselect-list">
+			<a href="javascript:void(0);"  no-nave="true">行业</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>行业</span>
+			      	<div class="seles form-control industrybox">
+				    	<div class="industrycon" style="width: 100%;"></div>
+				    	<span class="glyphicon glyphicon-list-alt industryopen"></span>
+				    </div>
+				    <input type="hidden" value=""/>
+				</div>
+				<button class="btn btn-primary" id="rc_btn_industry" type="button">搜索</button>
+			</div>
+		</div>
+		<!--行业 选项 start-->
+		
+		<!--工作年限 选项 start-->
+		<div class="popselect-list">
+			<a href="javascript:void(0);" no-nave="true">工作经验</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>工作经验</span>
+					<div class="seles">
+						<select class="form-control">
+					    	<option value='' disabled selected>请选择工作年限</option>  
+						  	<option value=''>不限</option>
+						  	<option value='0'>应届生</option>
+						  	<option value='1'>1年</option>
+						  	<option value='2'>2年</option>
+						  	<option value='3'>3年</option>
+						  	<option value='4'>4年</option>
+						  	<option value='5'>5年</option>
+						  	<option value='6'>6年</option>
+						  	<option value='7'>7年</option>
+						  	<option value='8'>8年</option>
+						  	<option value='9'>9年</option>
+						  	<option value='10'>10年</option>
+						</select>
+					</div>			      	
+				</div>
+				<button class="btn btn-primary" id="btn_workyears" type="button">搜索</button>
+			</div>
+		</div>
+		<!--工作年限 选项 end-->
+		
+		<!--姓名 选项 start-->
+		<div class="popselect-list">
+			<a href="javascript:void(0);" no-nave="true">姓名</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>姓名</span>
+					<div class="seles">
+						<input type="text" class="form-control" name="" id="" value="" placeholder="请输入姓名"/>
+					</div>
+				</div>
+				<button class="btn btn-primary btn_namesearch" id="btn_namesearch" type="button">搜索</button>
+			</div>
+		</div>
+		<!--姓名 选项 end-->
+		
+		<!--手机号 选项 start-->
+		<div class="popselect-list">
+			<a href="javascript:void(0);" no-nave="true">手机号</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>手机号</span>
+					<div class="seles">
+						<input type="text" class="form-control" name="" id="" value="" placeholder="请输入手机号"/>
+					</div>
+				</div>
+				<button class="btn btn-primary btn_phonesearch" id="btn_phonesearch" type="button">搜索</button>
+			</div>
+		</div>
+		<!--手机号选项 end-->
+		
+		<!--公司名称 选项 start-->
+		<div class="popselect-list">
+			<a href="javascript:void(0);" no-nave="true">公司名称</a>
+			<div class="popselect-con">
+				<div class="popselectCon">
+					<span>公司名称</span>
+					<div class="seles">
+						<input type="text" class="form-control" name="" id="" value="" placeholder="请输入公司名称"/>
+					</div>
+				</div>
+				<button class="btn btn-primary btn_gsnamesearch" id="btn_gsnamesearch" type="button">搜索</button>
+			</div>
+		</div>
+		<!--公司名称选项 end-->
+	</div>
+	<div class="popchoosed-box rc-popchoosed-box">
+		<%if(query.city){%>
+			<div class="popchoosed-list popchoosed-procity">城市：<span><%=query.city%></span><em>&times;</em><input type="hidden" value="<%=query.city%>"></div>
+		<%}%>
+		<%if(query.function_name){%>
+			<div class="popchoosed-list popchoosed-title">职能：<span><%=query.function_name%></span><em>&times;</em><input type="hidden" value="<%=query.function_name%>"></div>
+		<%}%>
+		<%if(query.industry){%>
+			<div class="popchoosed-list popchoosed-industry">行业：<span><%=query.industry%></span><em>&times;</em><input type="hidden" value="<%=query.industry%>"></div>
+		<%}%>
+		<%if(query.workyears){%>
+			<div class="popchoosed-list popchoosed-workyears">工作年限：<span><%=query.workyears%>年以上</span><em>&times;</em><input type="hidden" value="<%=query.workyears%>"></div>
+		<%}%>
+		<%if(query.username){%>
+			<div class="popchoosed-list popchoosed-username">姓名：<span><%=query.username%></span><em>&times;</em><input type="hidden" value="<%=query.username%>"></div>
+		<%}%>
+		<%if(query.phone){%>
+			<div class="popchoosed-list popchoosed-phone">手机号：<span><%=query.phone%></span><em>&times;</em><input type="hidden" value="<%=query.phone%>"></div>
+		<%}%>
+		<%if(query.company_name){%>
+			<div class="popchoosed-list popchoosed-company_name">公司名称：<span><%=query.company_name%></span><em>&times;</em><input type="hidden"  value="<%=query.company_name%>"></div>
+		<%}%>
+	</div>
+	<div class="btn-group btn-addcon"><a class="btn btn-info" href="/editgoodman?openid=" target-view="center-container" pushstate="true" style="float: right;"><span class="glyphicon glyphicon-plus"></span>新增人才</a></div>
+	<div class="table-responsive nav-click"></div>
+	<!--职能弹框 start-->
+	<div class="modal fade zhineng" tabindex="-1" role="dialog"  id="modal-zhineng">
+	  	<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	                <h4 class="modal-title">选择职能</h4>
+            	</div>
+            	<div class="modal-body">
+	                <div class="zhineng-choosed">
+	                	<em>最多选择 5 项</em>
+	                </div>
+	                <div class="zhineng-tabs">
+	                	<ul>
+	                		<li class="active allzhineng"><a href="javascript:void(0);" no-nave="true"><span>全部职能</span><em></em></a></li>
+	                	</ul>
+	                </div>
+	                <div class="zhineng-container">
+	                	<div class="zhineng-center"></div>
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary btn-savezhineng">保存</button>	            	
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	            </div>
+		    </div>
+	  	</div>	  	
+	</div>
+	<!--职能弹框 end-->
+	<!--选择行业分类 start-->
+	<div class="popindustrycon">
+		<div class="popindustry-header">
+			<div class="popindustry-title">选择行业分类</div>
+			<a href="javascript:void(0);" no-nave="true">&times;</a>
+		</div>
+		<div class="popindustry-main"></div>		
+		<div class="popindustry-footer">
+			<a href="javascript:void(0);" class="btn popindustry-ok"  no-nave="true">确定</a>
+			<a href="javascript:void(0);" class="btn btn-default popindustry-cancel"  no-nave="true">取消</a>
+		</div>
+	</div>
+	<!--选择行业分类 end-->
+	<script type="text/javascript">
+		var guwen_id = '<%=query.guwen_id%>';
+		$(function(){
+//			currentPage groupid guwen_id 三个参数没有传
+			OrionJump('.table-responsive','/rencaicon?city=<%=query.city%>&function_name=<%=query.function_name%>&company_openid=<%=session.company_openid%>&workyears=<%=query.workyears%>&username=<%=query.username%>&phone=<%=query.phone%>&company_name=<%=query.company_name%>&industry=<%=query.industry%>&keywd=<%=query.keywd%>&cp=<%=query.cp%>&guwen_id=<%=query.guwen_id%>');
+			loadcity($("#ssss"));
+			$('.form_datetime').datetimepicker({
+		        language: 'zh-CN',
+		        format: 'yyyy-mm-dd',
+		        weekStart: 1,
+		        todayBtn:  1,
+		        autoclose: 1,
+		        todayHighlight: 1,
+		        startView: 2, //这里就设置了默认视图为年视图
+		        minView: 4, //设置最小视图为年视图
+		        forceParse: 0,
+		  	});
+		})
+	</script>

@@ -1,0 +1,82 @@
+.servicecon {
+	width: 100%;
+	float: left;
+	background: #fff;
+	height: 100%;
+    overflow: auto;
+}
+.servicelistTab {
+    float: left;
+    width: 100%;
+    font-size: 14px;
+    background: #f5f5f5;
+    color: #333;
+    margin: 0;
+    line-height: 32px;
+    text-indent: 10px;
+    margin-bottom: 10px;
+}
+.servicelistTab span {
+    color: #333;
+}
+.servicelistcon {
+    width: 100%;
+}
+.servicelist {
+    width: 400px;
+    float: left;
+    line-height: 22px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.servicelist100 {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    min-height: 22px;
+}
+.servicelist span {
+    float: left;
+    color: #333;
+    width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.servicelist span.textTohtml {
+	width: 100%;
+	padding-left: 140px;
+	text-overflow: ellipsis;
+	white-space: pre-line;
+	overflow: hidden;
+}
+.servicelist span.servicelist_span {
+    width: 130px;
+    text-align: right;
+    color: #888;
+    margin-right: 10px;
+    font-size: 14px;
+}
+.servicelist100 span.servicelist_span {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/*工作经验/项目经历/教育经历*/
+.jobexperienceList, 
+.projectexperienceList, 
+.projectexperienceList {
+    float: left;
+    width: 100%;
+    border-bottom: 1px dashed #eee;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.jobexperienceList:last-child,
+.projectexperienceList:last-child,
+.projectexperienceList:last-child {
+	border-bottom: none;
+}
+

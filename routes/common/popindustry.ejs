@@ -1,0 +1,25 @@
+<script id="popindustry" type="text/html">	
+	<div class="popindustry-content">
+		<div class="popindustry-center">
+			<p>最多选择 5 项</p>
+			<div class="popindustry-list">
+				<table border="1" cellspacing="0" cellpadding="0">
+					{{each industryList as industry,index}}
+					<tr>
+						<th id="{{industry['industry_code1']}}">{{industry['industry_name1']}}</th>   
+						<td>
+							<ul>
+								{{each industry.industry_level2 as industry_level,index}}
+								<li>
+									<input type="checkbox" name="" id="{{industry_level['industry_code2']}}" value="{{industry_level['industry_name2']}}" /><label for="{{industry_level['industry_code2']}}">{{industry_level['industry_name2']}}</label> 
+								</li>
+								{{/each}}
+							</ul>
+						</td>
+					</tr>
+					{{/each}}
+				</table>
+			</div>
+		</div>
+	</div>
+</script>

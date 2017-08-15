@@ -1,0 +1,49 @@
+<div class="data-con">
+	<div class="ziliao-upload" style="display: block; margin: 10px 0 10px 10px;"><span class="glyphicon glyphicon-upload"></span>上传资料<input type="file" name="ziliao_file" id="ziliao_file" value="" class='upfile' onchange="javascript:uploaddatum();" /></div>
+	<% if(data.ziliaoList){%>
+		<%data.ziliaoList.forEach(function(ziliao){%>	
+		<div class="data-list" id="<%=ziliao.ziliao_id%>" name="<%=ziliao.physic_name%>">
+			<i class="glyphicon glyphicon-folder-open"></i>
+			<a href="<%=ziliao.ziliao_url%>" title="" no-nave="true"><%=ziliao.upload_name%></a>
+			<!--<em class="glyphicon glyphicon-remove"></em>-->
+		</div>
+		<%})%>
+	<%}%>		
+</div>
+<script type="text/javascript">
+	var customer_id = "<%=query.customer_id%>";
+	//	上传客户资料  start
+	function uploaddatum(){
+
+		var param = {};
+		param.userid=userid;
+		param.customer_id=customer_id;
+
+	    $.ajaxFileUpload({
+	        type: 'post',
+	        url: logic_api_host+'/api/customer/saveziliao?customer_id='+customer_id+'&userid='+userid,
+	        secureuri:false,
+	        fileElementId: 'ziliao_file',
+	        dataType: 'json',  
+	        data: JSON.stringify(param),
+	        success: function (data,status){
+	        	if(data.maxSizeErr == "1"){
+	        		alert('文件大小不得超过5M');
+	        		return;
+	        	}else if(data.type_error == "1"){
+	        		alert("文件格式错误");
+	        		return;
+	        	}
+	        	OrionJump('.center-container','/companydetail?customer_id='+customer_id,false,function(){
+	        				$('#maintab').find("a").eq(2).click();
+	        			});
+	        },error: function (data,status,e){  
+	        	alert('上传失败,请重试。');
+	        }
+	    }); 
+	}
+	//	上传客户资料  end
+</script>
+
+
+ 			

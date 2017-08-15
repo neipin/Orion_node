@@ -1,0 +1,171 @@
+	<div class="row">
+		<div class="col-md-9">
+			<div class="baseinfo-list">
+				<span>客户全称：</span>
+				<div><%=data.company_name%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>品牌名称：</span>
+				<div><%=data.brand_name%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>规模：</span>
+				<div><%=data.guimo%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>负责人：</span>
+				<div><%=data.fuzeren%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>客户来源：</span>
+				<div><%=data.company_source%></div>
+			</div>
+			<%if(data.company_source=='人脉推荐'){%>
+			<div class="baseinfo-list">
+				<span>担保人：</span>
+				<div><%=data.danbaoren%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>介绍人：</span>
+				<div><%=data.renmai_jieshao%></div>
+			</div>
+			<%}%>
+			<div class="baseinfo-list">
+				<span>客户状态：</span>
+				<div><%=getDic_customer_status(data.company_state)%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>公司地址：</span>
+				<div><%=data.company_location%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>官网：</span>
+				<div><a href="<%=data.company_url%>"></a><%=data.company_url%></div>
+			</div>
+			<div class="baseinfo-list baseinfo-list100">
+				<span>所属行业：</span>
+				<div><%=data.company_techtag%></div>
+			</div>
+			<div class="baseinfo-list baseinfo-list100">
+				<span>客户新闻：</span>
+				<div class="news_customer"></div>
+			</div>
+			<div class="baseinfo-list baseinfo-list100">
+				<span>公司介绍：</span>
+				<div class="textTohtml"><%=data.company_detail%></div>
+			</div>
+			<div class="baseinfo-list baseinfo-list100">
+				<span>企业实力：</span>
+				<div class="textTohtml"><%=data.company_power%></div>
+			</div>
+			<div class="baseinfo-list baseinfo-list100">
+				<span>候选人目标公司：</span>
+				<div class="textTohtml"><%=data.company_target%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>客户靠谱度：</span>
+				<div><%=data.company_level%></div>
+			</div>
+			<div class="baseinfo-list">
+				<span>客户紧急度：</span>
+				<div><%=data.company_tag%></div>
+			</div>
+		</div>
+		<div class="col-md-3" style="border-left: 1px solid #eee;">
+			<div class="Communication-record">
+				<h5>最新沟通记录</h5>
+				<% if(data.communicateList){%>
+			 		<%data.communicateList.forEach(function(communicate){%>			
+						<div><%=communicate.operate_user%><span><%=communicate.create_time%></span></div>
+						<div class="textTohtml"><%=communicate.content%></div>
+					<%})%>
+				<%}%>
+			</div>
+			<!--联系人-->
+			<div class="contact-con">
+				<div class="contact-list">
+					<% if(data.contactList && data.contactList.length>0){%>
+					<span>联系人：</span>
+					<div>
+						<select class="form-control select-contacts">						
+				 			<%data.contactList.forEach(function(contact){%>	
+						  	<option><%=contact.contact_name%></option>
+						  	<%})%>						
+						</select>
+					</div>
+					<%}%>
+				</div>
+				<div class="contact-listbox">
+				<% if(data.contactList){%>
+			 		<%data.contactList.forEach(function(contact){%>	
+					<div class="contact-listcon">
+						<div class="contact-list" id="<%contact.id%>">
+							<span>姓名：</span>
+							<div><%=contact.contact_name%></div>
+						</div>
+						<div class="contact-list">
+							<span>性别：</span>
+							<div><% if(contact.contact_sex=="1"){%>男<%}else if(contact.contact_sex=="0"){%>女<%}%></div>
+						</div>
+						<div class="contact-list">
+							<span>职务：</span>
+							<div><%=contact.contact_position%></div>
+						</div>
+						<div class="contact-list">
+							<span>手机号：</span>
+							<div><%=contact.contact_phone%></div>
+						</div>
+						<div class="contact-list">
+							<span>座机号：</span>
+							<div><%=contact.contact_tel%></div>
+						</div>
+						<div class="contact-list">
+							<span>邮箱：</span>
+							<div><%=contact.contact_email%></div>
+						</div>
+						<div class="contact-list">
+							<span>微信：</span>
+							<div><%=contact.contact_weixin%></div>
+						</div>
+						<div class="contact-list">
+							<span>QQ：</span>
+							<div><%=contact.contact_qq%></div>
+						</div>
+					</div>	
+					<%})%>
+				<%}%>
+				</div>
+			</div>
+		</div>
+	</div>	
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			//	文本换行 需要换行的class加上textTohtml start
+				$('.textTohtml').each(function(){
+					$(this).html($(this).html().replace(/\r\n/g,"<br>").replace(/\n/g,"<br>"));				
+				})
+			//	文本换行 需要换行的class加上textTohtml end
+			
+			$(".contact-listbox").find(".contact-listcon").eq(0).show();	
+			$(document).on('change', '.select-contacts', function() { 
+		        var index = $(this).find("option:selected").index();
+		       	$(".contact-listbox").find(".contact-listcon").hide();	
+		       	$(".contact-listbox").find(".contact-listcon").eq(index).fadeIn();	
+    		}); 
+			
+		})
+		
+//	新闻列表初始化 start
+	var news_title = '<%=data.news_title%>';
+	var news_url = '<%=data.news_url%>';	
+	news_title = news_title.split(',');
+  	news_url = news_url.split(',');  	
+  	if(news_title!=''){
+  		for(var i=0; i<news_title.length; i++){	
+		 	$(".news_customer").append('<p><i class="glyphicon glyphicon-link"></i><a target="_blank" no-nave="true" href="'+news_url[i]+'" title="'+news_title[i]+'">'+news_title[i]+'</a></p>');			 		
+//		 	$(".news_list").append('<span code="'+job_type_code[i]+'">'+job_type[i]+'<em class="glyphicon glyphicon-remove"></em></span>');			 		
+		}
+  	}	
+//	新闻列表初始化 end
+	</script>

@@ -1,0 +1,49 @@
+	<div class="btn-group btn-addcon">
+		<a href="javascript:void(0);" class="btn add-communite glyphicon glyphicon-plus" id="add-communite" no-nave="true" style="float: right;" data-toggle="modal" data-target="#modal-khcommunite"  data-operate="" data-create="" data-comm_id="">添加记录</a>
+	</div>
+	<div class="communication-con">
+	<% if(data.commList){%>
+	<%data.commList.forEach(function(comm){%>	
+		<div class="communication-list" id="<%=comm.id%>">
+			<div class="communication-left">
+				<p class="h4"><%=dateformat(comm.jiaoliu_time,'hh:mm')%></p>	
+				<p><%=dateformat(comm.jiaoliu_time,'YYYY-MM-DD')%></p>	
+				<p><%=comm.member_name%></p>	
+			</div>
+			<div class="communication-right">
+				<p class="textTohtml"><%=comm.content%></p>	
+			</div>
+			<div class="commuite-operate">
+				<a href="javascript:void(0);" class="glyphicon glyphicon-pencil khcommuite-edit" id="khcommuite-edit<%=comm.id%>" no-nave="ture" data-toggle="modal" data-operate="<%=comm.comm_id%>" data-create="<%=comm.creater_id%>" data-comm_id="<%=comm.id%>" data-target="#modal-khcommunite">编辑</a>
+				<a href="javascript:void(0);" class="glyphicon glyphicon-remove khcommuite-del"  no-nave="ture">删除</a>
+			</div>
+		</div>
+		<%})%>
+	<%}%>
+	</div>		
+	
+	<style type="text/css">
+		.form-communite {
+			width: 100%;
+		}
+		.form-communite textarea {
+			width: 100%;
+			padding: 8px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+			border: 1px solid #e5e5e5;
+			resize: none;
+		}
+	</style>
+	<script type="text/javascript">
+		var member_id = '<%=session.userid%>';
+		var customer_id = '<%=query.customer_id%>';	
+		$(function(){
+			//	文本换行 需要换行的class加上textTohtml start
+			$('.textTohtml').each(function(){
+				$(this).html($(this).html().replace(/\r\n/g,"<br>").replace(/\n/g,"<br>"));				
+			})
+			//	文本换行 需要换行的class加上textTohtml end
+		})
+	</script>

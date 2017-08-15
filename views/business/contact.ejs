@@ -1,0 +1,82 @@
+	<div class="btn-group btn-addcon">
+		<a id="btn_newcontract" href="javascript:void(0);" class="btn glyphicon glyphicon-plus" no-nave="true" style="float: right;" data-customer_id="<%=query.customer_id%>" data-toggle="modal" data-target=".model_contract">新增合同</a>
+	</div>
+	<div class="row">
+		<div class="col-md-12 table-responsive">
+			<table class="table">
+			   	<thead>
+			     	<tr>
+				       	<th>合同编号</th>
+				       	<th>附件</th>
+				       	<th>开始时间</th>
+				       	<th>结束时间</th>
+				       	<th>保证期</th>
+				       	<th>创建者</th>
+				       	<th>操作</th>						       					       
+				    </tr>
+			   	</thead>
+			   	<tbody>
+		   		<% if(data.contractList){%>
+					<%data.contractList.forEach(function(contract){%>	
+			     	<tr id="<%=contract.contract_id%>" member_id="<%=contract.member_id%>"  member_name="<%=contract.member_name%>">
+			       		<td><%=contract.contract_no%></td>
+			       		<td><span class="glyphicon glyphicon-file"></span><%=contract.attach_num%></td>
+			       		<td><%=contract.start_date%></td>
+			       		<td><%=contract.end_date%></td>
+			       		<td><%=contract.baozq%>个月</td>
+			       		<td><%=contract.member_name%></td>
+			       		<td><a id="contract_<%=contract.contract_id%>" class="contact-edit" href="javascript:void(0);" data-contract_id="<%=contract.contract_id%>" no-nave="true"  data-toggle="modal" data-contract_id="<%=contract.contract_id%>" data-target=".model_contract">编辑</a><a class="contact-del" href="javascript:void(0);">删除</a></td>						       
+			     	</tr>		
+			     	<%})%>
+				<%}%>
+			   </tbody>
+			 </table>
+		</div>		    		
+	</div>
+	<style type="text/css">
+		.contract-list {
+			width: auto;
+		}
+	</style>
+    <script type="text/javascript">
+    	var customer_id = "<%=query.customer_id%>";
+    	var jianli_name = "";
+		var original_Name = "";
+    	$(function(){
+    	//	模态框弹出时赋值 start
+//			$('.modal').on('show.bs.modal', function (event) {
+//				var button = $(event.relatedTarget);
+//				var modal = $(this);
+//				var divEle = document.querySelector('#'+button.attr('id'));  //得到数组
+//				var attrs = divEle.attributes;  //得到所有属性
+//				var attrsArray = Array.prototype.slice.call(attrs);      //转换为数组形式
+//				for(var i=0;i<attrsArray.length;i++)
+//				{
+//					var pro = attrsArray[i].name;
+//					var value = attrsArray[i].textContent;
+//					if(pro.indexOf('data-') > -1)
+//					{
+//						var attr_name = pro.replace('data-','');
+//						modal.attr(attr_name,value);
+//					}			
+//				}
+//			})
+		//	模态框弹出时赋值 end
+
+				
+	//		模态框弹出时赋值 end	
+
+			$('.form_datetime').datetimepicker({
+	            language: 'zh-CN',
+	            format: 'yyyy-mm-dd',
+	            weekStart: 1,
+	            todayBtn:  1,
+	            autoclose: 1,
+	            todayHighlight: 1,
+	            startView: 2, //这里就设置了默认视图为年视图
+	            minView: 4, //设置最小视图为年视图
+	            forceParse: 0,
+	       	});
+	      })
+    </script>
+	

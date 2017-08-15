@@ -1,0 +1,40 @@
+<div class="serviceconBox">	
+	<div class="btn-group btn-addcon"><a class="btn btn-info" href="/Channel_edit?" target-view="center-container" pushstate="true" style="float: right;"><span class="glyphicon glyphicon-plus"></span>新增成员</a></div>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+		 		<tr>
+		 			<th>姓名</th>
+		 			<th>公司</th>
+		 			<th>部门</th>			 			 			
+		 			<th>所属团队</th>			 			 			
+		 			<th>入职时间</th>			 			 			
+		 			<th>座机号码</th>			 			 			
+		 			<th>电话</th>			 			 			
+		 			<th>邮箱</th>			 			 			
+		 			<th>目前状态</th>			 			 			
+		 			<th>成员账号</th>			 			 			
+		 		</tr>
+		 	</thead>
+   			<tbody>
+		 		<%if(data.memberList){%>
+		 		<%data.memberList.forEach(function(member){%>
+		 		<tr>
+		 			<td><a href="/member_detail?member_openid=<%=member.member_openid%>" target-view="center-container" pushstate="true"><%=member.username%></a></td>			 			
+		 			<td><%=member.company%></td>
+		 			<td><%=member.department%></td>
+		 			<td><%=member.team%></td>
+		 			<td><%=dateformat(member.rz_date,'YYYY-MM-DD')%></td>
+		 			<td><%=member.tel%></td>
+		 			<td><%=member.phone%></td>
+		 			<td><%=member.email%></td>
+		 			<td><%=member.member_status%></td>
+		 			<td><%=member.account%></td>
+		 		</tr>
+		 		<%})%>
+		 		<%}%>
+		 	</tbody>
+	 	</table>
+	 	<div id="pagination1"></div>
+	</div>
+</div>

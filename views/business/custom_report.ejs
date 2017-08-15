@@ -1,0 +1,91 @@
+	<div class="serviceconBox">
+		<div class="time_search" style="margin-top:15px">
+			<span class="">日期：</span>
+			<div><input type="" name="" id="data1" value="<%=data.date_from%>" autocomplete="off" placeholder="起始日期" class="form-control form_date np_form_check"/></div>
+			<span class="zhi">至</span>
+			<div><input type="" name="" id="data2" value="<%=data.date_to%>" autocomplete="off" placeholder="截止日期" class="form-control form_date np_form_check"/></div>
+			<button class="reportdatabtn btn" role="button">确定</button>
+			<div class="export" style="margin-left: 20px;"><a href="javascript:void(0);">导出推荐报告</a></div>
+		</div>							
+	 	<table class="table">
+	 		<thead>
+	 		<tr>
+	 			<th style="max-width: 200px;">项目名称</th>
+	 			<th>候选人姓名</th>
+	 			<th>候选人电话</th>
+	 			<th>推荐时间</th>
+	 			<th style="max-width: 200px;">目前所在公司</th>
+	 			<th>学历</th>
+	 			<th>性别</th>	 			
+	 			<th>年龄</th>	 			
+	 			<th>目前年薪</th>	 			
+	 			<th>推荐顾问</th>	 			
+	 			<th>面试时间</th>	 			
+	 			<th>开放时间</th>	 			
+	 			<th style="max-width: 200px;">反馈结果</th>	 			
+	 		</tr>
+	 		</thead>
+	 		<tbody>
+	 		<% if (data.reportList){%>
+	 		<%data.reportList.forEach(function(reportList){%>
+	 		<tr id="<%=reportList.guwen_id%>">
+	 			<td style="max-width: 200px;"><a href="/projectdetail?job_id=<%=reportList.jobid%>&rencaiflag=1" target="_blank" target-view="center-container" pushstate="true"><%=reportList.job_name%></a></td>
+	 			<td><a href="/rencaidetail?openid=<%=reportList.resume_openid%>" target="_blank" target-view="center-container" pushstate="true"><%=reportList.resume_username%></a></td>
+	 			<td><%=reportList.phone%></td>
+	 			<td><%=dateformat(reportList.tuijian_time,'YYYY-MM-DD')%></td>
+	 			<td  style="max-width: 200px;"><%=reportList.cur_company%></td>
+	 			<td><%=reportList.college_level%></td>
+	 			<td><%=reportList.gender%></td>
+	 			<td><%=reportList.age%></td>			 			
+	 			<td><%=reportList.cur_salary%></td>
+	 			<td><%=reportList.guwen_name%></td>
+	 			<td><%=dateformat(reportList.mianshi_time,'YYYY-MM-DD hh:mm')%></td>
+	 			<td><%=reportList.open_date%></td>
+	 			<td style="max-width: 200px;"><%=reportList.last_fankui%></td>
+	 		</tr>
+	 		<%})%>
+	 		<%}%>
+	 		</tbody>
+	 	</table>
+	 	<div id="pagination1"></div>
+	</div>
+	<form>
+		<input type="hidden" name="date_from" value="<%=data.date_from%>"/>
+		<input type="hidden" name="date_to" value="<%=data.date_to%>"/>
+		<input type="hidden" name="company_name" value="<%=data.company_name%>" />
+		<% if (data.reportList){%>
+		<%data.reportList.forEach(function(reportList){%>
+		<input type="hidden" name="reportList.job_name" value="<%=reportList.job_name%>"/>
+		<input type="hidden" name="reportList.resume_username" value="<%=reportList.resume_username%>" />
+		<input type="hidden" name="reportList.phone" value="<%=reportList.phone%>"/>
+		<input type="hidden" name="reportList.tuijian_time" value="<%=reportList.tuijian_time%>"/>
+		<input type="hidden" name="reportList.cur_company" value="<%=reportList.cur_company%>"/>
+		<input type="hidden" name="reportList.college_level" value="<%=reportList.college_level%>"/>
+		<input type="hidden" name="reportList.gender" value="<%=reportList.gender%>"/>
+		<input type="hidden" name="reportList.age" value="<%=reportList.age%>"/>
+		<input type="hidden" name="reportList.cur_salary" value="<%=reportList.cur_salary%>"/>
+		<input type="hidden" name="reportList.guwen_name" value="<%=reportList.guwen_name%>"/>
+		<input type="hidden" name="reportList.mianshi_time" value="<%=reportList.mianshi_time%>"/>			
+		<%})%>
+		<%}%>
+	</form>	
+	<style type="text/css">
+		.table th,.table tr {
+			min-width: 90px;
+		}
+	</style>
+	<script type="text/javascript">
+	var cr_customer_id="<%=query.customer_id%>";
+		$(function(){	
+			time_ymd();  
+//		导出推荐报告 start
+			$(document).on('click', '.export a', function() {
+				var data1 = $("#data1").val();
+				var data2 = $("#data2").val();
+				window.open(logic_api_host + "/api/generate_custom_report?date_from="+data1+"&date_to="+data2+"&company_id=<%=query.customer_id%>&company_openid=<%=session.company_openid%>");
+			})
+//		导出推荐报告 end				
+		})	
+
+	</script>
+	

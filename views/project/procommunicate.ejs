@@ -1,0 +1,69 @@
+	<div class="btn-group btn-addcon">
+		<a href="javascript:void(0);" class="btn add-communite glyphicon glyphicon-plus" id="add-procommunite" no-nave="true" style="float: right;" data-toggle="modal" data-target="#modal-communite" data-comm_id="" data-creater_id="<%=session.userid%>">添加记录</a>
+	</div>
+	<div class="communication-con">
+		<% if (data.commList){%>
+		<%data.commList.forEach(function(comm){%> 
+		<div class="communication-list">
+			<div class="communication-left">
+				<p class="h4"><%=dateformat(comm.create_time,'hh:mm')%></p>	
+				<p><%=dateformat(comm.create_time,'YYYY-MM-DD')%></p>	
+				<p id="<%=comm.creater_id%>"><%=comm.creater_name%></p>	
+			</div>
+			<div class="communication-right">
+				<p class="textTohtml"><%=comm.content%></p>	
+			</div>
+			<div class="commuite-operate">
+				<a href="javascript:void(0);" id="communicate<%=comm.commid%>" class="glyphicon glyphicon-pencil commuite-edit" no-nave="true" data-toggle="modal" data-target="#modal-communite" data-comm_id ="<%=comm.commid%>" data-creater_id="<%=session.userid%>">编辑</a>
+				<a href="javascript:void(0);" class="glyphicon glyphicon-remove commuite-del" no-nave="true">删除</a>
+			</div>
+		</div> 
+		<%})%>
+		<%}%>	
+	</div>
+	
+	<style type="text/css">
+		.form-communite {
+			width: 100%;
+		}
+		.form-communite textarea {
+			width: 100%;
+			padding: 8px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+			border: 1px solid #e5e5e5;
+			resize: none;
+		}
+	</style>
+	<script type="text/javascript">
+		var communicate_url = node_url+'/procommunicate';	
+		var job_id = '<%=query.job_id%>';	 
+		$(function(){
+			//	文本换行 需要换行的class加上textTohtml start
+			$('.textTohtml').each(function(){
+				$(this).html($(this).html().replace(/\r\n/g,"<br>").replace(/\n/g,"<br>"));				
+			})
+			//	文本换行 需要换行的class加上textTohtml end
+			
+			//	模态框弹出时赋值 start
+			$('.modal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget);
+				var modal = $(this);
+				var divEle = document.querySelector('#'+button.attr('id'));  //得到数组
+				var attrs = divEle.attributes;  //得到所有属性
+				var attrsArray = Array.prototype.slice.call(attrs);      //转换为数组形式
+				for(var i=0;i<attrsArray.length;i++)
+				{
+					var pro = attrsArray[i].name;
+					var value = attrsArray[i].textContent;
+					if(pro.indexOf('data-') > -1)
+					{
+						var attr_name = pro.replace('data-','');
+						modal.attr(attr_name,value);
+					}			
+				}
+			})
+			//	模态框弹出时赋值 end	
+		})
+	</script>

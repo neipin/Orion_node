@@ -1,0 +1,91 @@
+/*html{
+	font-size: 12px;
+}*/
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+.modal {
+	z-index: 2000;
+}
+.detailcon > div.detailcon-edit a,
+.save-company > a,
+.news_add,
+.btn_search,
+.popindustry-ok,
+.btn-addcon > a,
+.communite-save,
+.customer-communite-save,
+.time_search button {
+	color: #fff;
+    background-color: #0090b0;
+    /*border-color: #337ab7;*/
+}
+.save-company > a.btn.focus,
+.save-company > a.btn:focus,
+.save-company > a.btn:hover,
+.btn_search:focus,
+.popindustry-ok.focus,
+.popindustry-ok:focus,
+.popindustry-ok:hover,
+.btn-addcon > a:focus,
+.communite-save:focus,
+.customer-communite-save:focus,
+.time_search button:focus,
+.time_search button.focus,
+.time_search button:hover {
+	color: #fff;
+	text-decoration: none;
+}
+.detailcon > div.detailcon-edit a:hover,
+.save-company > a:hover,
+.news_add:hover,
+.btn_search:hover,
+.popindustry-ok:hover,
+.btn-addcon > a:hover,
+.communite-save:hover,
+.customer-communite-save:hover,
+.time_search button:hover {
+	color:#fff;
+	background-color: #00799e;
+    /*border-color: #337ab7;*/
+}
+.table>tbody>tr>td, 
+.table>tbody>tr>th, 
+.table>tfoot>tr>td, 
+.table>tfoot>tr>th, 
+.table>thead>tr>td, 
+.table>thead>tr>th {
+	border-top: none;
+}
+/*.form-control {
+	font-size: 12px;
+}*/
+.table>thead:first-child>tr:first-child>th {
+	color: #888;
+}
+/*下拉菜单 样式 start*/
+.dropdown-menu>.active>a, 
+.dropdown-menu>.active>a:focus, 
+.dropdown-menu>.active>a:hover {
+	background: #f5f5f5;
+	color: #333;
+}
+/*下拉菜单 样式 end*/
+
+/*蓝色按钮样式统一*/
+.btn-primary {
+	color: #fff;
+    background-color: #0090b0;
+    border-color: #0090b0; 
+}
+.btn-primary:focus,
+.btn-primary:hover{
+	color: #fff;
+	text-decoration: none;
+}
+.btn-primary:hover {
+	color:#fff;
+	background-color: #00799e;
+    border-color: #00799e;
+}

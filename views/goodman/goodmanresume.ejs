@@ -1,0 +1,12 @@
+
+<iframe id="iframeid" onLoad="iFrameHeight()" src="http://f.neipin.com/jianli/html/<%=data.html_name%>" frameborder="0" style='width:100%; min-height:800px;'></iframe>
+
+<script type="text/javascript">
+	function iFrameHeight() {   
+       var iframe = document.getElementById("iframeid");  
+       try{  
+           iframe.height =  iframe.contentWindow.document.documentElement.scrollHeight;  
+       }catch (ex){}  
+   }
+	
+</script>

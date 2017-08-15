@@ -1,0 +1,439 @@
+	<!--推荐模态框 start-->
+	<div class="modal fade popModal" tabindex="-1" role="dialog" id="tuijianModal">
+  		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">提示</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>您确认推荐此人才？</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button type="button" class="btn btn-primary btn-tuijian" data-dismiss="modal">推荐</button>
+		      </div>
+		    </div>
+ 	 	</div>
+	</div>
+	<!--推荐模态框 end-->
+	<!--面试模态框 start-->
+	<div class="modal fade popModal" tabindex="-1" role="dialog" id="interviewModal"></div>
+	<!--面试模态框 end-->
+	<!--offer模态框 start-->
+	<div class="modal fade popModal" tabindex="-1" role="dialog" id="offerModal"></div>
+	<!--offer模态框  end-->
+	<!--入职模态框 start-->
+	<div class="modal fade popModal" tabindex="-1" role="dialog" id="ruzhiModal"></div>
+	<!--入职模态框  end-->
+	<!--淘汰模态框 start-->
+	<div class="modal fade popModal" tabindex="-1" role="dialog" id="taotaiModal"></div>	
+	<!--淘汰模态框  end-->	
+	
+	<!--生成推荐报告模态框 start-->
+	<div class="modal fade popModal" tabindex="-1" role="dialog" id="reportModal"></div>	
+	<script id ="tpl_report"  type="text/html">		
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title">选择推荐报告模板</h4>
+		      	</div>
+		      	<div class="modal-body">
+		      		<select class="form-control select-report" style="color: #a9a9a9;">
+		      			{{ if templateList!="" }}
+						{{each templateList as template}}
+						<option value="" disabled selected>请选择推荐报告模板</option>
+		      			<option value="{{template['tpl_id']}}">{{template['tpl_facade_name']}}</option>
+		      			{{/each}}
+						{{/if}}
+		      		</select>
+		      		<input type="hidden" value="" />
+		      		<span class="help-block" style="text-indent: 16px;"></span>
+		      	</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        	<button type="button" class="btn btn-primary btn-report">确定</button>
+		      	</div>
+		    </div>
+	 	</div>
+	</script>
+	<!--生成推荐报告模态框  end-->
+	
+	<!--备注 start-->
+	<div class="modal fade remarks-modal" tabindex="-1" role="dialog"></div>
+	<!--备注 end-->
+	<!--推荐、面试、offer、入职、淘汰下拉模板 start-->
+	<script id ="tpl_interview"  type="text/html">		
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title">面试</h4>
+		      	</div>
+		      	<div class="modal-body">
+		        	<form action="" class="editcompany" id="interview-checkbox">
+	                	<div class="form-group form-inline">
+	                		<label for=""><span>*</span>面试时间：</label>
+	                		<input class="form-control form_datetime np_form_check" type="text" placeholder="请输入面试时间" np_require="true" name ="mianshi_time" value="{{dateFormat(mianshi_time, 'YYYY-MM-DD HH:mm')}}"  data-date-format="yyyy-mm-dd hh:ii"/>
+	                		<span class="help-block"></span>
+	                	</div>
+	                	<div class="form-group form-inline">
+	                		<label for=""><span>*</span>面试地点：</label>
+	                		<input class="form-control np_form_check" type="text" placeholder="请输入面试地点" np_require="true" name="mianshi_location" value="{{mianshi_location}}"/>
+	                		<span class="help-block"></span>
+	                	</div>
+	                	<div class="form-group form-inline">
+	                		<label for=""><span>*</span>面试官：</label>
+	                		<input class="form-control np_form_check" type="text" placeholder="请输入面试官" np_require="true" name="mianshi_officer" value="{{mianshi_officer}}"/>
+	                		<span class="help-block"></span>
+	                	</div>
+	                </form>
+		      	</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        	<button type="button" class="btn btn-primary btn-interview">确定</button>
+		      	</div>
+		    </div>
+	 	</div>
+	</script>
+	<script id ="tpl_offer"  type="text/html">		
+  		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title">Offer</h4>
+		      	</div>
+		      	<div class="modal-body">
+		        	<form action="" class="editcompany" id="offer-checkbox">
+	                	<div class="form-group form-inline">
+	                		<label for=""><span>*</span>offer时间：</label>
+	                		<input class="form-control form_date np_form_check" type="text" placeholder="请输入offer时间" np_require="true" name ="offer_date" value="{{offer_date}}"  data-date-format="yyyy-mm-dd"/>
+	                		<span class="help-block"></span>
+	                	</div>
+	                	<div class="form-group form-inline">
+	                		<label for=""><span>*</span>offer状态：</label>
+	                		<label class="label_radio"><input class="" type="radio" name="offer" value="待定" {{if offer_status=='0'||offer_status==''||!offer_status}}checked="checked"{{/if}}/>待定</label>
+	                		<label class="label_radio"><input class="" type="radio" name="offer" value="接受" {{if offer_status=='1'}} checked="checked"{{/if}}/>接受</label>
+	                		<label class="label_radio"><input class="" type="radio" name="offer" value="拒绝" {{if offer_status=='2'}} checked="checked"{{/if}}/>拒绝</label> 
+	                	</div>
+	                	<div class="radio-con">
+	                		{{if offer_status=='0'||offer_status==''||!offer_status}}
+	                		<div class="form-group form-inline">
+		                		<label for=""><span>*</span>待定时间：</label>
+		                		<input class="form-control form_date np_form_check" type="text" placeholder="请输入待定时间" np_require="true" name="daiding_date" value="{{daiding_date}}"  data-date-format="yyyy-mm-dd"/>
+		                		<span class="help-block"></span>
+		                	</div>
+		                	{{/if}}
+		                	{{if offer_status=='1'}}
+		                	<div class="form-group form-inline">
+		                		<label for=""><span>*</span>预计入职时间：</label>
+		                		<input class="form-control form_date np_form_check" type="text" placeholder="请输入预计入职时间" np_require="true" name="ruzhi_date" value="{{ruzhi_date}}"  data-date-format="yyyy-mm-dd"/>
+		                		<span class="help-block"></span>
+		                	</div>
+		                	{{/if}}
+		                	{{if offer_status=='2'}}
+		                	<div class="form-group form-inline">
+		                		<label for=""><span>*</span>拒绝时间：</label>
+		                		<input class="form-control form_date np_form_check" type="text" placeholder="请输入拒绝时间" np_require="true" name="reject_date" value="{{reject_date}}"  data-date-format="yyyy-mm-dd"/>
+		                		<span class="help-block"></span>
+		                	</div>
+		                	{{/if}}
+	                	</div>	                		                	
+	                </form>
+		      	</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        	<button type="button" class="btn btn-primary btn-offer">确定</button>
+		      	</div>
+		    </div>
+ 	 	</div>
+ 	</script>
+ 	<script id ="tpl_ruzhi"  type="text/html">		
+  		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title">入职</h4>
+		      	</div>
+		      	<div class="modal-body">
+		        	<form action="" class="editcompany" id="ruzhi-checkbox">
+		        		<div class="form-group form-inline">
+	                		<label for=""><span></span>候选人：</label>
+	                		<span class="candidate"></span>
+	                	</div>
+	                	<div class="form-group form-inline">
+	                		<label for=""><span>*</span>入职时间：</label>
+	                		<input class="form-control form_date np_form_check" type="text" placeholder="请输入入职时间" np_require="true" name ="ruzhi_date" value="{{ruzhi_date}}"/>
+	                		<span class="help-block"></span>
+	                	</div>
+	                	<div class="form-group form-inline">
+	                		<label for=""><span>*</span>保证期结束：</label>
+	                		<input class="form-control form_date np_form_check" type="text" placeholder="请输入保证期结束时间" np_require="true" name ="baoz_date" value="{{baoz_date}}" />
+	                		<span class="help-block"></span>
+	                	</div>              		                	
+	                </form>
+		      	</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        	<button type="button" class="btn btn-primary btn-ruzhi">确定</button>
+		      	</div>
+		    </div>
+ 	 	</div>
+ 	</script>
+ 	<script id ="tpl_taotai"  type="text/html">		
+  		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        	<h4 class="modal-title">淘汰</h4>
+		      	</div>
+		      	<div class="modal-body">
+		        	<form action="" class="editcompany" id="taotai-checkbox">	
+		        		<div class="form-group form-inline">
+	                		<label for=""><span>*</span>淘汰时间：</label>
+	                		<input class="form-control form_date np_form_check" type="text" placeholder="请输入淘汰时间" np_require="true" name ="failed_date" value="{{failed_date}}"  data-date-format="yyyy-mm-dd"/>
+	                		<span class="help-block"></span>
+	                	</div>
+	                	<div class="form-group form-inline">
+	                		<label for=""><span>*</span>淘汰：</label>
+	                		<label class="taotai_radio"><input class="" type="radio" name="taotai" value="备选" {{if failed_type=='1'||failed_type==''||!failed_type}} checked="checked"{{/if}}/>备选</label>
+	                		<label class="taotai_radio"><input class="" type="radio" name="taotai" value="客户淘汰" {{if failed_type=='2'}} checked="checked"{{/if}}/>客户淘汰</label>
+	                		<label class="taotai_radio"><input class="" type="radio" name="taotai" value="候选人拒绝" {{if failed_type=='3'}} checked="checked"{{/if}}/>候选人拒绝</label> 
+	                	</div>
+	                	<div class="radio-con">
+	                		<div class="form-group form-inline">
+		                		<label for=""><span>*</span>淘汰原因：</label>
+		                		<textarea class="form-control np_form_check" name="failed_reason" value="{{failed_reason}}" placeholder="请输入淘汰原因" rows="3" cols="5" np_require="true" style="width: 320px;">{{failed_reason}}</textarea>
+		                		<span class="help-block"></span>
+		                	</div>
+	                	</div>	                		                	
+	                </form>
+		      	</div>
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        	<button type="button" class="btn btn-primary btn-taotai">确定</button>
+		      	</div>
+		    </div>
+ 	 	</div>
+ 	</script>
+ 	<!--推荐、面试、offer、入职、淘汰下拉模板 end-->
+ 	<!--人选流程 start-->
+	<script id="flow-list" type="text/html">	
+		{{if feedList!=''}}
+		{{each feedList as feed}}
+		{{if feed.feed_status=='4'}}
+		<!--流程-淘汰 start-->
+		<div class="row" feed_id="{{feed.feed_id}}">
+			<div class="col-md-4 flowList-left">
+				<p class="h5">{{dateFormat(feed['operate_time'], 'YYYY-MM-DD HH:mm')}}</p>
+				<p>{{feed['member_name']}}</p>
+			</div>
+			<div class="col-md-8 flowList-right">
+				<div class="flowList-til">
+					<p>淘汰-{{if feed['failed_type']=='1'}}备选{{/if}}{{if feed['failed_type']=='2'}}客户淘汰{{/if}}{{if feed['failed_type']=='3'}}候选人拒绝{{/if}}</p>
+					<button id="{{randomString(16)}}" type="button" class="btn btn-sm flow-taotaiedit" data-toggle="modal" data-target="#taotaiModal" data-feed_id="{{feed.feed_id}}">编辑</button>
+				</div>
+				<div class="flowList-con">淘汰原因：<span>{{feed['failed_reason']}}</span></div>
+			</div>
+		</div>
+		<!--流程-淘汰 end-->
+		{{/if}}
+		{{if feed.feed_status=='9'}}
+		<!--流程-offer start-->
+		<div class="row" feed_id="{{feed.feed_id}}">
+			<div class="col-md-4 flowList-left">
+				<p class="h5">{{dateFormat(feed['operate_time'], 'YYYY-MM-DD HH:mm')}}</p>
+				<p>{{feed['member_name']}}</p>
+			</div>
+			<div class="col-md-8 flowList-right">
+				<div class="flowList-til">
+					<p>offer-{{if feed['offer_status']=='0'}}待定{{/if}}{{if feed['offer_status']=='1'}}接受{{/if}}{{if feed['offer_status']=='2'}}拒绝{{/if}}</p>
+					<button id="{{randomString(16)}}" type="button" class="btn btn-sm flow-offeredit" data-toggle="modal" data-target="#offerModal" data-feed_id="{{feed.feed_id}}">编辑</button>
+				</div>
+				<div class="flowList-con">offer时间：<span>{{feed['offer_date']}}</span></div>
+				<div class="flowList-con">offer状态：<span>{{if feed['offer_status']=='0'}}待定{{/if}}{{if feed['offer_status']=='1'}}接受{{/if}}{{if feed['offer_status']=='2'}}拒绝{{/if}}</span></div>
+				{{if feed['offer_status']=='0'}}<div class="flowList-con">待定时间：<span>{{feed['daiding_date']}}</span></div>{{/if}}
+				{{if feed['offer_status']=='1'}}<div class="flowList-con">预计入职时间：<span>{{feed['yu_ruzhi_date']}}</span></div>{{/if}}
+				{{if feed['offer_status']=='2'}}<div class="flowList-con">拒绝时间：<span>{{feed['reject_date']}}</span></div>{{/if}}
+			</div>
+		</div>
+		<!--流程-offer end-->
+		{{/if}}
+		{{if feed.feed_status=='5'}}
+		<!--流程 面试 start-->		
+		<div class="row" feed_id="{{feed.feed_id}}">
+			<div class="col-md-4 flowList-left">
+				<p class="h5">{{dateFormat(feed['operate_time'], 'YYYY-MM-DD HH:mm')}}</p>
+				<p>{{feed['member_name']}}</p>
+			</div>
+			<div class="col-md-8 flowList-right">
+				<div class="flowList-til">
+					<p>面试 - 第{{feed['mianshi_no']}}次</p>
+					<button id="{{randomString(16)}}" type="button" class="btn btn-sm flow-mianshiedit" data-toggle="modal" data-target="#interviewModal" data-feed_id="{{feed.feed_id}}">编辑</button>
+				</div>
+				<div class="flowList-con">面试时间：<span class="updatatime">{{dateFormat(feed['mianshi_time'], 'YYYY-MM-DD HH:mm')}}</span></div>
+				<div class="flowList-con">面试地点：<span>{{feed['mianshi_location']}}</span></div>
+				<div class="flowList-con">面试官：<span>{{feed['mianshi_officer']}}</span></div>
+			</div>
+		</div>
+		<!--流程 面试 end-->
+		{{/if}}
+		{{if feed.feed_status=='3'}}
+		<!--流程 推荐 start-->
+		<div class="row" feed_id="{{feed.feed_id}}">
+			<div class="col-md-4 flowList-left">
+				<p class="h5">{{dateFormat(feed['tuijian_time'], 'YYYY-MM-DD HH:mm')}}</p>
+				<p>{{feed['member_name']}}</p>
+			</div>
+			<div class="col-md-8 flowList-right">
+				<div class="flowList-til">
+					<p>简历推荐</p>
+				</div>		       						
+			</div>
+		</div>	
+		<!--流程 推荐 end-->
+		{{/if}}
+		{{if feed.feed_status=='0'}}
+		<!--流程 加入项目 start-->		
+		<div class="row" feed_id="{{feed.feed_id}}">
+			<div class="col-md-4 flowList-left">
+				<p class="h5">{{dateFormat(feed['add_time'], 'YYYY-MM-DD HH:mm')}}</p>
+				<p>{{feed['member_name']}}</p>
+			</div>
+			<div class="col-md-8 flowList-right">
+				<div class="flowList-til">
+					<p>加入项目</p>					
+				</div>		       						
+			</div>
+		</div>
+		<!--流程 加入项目end-->
+		{{/if}}
+		<!--流程 入职start-->
+		{{if feed.feed_status=='10'}}
+		<div class="row" feed_id="{{feed.feed_id}}">
+			<div class="col-md-4 flowList-left">
+				<p class="h5">{{dateFormat(feed['operate_time'], 'YYYY-MM-DD HH:mm')}}</p>
+				<p>{{feed['member_name']}}</p>
+			</div>
+			<div class="col-md-8 flowList-right">
+				<div class="flowList-til">
+					<p>入职</p>
+					<button id="{{randomString(16)}}" type="button" class="btn btn-sm flow-ruzhiedit" data-toggle="modal" data-target="#ruzhiModal" data-feed_id="{{feed.feed_id}}">编辑</button>
+				</div>		
+				<div class="flowList-con">入职时间：<span>{{feed['ruzhi_date']}}</span></div>
+				<div class="flowList-con">保证期结束：<span>{{feed['baoz_date']}}</span></div>
+			</div>
+		</div>
+		{{/if}}
+		<!--流程 入职end-->
+		{{/each}}
+		{{/if}}	
+	</script>
+	<!--人选流程 end-->	
+	
+	
+	
+<script id="tpl_remarksmould" type="text/html">
+  	<div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      	<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">备注</h4>
+        	</div>
+        	<div class="modal-body">
+	        	<form action="" class="editbeizhu editcompany" id="editbeizhu">	
+	        		<div class="form-group form-inline">
+                		<label for=""><span>*</span>备注类型：</label>
+                		<div style="width: 320px; display: inline-block;">
+                			<select class="form-control beizhu_type" {{if !beizhu_type||beizhu_type==''}}style="color: #a9a9a9;"{{/if}}>
+	                			<option value=""  {{if !beizhu_type||beizhu_type==''}}selected{{/if}} disabled>请选择</option>
+	                			<option value="1" {{if beizhu_type=='1'}}selected{{/if}}>电话沟通</option>
+	                			<option value="2" {{if beizhu_type=='2'}}selected{{/if}}>顾问面试</option>
+	                			<option value="3" {{if beizhu_type=='3'}}selected{{/if}}>其它</option>
+	                		</select>
+                		</div>                		
+                		<input type="hidden" class="np_form_check" placeholder="请选择备注类型" np_require="true" name="beizhu_type" value="{{beizhu_type}}" />
+                		<span class="help-block"></span>
+                	</div>
+                	<div class="form-group form-inline">
+                		<label for=""><span></span>人才状态：</label>
+                		<div style="width: 320px; display: inline-block;">
+                			<select class="form-control" {{if !candi_status||candi_status==''}}style="color: #a9a9a9;"{{/if}}>
+	                			<option value="" {{if !candi_status||candi_status==''}}selected{{/if}} disabled>请选择</option>
+	                			<option value="1" {{if candi_status=='1'}}selected{{/if}}>现状稳定</option>
+	                			<option value="2" {{if candi_status=='2'}}selected{{/if}}>想看机会</option>
+	                			<option value="3" {{if candi_status=='3'}}selected{{/if}}>成功Offer</option>
+	                			<option value="4" {{if candi_status=='4'}}selected{{/if}}>需要联系</option>
+	                			<option value="5" {{if candi_status=='5'}}selected{{/if}}>需要跟进</option>
+	                			<option value="6" {{if candi_status=='6'}}selected{{/if}}>暂不考虑</option>
+	                			<option value="7" {{if candi_status=='7'}}selected{{/if}}>优质候选人</option>
+	                			<option value="8" {{if candi_status=='8'}}selected{{/if}}>黑名单</option>
+	                		</select>
+                		</div>                			        
+                		<input type="hidden" placeholder="" name="candi_status" value="{{candi_status}}" />
+                		<span class="help-block"></span>
+                	</div>
+                	<div class="mianshiresultCon" {{if beizhu_type!='2'}}style="display:none;"{{/if}}>
+                		<div class="form-group form-inline">
+	                		<label for=""><span></span>面试结果：</label>
+	                		<textarea class="form-control" name="mainshi_result" value="{{mainshi_result}}" placeholder="请输入面试结果" rows="3" cols="5"  style="width: 320px;">{{mainshi_result}}</textarea>
+	                		<span class="help-block"></span>
+	                	</div>
+                	</div>	  
+                	<div>
+                		<div class="form-group form-inline">
+	                		<label for=""><span></span>备注：</label>
+	                		<textarea class="form-control" name="beizhu" value="{{beizhu}}" placeholder="请输入备注" rows="3" cols="5"  style="width: 320px;">{{beizhu}}</textarea>
+	                		<span class="help-block"></span>
+	                	</div>
+                	</div>	  
+                </form>
+	      	</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary remarks-save">保存</button>
+            </div>
+	    </div>
+  	</div>
+</script>
+<!--加入新项目start-->
+	<div class="modal fade" tabindex="-1" role="dialog" id="newitemModal"></div>
+	<script id="tpl_newitemmould" type="text/html">
+		<div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      	<div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	                <h4 class="modal-title">选择一个项目</h4>
+	        	</div>
+	        	<div class="modal-body">
+	        		<div class="choose_item">
+	        			<input type="text" class="form-control" id="newitem_search"  placeholder="请选择一个项目"  autocomplete="off" name="" value="">
+					    <div class="auto-search lala">		                      
+							<ul class="auto-search-ul" id="ulItems"></ul>
+						</div>  
+						<input type="hidden" name="" id="companyid" value="" />
+						<span class="help-block"></span>
+	        		</div>
+	        		{{if jobsList.length>0}}
+		        	<div class="panel panel_item">
+		        		<div class="panel-heading">已加入项目：</div>
+		        		<div class="panel-body">
+		        			<ul>		        				
+								{{each jobsList as job}} 
+					  			<li recommend_id="{{job['recommend_id']}}" job_id="{{job['job_id']}}" customer_id="{{job['customer_id']}}"><a href="">{{job['job_name']}}</a>-<a href="">{{job['customer_name']}}</a></li>				  	
+					  			{{/each}}								
+		        			</ul>
+		        		</div>
+		        	</div>
+		        	{{/if}}	
+		      	</div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	                <button type="button" class="btn btn-primary btn_additem">确定</button>
+	            </div>
+		    </div>
+	  	</div>
+	</script>
+<!--加入新项目 end-->
+	 	

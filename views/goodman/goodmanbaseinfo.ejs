@@ -1,0 +1,268 @@
+<div class="servicelistcon">
+	<div class="baseinfo-list">
+		<span class="servicelist_span">姓名：</span>
+		<div><%=data.username%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">性别：</span>
+		<div><%=data.gender%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">手机号码：</span>
+		<div><%=data.phone%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">邮箱：</span>
+		<div><%=data.email%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">目前状态：</span>
+		<div><%=data.current_status%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">工作年限：</span>
+		<div><%=data.workyears%>年</div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">所在城市：</span>
+		<div><%=data.now_location%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">现从事行业：</span>
+		<div><%=data.vocation%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">当前职务：</span>
+		<div><%=data.last_title%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">当前所在公司：</span>
+		<div><%=data.cur_company%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">当前薪资：</span>
+		<div><%=data.cur_salary%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">出生日期：</span>
+		<div><%=data.birth%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">最高学历：</span>
+		<div><%=data.college_level%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">毕业院校：</span>
+		<div><%=data.school%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">院校类别：</span>
+		<div><%if(data.schooltype=='0'){%>普通<%} else if(data.schooltype=='1'){%>211院校<%} else if(data.schooltype=='2'){%>985院校<%} else if(data.schooltype=='3'){%>既是211又是985院校<%}%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">专业：</span>
+		<div><%=data.speciality%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">婚姻状况：</span>
+		<div><%=data.married%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">国籍：</span>
+		<div><%=data.nationality%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">民族：</span>
+		<div><%=data.national%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">籍贯：</span>
+		<div><%=data.jiguan%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">微信号：</span>
+		<div><%=data.weixin_id%></div>
+	</div>
+	<p class="servicelistTab">
+		<span class="active">求职意向</span>
+	</p>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">期望行业：</span>
+		<div><%=data.forward_vocation%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">期望职位：</span>
+		<div><%=data.title%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">期望城市：</span>
+		<div><%=data.new_location%></div>
+	</div>
+	<div class="baseinfo-list">
+		<span class="servicelist_span">期望薪资：</span>
+		<div><%=data.aimsalary%></div>
+	</div>
+	<div class="baseinfo-list baseinfo-list100">
+		<span class="servicelist_span">自我评价：</span>
+		<div class="textTohtml"><%=data.personal%></div>
+	</div>
+	<div class="baseinfo-list baseinfo-list100">
+		<span class="servicelist_span">求职意向：</span>
+		<div class="textTohtml"><%=data.qiuzhi_yixiang%></div>
+	</div>
+	<div class="baseinfo-list baseinfo-list100">
+		<span class="servicelist_span">备注：</span>
+		<div class="textTohtml"><%=data.memo%></div>
+	</div>
+	<p class="servicelistTab">
+		<span class="active">顾问评价</span>
+	</p>
+	<div class="baseinfo-list baseinfo-list100">
+		<span class="servicelist_span">顾问评价：</span>
+		<div class="textTohtml"><%=data.guwen_pingjia%></div>
+	</div>
+</div>
+<!--工作经历 start-->
+<p class="servicelistTab">
+	<span class="active">工作经历</span>
+</p>
+<div class="jobexperienceDetail">
+	<% if(data.work_exprience_list){%>
+	<%data.work_exprience_list.forEach(function(work_exprience_list){%>
+	<div class="jobexperienceList">
+		<div class="baseinfo-list">
+			<span class="servicelist_span">时间：</span>
+			<div><span><%=work_exprience_list.start_date%></span><%if(work_exprience_list.start_date!="" && work_exprience_list.end_date!=''){%><span> - </span><span><%=work_exprience_list.end_date%></span><%}else if(work_exprience_list.start_date!="" && work_exprience_list.end_date==''){%><span> - 至今</span><%}%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">工作时间段：</span>
+			<div><%=work_exprience_list.periods%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">公司名称：</span>
+			<div><%=work_exprience_list.company%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">所属行业：</span>
+			<div><%=work_exprience_list.industry%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">公司规模：</span>
+			<div><%=work_exprience_list.guimo%>人</div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">公司性质：</span>
+			<div><%=work_exprience_list.xingzhi%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">薪资：</span>
+			<div><%=work_exprience_list.salary%>元</div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">职务：</span>
+			<div><%=work_exprience_list.position%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">所在部门：</span>
+			<div><%=work_exprience_list.department%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">汇报对象：</span>
+			<div><%=work_exprience_list.leader%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">下属：</span>
+			<div><%=work_exprience_list.underling_number%>人</div>
+		</div>
+		<div class="baseinfo-list baseinfo-list100">
+			<span class="servicelist_span">详细介绍：</span>
+			<div class="textTohtml"><%=work_exprience_list.summary%></div>
+		</div>
+	</div>
+	<%})%>
+	<%}%>
+</div>
+<!--工作经历 end-->
+<!--项目经验 start-->
+<p class="servicelistTab">
+	<span class="active">项目经验</span>
+</p>
+<div class="projectexperienceDetail">
+	<% if(data.project_list){%>
+	<%data.project_list.forEach(function(project_list){%>
+	<div class="projectexperienceList">
+		<div class="baseinfo-list">
+			<span class="servicelist_span">项目名称：</span>
+			<div><%=project_list.project_name%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">担任职务：</span>
+			<div><%=project_list.position%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">项目时间：</span>
+			<div><span><%=project_list.start_date%></span><%if(project_list.start_date!="" && project_list.end_date!=''){%><span> - </span><span><%=project_list.end_date%></span><%}else if(project_list.start_date!="" && project_list.end_date==''){%><span> - 至今</span><%}%></div>
+		</div>
+		<div class="baseinfo-list baseinfo-list100">
+			<span class="servicelist_span">项目描述：</span>
+			<div class="textTohtml"><%=project_list.description%></div>
+		</div>
+		<div class="baseinfo-list baseinfo-list100">
+			<span class="servicelist_span">项目职责：</span>
+			<div class="textTohtml"><%=project_list.responsiblity%></div>
+		</div>
+	</div>
+	<%})%>
+	<%}%>
+</div>
+<!--项目经验 end-->
+<!--教育经历 start-->
+<p class="servicelistTab">
+	<span class="active">教育经历</span>
+</p>
+<div class="projectexperienceDetail">
+	<% if(data.education_list){%>
+	<%data.education_list.forEach(function(education_list){%>
+	<div class="projectexperienceList">
+		<div class="baseinfo-list">
+			<span class="servicelist_span">学校名称：</span>
+			<div><%=education_list.school_name%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">学历：</span>
+			<div><%=education_list.education%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">学位：</span>
+			<div><%=education_list.advanced_degree%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">专业：</span>
+			<div><%=education_list.speciality%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">教育时间：</span>
+			<div><span><%=education_list.start_date%></span><%if(education_list.start_date!='' && education_list.end_date!=''){%><span> - </span><span><%=education_list.end_date%></span><%}else if(education_list.start_date!='' && education_list.end_date==''){%><span> - 至今</span><%}%></div>
+		</div>
+		<div class="baseinfo-list">
+			<span class="servicelist_span">留学经历：</span>
+			<div><%=education_list.liuxue%></div>
+		</div>
+		<div class="baseinfo-list baseinfo-list100">
+			<span class="servicelist_span">详细介绍：</span>
+			<div class="textTohtml"><%=education_list.summary%></div>
+		</div>
+	</div>
+	<%})%>
+	<%}%>
+</div>
+<!--教育经历 end-->
+<script type="text/javascript">
+	$(function(){
+		//	文本换行 需要换行的class加上textTohtml start
+			$('.textTohtml').each(function(){
+				$(this).html($(this).html().replace(/\r\n/g,"<br>").replace(/\n/g,"<br>"));				
+			})
+		//	文本换行 需要换行的class加上textTohtml end
+	})
+</script>
